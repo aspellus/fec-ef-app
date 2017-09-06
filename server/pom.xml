@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.salientcrgt</groupId>
-	<artifactId>bootstrap</artifactId>
+	<artifactId>fec-ef-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>bootstrap</name>
+	<name>fec-ef-app</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
