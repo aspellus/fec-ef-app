@@ -1,0 +1,18 @@
+// Copy variables from _variables.scss into this file to override Bootstrap defaults
+
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+
+@import '~bootstrap/scss/bootstrap';
+
+@media (min-width: 1500px){
+	.container {
+		max-width: 1440px;
+	}
+}
+.content-header {
+	margin-bottom: 15px;
+}
+.text-sm {
+	font-size: 50%;
+}
