@@ -7,4 +7,4 @@ Feature: HomePage
 Scenario: select a committee id from the drop down
 Given I am on the home page
 When I select a committee ID from the drop down
-Then my custom portal page is displayed
+Then my  custom portal page is displayed
