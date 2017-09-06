@@ -78,6 +78,20 @@
 			<version>2.9.0</version>
      		</dependency>
 		
+		<!-- JUnit and Rest Assured dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+		
 		<!--postgresql dependency-->
 	    	<dependency>
 			<groupId>org.postgresql</groupId>
