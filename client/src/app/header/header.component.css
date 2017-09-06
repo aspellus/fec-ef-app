@@ -1,0 +1,39 @@
+.app-header {
+	padding: .33rem 1rem 1rem 1rem;
+}
+.app-title {
+	background-color: #112e51;
+    padding: 1rem;
+    margin-bottom: .66rem; 
+    color: white;
+    border: 2px solid #aeb0b5;
+    border-radius: .25rem;
+}
+.masthead {
+	background-image: url('/assets/images/seal-cropped.svg');
+	background-repeat: no-repeat;
+    background-position: 0 100%;
+    border-bottom: 2px solid #f1f1f1;
+    border-top: 2px solid #f1f1f1;
+    display: block;
+    background-size: 8rem;
+    height: 80px;
+}
+.masthead > .masthead-title {
+	background-image: url('/assets/images/wordmark.svg');
+	background-repeat: no-repeat;
+    background-position: 12rem 50%;
+    background-size: contain;
+    display: block;
+    margin: 1rem 0 .7rem 0;
+    padding-left: 5rem;
+    height: 3rem;
+}
+.committee-select {
+	float: right;
+}
+.visually-hidden {
+	position: absolute!important;
+    top: auto;
+    left: -9999px!important;
+}
