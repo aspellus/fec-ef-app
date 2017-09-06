@@ -1,9 +1,12 @@
-FROM tomcat:8.5-alpine
+FROM anapsix/alpine-java
 
-MAINTAINER Rafael Troncoso<rafael.troncoso@salientcrgt.com>
+MAINTAINER Cris Daniluk <cris.daniluk@ctr.salientcrgt.com>
 ENV JAVA_OPTS="-Dspring.profiles.active=development"
 
-RUN chgrp -R 0 /usr/local/tomcat \
-  && chmod -R g+rwX /usr/local/tomcat \
-  && rm -rf /usr/local/tomcat/webapps/ROOT
-COPY target/fec-ef-app-0.0.1-SNAPSHOT.jar /usr/local/tomcat/webapps/ROOT.war
+RUN mkdir /opt/springboot
+COPY target/fec-ef-app-0.0.1-SNAPSHOT.jar /opt/springboot/
+
+ENTRYPOINT ["/opt/jdk/bin/java"]
+CMD ["-jar", "/opt/springboot/fec-ef-app-0.0.1-SNAPSHOT.jar"]
+
+EXPOSE 8080
