@@ -6,4 +6,4 @@ ENV JAVA_OPTS="-Dspring.profiles.active=development"
 RUN chgrp -R 0 /usr/local/tomcat \
   && chmod -R g+rwX /usr/local/tomcat \
   && rm -rf /usr/local/tomcat/webapps/ROOT
-COPY server/target/fec-ef-app.war /usr/local/tomcat/webapps/ROOT.war
+COPY server/target/fec-ef-app-0.0.1-SNAPSHOT.jar /usr/local/tomcat/webapps/ROOT.war
