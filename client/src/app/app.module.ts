@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms'; 
 
 import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
@@ -30,7 +31,8 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     BrowserModule,
     HttpModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    FormsModule
   ],
   providers: [UserService,CommitteeService],
   bootstrap: [AppComponent]

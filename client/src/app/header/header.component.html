@@ -1,25 +1,33 @@
 <header class="app-header">
 	<div class="masthead">
-		<a class="masthead-title"><span class="visually-hidden">Federal Election Commission | United States of America</span></a>
+		<a class="masthead-title">
+			<span>
+				Federal Election Commission | United States of America
+			</span>
+		</a>
 	</div>
 	<div class="app-title">
 		<div class="row">
-			<div class="col">
-				<h1>EZ Amendment Portal</h1>	
+			<div class="col-md-8">
+				<h1>EZ Amendment Portal</h1>
 			</div>
-			<div class="col-6">
+			<div class="col-md-4">
 				<div class="committee-select">
+					<button (click)="toggleLogin()" class="btn btn-sm btn-primary float-right mb-1">{{isLoggedIn ? 'Logout' : 'Login'}}</button>
 					<div ngbDropdown class="d-inline-block">
 				    	<button class="btn btn-light btn-sm" id="committee-dropdown" ngbDropdownToggle>{{committee ? committee.name : 'Select Committee'}}</button>
 				      	<div ngbDropdownMenu aria-labelledby="committee-dropdown">
 				      		<button *ngFor="let committee of committees" class="dropdown-item" (click)="selectCommittee(committee)">{{committee.name}}</button>
 				      	</div>
 				    </div>
-				    <button (click)="toggleLogin()" class="btn btn-sm btn-primary">{{isLoggedIn ? 'Logout' : 'Login'}}</button>
+				    <div class="input-group">
+				     	<input type="text" class="form-control" [(ngModel)]="committeeId" placeholder="Committee ID" aria-label="Committee ID">
+				      	<span class="input-group-btn">
+				        	<button (click)="committeeSearchById(committeeId)" class="btn btn-light" type="button">Select</button>
+				      	</span>
+				    </div>
 				</div>
 			</div>
 		</div>
-		
-		
 	</div>
 </header>

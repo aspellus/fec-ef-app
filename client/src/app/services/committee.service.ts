@@ -8,9 +8,8 @@ export class CommitteeService {
 
 	constructor(private http: Http) { }
 
-	  getAll(): Observable<any> {
-	    return this.http.get('https://api.open.fec.gov/v1/committees/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y')
+	getOne(id: string): Observable<any> {
+		return this.http.get('http://localhost:8080/committee/' + id)
 	      .map((response: Response) => response.json());
-	  }
-
+	}
 }

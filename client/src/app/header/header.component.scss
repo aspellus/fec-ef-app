@@ -1,0 +1,44 @@
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~variables.scss";
+
+.masthead {
+	background-image: url('/assets/images/seal-cropped.svg');
+	background-repeat: no-repeat;
+	background-size: 8rem;
+	display: block;
+	height: 80px;
+	
+	a.masthead-title {
+		background-image: url('/assets/images/wordmark.svg');
+		background-repeat: no-repeat;
+		background-position: 9rem 50%;
+		background-size: 15rem;
+		
+		@media (min-width: map-get($grid-breakpoints, sm)){
+			background-size: 20rem;
+		}
+		
+		display: block;
+		height: 100%;
+
+		span {
+			position: absolute!important;
+			top: auto;
+			left: -9999px!important;
+		}
+	}
+}
+.app-title {
+	background-color: $fec_blue;
+	padding: 1rem;
+	color: white;
+	border-color: $fec_light_gray;
+	border-width: 1px 0 2px 0;
+	border-style: solid ;
+	margin-bottom: 2rem;
+	
+	h1 {
+		display: inline-block;
+	}
+}
