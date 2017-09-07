@@ -2,7 +2,7 @@ Feature: PortalPage
   As a committee treasurer/representative
   I want to go to home page URL and enter my committee ID and submit
   so that I can view committee information on the logged in page
-
+  
 @regression @smoke
 Scenario: select a committee id from the drop down
 Given I am on the home page
