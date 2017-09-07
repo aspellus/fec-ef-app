@@ -38,9 +38,8 @@ spec:
     spec:
       volumes:
         - name: postgresql-data
-# Removed for space constraints
-#          persistentVolumeClaim:
-#            claimName: postgresql-prod
+          persistentVolumeClaim:
+            claimName: postgresql-prod
       containers:
         - name: postgresql
           image: >-
