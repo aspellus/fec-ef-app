@@ -12,8 +12,9 @@
 				<h1>EZ Amendment Portal</h1>
 			</div>
 			<div class="col-md-4">
-				<div class="committee-select">
-					<button (click)="toggleLogin()" class="btn btn-sm btn-primary float-right mb-1">{{isLoggedIn ? 'Logout' : 'Login'}}</button>
+				<button (click)="toggleLogin()" class="btn btn-sm btn-primary float-right mb-1">{{isLoggedIn ? 'Logout' : 'Login'}}</button>
+				<div class="committee-select" *ngIf="isLoggedIn">
+					
 					<div ngbDropdown class="d-inline-block">
 				    	<button class="btn btn-light btn-sm" id="committee-dropdown" ngbDropdownToggle>{{committee ? committee.name : 'Select Committee'}}</button>
 				      	<div ngbDropdownMenu aria-labelledby="committee-dropdown">

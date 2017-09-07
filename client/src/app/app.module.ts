@@ -1,25 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpModule} from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { UserService } from './services/user.service';
+import { AppRoutingModule } from './app-routing.module';
+
 import { CommitteeService } from './services/committee.service';
-import { HttpModule} from '@angular/http';
-import { HeaderComponent } from './header/header.component';
-import { PortalComponent } from './portal/portal.component';
-import { FilingReportComponent } from './filing-report/filing-report.component';
-import { ReportFiltersComponent } from './report-filters/report-filters.component';
-import { ContentHeaderComponent } from './content-header/content-header.component';
-import { ReportComponent } from './report/report.component';
-import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './partials/header/header.component';
+import { FooterComponent } from './partials/footer/footer.component';
+import { ContentHeaderComponent } from './partials/content-header/content-header.component';
+import { PortalComponent } from './modules/portal/portal.component';
+import { ReportComponent } from './modules/report/report.component';
+import { ReportFiltersComponent } from './modules/report/report-filters/report-filters.component';
+import { FilingReportComponent } from './modules/report/filing-report/filing-report.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
     HeaderComponent,
     PortalComponent,
     FilingReportComponent,
@@ -32,9 +32,10 @@ import { FooterComponent } from './footer/footer.component';
     BrowserModule,
     HttpModule,
     NgbModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
-  providers: [UserService,CommitteeService],
+  providers: [CommitteeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

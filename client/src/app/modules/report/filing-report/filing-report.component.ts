@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Committee } from '../models/committee';
+import { Committee } from '../../../models/committee';
 
 @Component({
   selector: 'app-filing-report',

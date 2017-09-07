@@ -1,8 +1,8 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
-import {CommitteeService} from "../services/committee.service";
+import {CommitteeService} from "../../services/committee.service";
 
-import { Committee } from '../models/committee';
+import { Committee } from '../../models/committee';
 
 @Component({
   selector: 'app-header',
