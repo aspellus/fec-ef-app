@@ -50,6 +50,8 @@ RUN sed -i 's/variables_order = "GPCS"/variables_order = "EGPCS"/g' /etc/php5/ap
 RUN echo "Listen 8080" > /etc/apache2/ports.conf
 RUN sed -i 's/80/8080/' /etc/apache2/sites-enabled/000-default.conf
 
+RUN chmod a+rwx /var/log/apache2
+
 # Set Apache environment variables (can be changed on docker run with -e)
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
