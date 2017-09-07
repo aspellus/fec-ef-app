@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: backend-stage
+  namespace: fec-ef-app
+  labels:
+    app: backend
+    env: stage
+spec:
+  strategy:
+    type: Rolling
+    activeDeadlineSeconds: 21600
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - backend
+        from:
+          kind: ImageStreamTag
+          namespace: fec-ef-app
+          name: 'fec-ef-app-backend:stage'
+  replicas: 1
+  test: false
+  selector:
+    app: backend
+    env: stage
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: backend
+        env: stage
+    spec:
+      containers:
+        - name: backend
+          image: >-
+            salientcrgt/fec-ef-app-backend:stage
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: EF_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql-stage
+                  key: database-user
+            - name: EF_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql-stage
+                  key: database-password
+            - name: EF_DB_URL
+              value: 'postgresql://postgresql-stage.fec-ef-app.svc:5432/fec-ef-app'
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
