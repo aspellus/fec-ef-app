@@ -26,7 +26,7 @@ public class AmendmentTest
         
 	// If server.port not available in System property, then setting default port to be 8080
 	if (port == null) 
-            RestAssured.port = Integer.valueOf(4200);
+            RestAssured.port = Integer.valueOf(8080);
         else
             RestAssured.port = Integer.valueOf(port);
 		
