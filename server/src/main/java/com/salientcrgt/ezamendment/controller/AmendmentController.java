@@ -40,8 +40,95 @@ public class AmendmentController {
 		HttpURLConnection conn = null;
 		try {
 			// Establishing Connection to FEC API to get Committee Details.
-			String apiURL = "https://api.open.fec.gov/v1/committee/"+committee_id+"/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y";
-			URL url = new URL(apiURL);
+			StringBuilder apiURL = new StringBuilder();
+			apiURL.append("https://api.open.fec.gov/v1/committee/")
+				.append(committee_id).
+				append("/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y");
+			URL url = new URL(apiURL.toString());
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", "application/json");
+
+			// Checking for Response Code
+			if (conn.getResponseCode() != 200) 
+				logger.error("Failed : HTTP error code : " + conn.getResponseCode());
+			
+			// Building JSONObject from API call
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+				(conn.getInputStream())));
+			jsonObject = (JSONObject) new JSONParser().parse(reader);
+		} catch (MalformedURLException e) {
+			logger.error(e.getMessage());
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		} catch (ParseException e) {
+			logger.error(e.getMessage());
+		} finally {
+			// close connection
+			if(conn != null)
+				conn.disconnect();
+		}
+		return jsonObject;
+	}
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@RequestMapping(value = "/committee/{committee_id}/filings/{report_year}", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
+	@ResponseBody
+	public JSONObject getCommitteeReportsByYear(@PathVariable String committee_id, @PathVariable String report_year) {
+		JSONObject jsonObject = null;
+		HttpURLConnection conn = null;
+		try {
+			
+			// Establishing Connection to FEC API to get Committee Details.
+			StringBuilder apiURL = new StringBuilder();
+			apiURL.append("https://api.open.fec.gov/v1/committee/")
+				.append(committee_id).
+				append("/filings/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y&report_year=")
+				.append(report_year);
+			URL url = new URL(apiURL.toString());
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", "application/json");
+
+			// Checking for Response Code
+			if (conn.getResponseCode() != 200) 
+				logger.error("Failed : HTTP error code : " + conn.getResponseCode());
+			
+			// Building JSONObject from API call
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+				(conn.getInputStream())));
+			jsonObject = (JSONObject) new JSONParser().parse(reader);
+		} catch (MalformedURLException e) {
+			logger.error(e.getMessage());
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		} catch (ParseException e) {
+			logger.error(e.getMessage());
+		} finally {
+			// close connection
+			if(conn != null)
+				conn.disconnect();
+		}
+		return jsonObject;
+	}
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@RequestMapping(value = "/committee/{committee_id}/filings/{report_year}/{form_type}", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
+	@ResponseBody
+	public JSONObject getCommitteeReportsByYearAndFormType(@PathVariable String committee_id, @PathVariable String report_year, @PathVariable String form_type) {
+		JSONObject jsonObject = null;
+		HttpURLConnection conn = null;
+		try {
+			
+			// Establishing Connection to FEC API to get Committee Details.
+			StringBuilder apiURL = new StringBuilder();
+			apiURL.append("https://api.open.fec.gov/v1/committee/")
+				.append(committee_id).
+				append("/filings/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y&report_year=")
+				.append(report_year)
+				.append("&form_type=")
+				.append(form_type);
+			URL url = new URL(apiURL.toString());
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
@@ -68,3 +155,4 @@ public class AmendmentController {
 		return jsonObject;
 	}
 }
+
