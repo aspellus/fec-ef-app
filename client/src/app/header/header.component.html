@@ -1,14 +1,18 @@
 <header class="app-header">
 	<div class="masthead">
-		<a class="masthead-title"><span class="visually-hidden">Federal Election Commission | United States of America</span></a>
+		<a class="masthead-title">
+			<span>
+				Federal Election Commission | United States of America
+			</span>
+		</a>
 	</div>
 	<div class="app-title">
 		<div class="row">
-			<div class="col">
-				<h1>EZ Amendment Portal</h1>	
+			<div class="col-md-8">
+				<h1>EZ Amendment Portal</h1>
 			</div>
-			<div class="col-6">
-				<div class="committee-select">
+			<div class="col-md-4">
+				<div class="float-right">
 					<div ngbDropdown class="d-inline-block">
 				    	<button class="btn btn-light btn-sm" id="committee-dropdown" ngbDropdownToggle>{{committee ? committee.name : 'Select Committee'}}</button>
 				      	<div ngbDropdownMenu aria-labelledby="committee-dropdown">
@@ -19,7 +23,7 @@
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 	</div>
 </header>

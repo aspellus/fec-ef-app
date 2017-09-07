@@ -12,7 +12,7 @@ export class AppComponent {
 	committee: Committee;
 
 	constructor(){
-		this.isLoggedIn = true;
+		this.isLoggedIn = false;
 	}
 	
 	onToggleLogin(_isLoggedIn: boolean) {
