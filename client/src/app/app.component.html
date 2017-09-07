@@ -1,7 +1,7 @@
 <div class="app-root-container">
 	<app-header [isLoggedIn]="isLoggedIn" (onToggleLogin)="onToggleLogin($event)" (onSelectCommittee)="onSelectCommittee($event)" [(committee)]="committee"></app-header>
 
-	<div class="container-fluid">
+	<div class="container-fluid app-main-content">
 		<app-portal *ngIf="!isLoggedIn"></app-portal>
 		<app-report *ngIf="isLoggedIn" [committee]="committee"></app-report>
 	</div>
