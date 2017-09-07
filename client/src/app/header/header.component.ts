@@ -12,16 +12,24 @@ import { Committee } from '../models/committee';
 export class HeaderComponent implements OnInit {
 
 	committees = [];
+	committeeId = '';
+	private _committeeIds = ['C00577759', 
+	                         'C00579599',
+	                         'C00615740',
+	                         'C00634634',
+	                         'C00650770']
 	
   constructor(private committeeService: CommitteeService) { }
 
   ngOnInit() {
-	  this.committeeService.getAll().subscribe(
-		      data => {
-		        this.committees = data.results;
-		      },
-		      error => console.log(error)
-		    )
+	  this._committeeIds.forEach(function each(comId){
+		  this.committeeService.getOne(comId).subscribe(
+				  data => {
+				        this.committees.push(data.results[0]);
+				      },
+				      error => console.log(error)
+		  );
+	  }.bind(this));
   }
   
   @Input()  isLoggedIn: boolean;
@@ -33,6 +41,16 @@ export class HeaderComponent implements OnInit {
   toggleLogin() {
 	  this.isLoggedIn = !this.isLoggedIn;
 	  this.onToggleLogin.emit(this.isLoggedIn);
+  }
+  
+  committeeSearchById(id: string) {
+	  this.committeeService.getOne(id).subscribe(
+			  data => {
+			        this.committee = data.results[0];
+			        this.selectCommittee(this.committee);
+			      },
+			      error => console.log(error)
+	  );
   }
   
   selectCommittee(_committee) {
