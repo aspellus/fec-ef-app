@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: frontend
+    env: stage
+  name: fec-ef-app-frontend-stage
+  namespace: fec-ef-app
+spec:
+  ports:
+    - name: node
+      port: 4200
+      protocol: TCP
+      targetPort: 4200
+  selector:
+    app: frontend
+    env: stage
+  sessionAffinity: None
+  type: ClusterIP
+
