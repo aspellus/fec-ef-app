@@ -1,0 +1,24 @@
+<div class="report-content">
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th>Filing ID</th>
+	      <th>Filer Name</th>
+	      <th>Filing Type</th>
+	      <th>Version</th>
+	      <th>Receipt Date</th>
+	      <th>Status</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr *ngFor="let rec of records">
+	      <td>{{rec.filingId}}</td>
+	      <td>{{rec.filerName}}</td>
+	      <td>{{rec.filingType}}</td>
+	      <td>{{rec.version}}</td>
+	      <td>{{rec.receiptDate | date}}</td>
+	      <td>{{rec.status}}</td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>
