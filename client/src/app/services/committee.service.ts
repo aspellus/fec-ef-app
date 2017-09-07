@@ -8,8 +8,9 @@ export class CommitteeService {
 
 	constructor(private http: Http) { }
 
-	getOne(id: string): Observable<any> {
-		return this.http.get('http://localhost:8080/committee/' + id)
+    getOne(id: string): Observable<any> {
+        var apiUrl = process.env.API_URL || "http://localhost:8080/"
+		return this.http.get(apiUrl + '/committee/' + id)
 	      .map((response: Response) => response.json());
 	}
 }
