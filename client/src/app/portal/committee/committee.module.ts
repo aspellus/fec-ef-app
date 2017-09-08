@@ -5,10 +5,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommitteeService } from './committee.service';
 import { CommitteeComponent } from './committee.component';
 import { CommitteeInfoComponent } from './committee-info/committee-info.component';
+import { FilingsComponent } from './filings/filings.component';
 import { FilingComponent } from './filing/filing.component';
 import { FilingService } from './filing/filing.service';
-
-import { FilingInfoComponent } from './filing/filing-info/filing-info.component';
 
 
 @NgModule({
@@ -18,10 +17,11 @@ import { FilingInfoComponent } from './filing/filing-info/filing-info.component'
   ],
   exports: [
     CommitteeComponent,
+    FilingsComponent,
     FilingComponent,
     CommitteeInfoComponent
   ],
-  declarations: [CommitteeComponent, FilingComponent, CommitteeInfoComponent, FilingInfoComponent],
+  declarations: [CommitteeComponent, FilingsComponent, FilingComponent, CommitteeInfoComponent],
   providers: [CommitteeService, FilingService]
 })
 export class CommitteeModule { }
