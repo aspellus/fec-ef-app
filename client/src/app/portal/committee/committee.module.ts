@@ -6,6 +6,7 @@ import { CommitteeService } from './committee.service';
 import { CommitteeComponent } from './committee.component';
 import { FilingsComponent } from './filings/filings.component';
 import { CommitteeInfoComponent } from './committee-info/committee-info.component';
+import { FilingComponent } from './filing/filing.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { CommitteeInfoComponent } from './committee-info/committee-info.componen
     FilingsComponent,
     CommitteeInfoComponent
   ],
-  declarations: [CommitteeComponent, FilingsComponent, CommitteeInfoComponent],
+  declarations: [CommitteeComponent, FilingsComponent, CommitteeInfoComponent, FilingComponent],
   providers: [CommitteeService]
 })
 export class CommitteeModule { }

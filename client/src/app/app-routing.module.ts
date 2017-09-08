@@ -5,6 +5,7 @@ import { PortalComponent } from './portal/portal.component';
 import { CommitteeComponent } from './portal/committee/committee.component';
 import { CommitteeInfoComponent } from './portal/committee/committee-info/committee-info.component';
 import { FilingsComponent } from './portal/committee/filings/filings.component';
+import { FilingComponent } from './portal/committee/filing/filing.component';
 
 const appRoutes: Routes = [
   {
@@ -25,6 +26,10 @@ const appRoutes: Routes = [
 	    	path: 'committee-info',
 	        component: CommitteeInfoComponent
 	    }]
+    },
+    {
+  	path: 'filing/:file_id',
+	component: FilingComponent
     }]
   },
   {
@@ -39,7 +44,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       {
-        //enableTracing: true // <-- debugging purposes only
+        enableTracing: true // <-- debugging purposes only
       }
     )
   ],
