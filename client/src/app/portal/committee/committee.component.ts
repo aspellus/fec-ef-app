@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {NgbPanelChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 
 import { CommitteeService } from "./committee.service";
+import { FilingService } from "./filing/filing.service";
 
 @Component({
   selector: 'app-committee',
@@ -20,7 +21,7 @@ export class CommitteeComponent implements OnInit {
 
 	doShow = 'committee-info';
 
-	constructor(private route: ActivatedRoute, private router: Router, private committeeService: CommitteeService) { }
+	constructor(private route: ActivatedRoute, private router: Router, private committeeService: CommitteeService, private filingService: FilingService) { }
 
 	ngOnInit() {
 		console.log('committee init');
@@ -57,7 +58,7 @@ export class CommitteeComponent implements OnInit {
 	}
 	
 	private getFilingData(){
-		this.committeeService.getFilingsByYear(this.committee.committee_id, this.filingYear).subscribe(
+		this.filingService.getByYear(this.committee.committee_id, this.filingYear).subscribe(
 				data => {
 					this.filingData = data.results;
 					//this.committeeService.committee = this.committee;
