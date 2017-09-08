@@ -1,4 +1,4 @@
-package gov.fec.efapp.runner;
+package com.salientcrgt.ezamendment.runner;
 
 import org.junit.runner.RunWith;
 
@@ -12,7 +12,7 @@ import cucumber.api.CucumberOptions;
 		tags = {"~@wip"},
 		features = {
 		"src/test/resources/features/"},
-		glue={"com.karsun.kic.tan", "org.openqa", "gov.fec.efapp"})
+		glue={"com.karsun.kic.tan", "org.openqa", "com.salientcrgt.ezamendment"})
 @TestDataFiles(files = { "src/test/resources/data/data.json" })
 public class EFAppRunner {
 }

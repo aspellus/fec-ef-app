@@ -1,4 +1,4 @@
-package gov.fec.efapp.homepage;
+package com.salientcrgt.ezamendment.portalpage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,13 +9,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.karsun.kic.tan.duke.Page;
 import com.karsun.kic.tan.duke.util.ActionByLocator;
 import com.paulhammant.ngwebdriver.NgWebDriver;
+import com.salientcrgt.ezamendment.util.LoadProperties;
 
-import gov.fec.efapp.util.LoadProperties;
-
-public class Homepage extends Page {
+public class Portalpage extends Page {
 	private static final int TIME_OUT_SECONDS = 5;
 
-	public Homepage(WebDriver driver) {
+	public Portalpage(WebDriver driver) {
 		super(driver);
 	}
 
