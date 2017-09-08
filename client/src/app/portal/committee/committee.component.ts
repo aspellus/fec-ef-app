@@ -7,6 +7,14 @@ import {NgbPanelChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 import { CommitteeService } from "./committee.service";
 import { FilingService } from "./filing/filing.service";
 
+class FilingFilter {
+	constructor(filingYear: number){
+		this.filingYear = filingYear;
+	};
+	filingYear: number;
+	formType: string;
+}
+
 @Component({
   selector: 'app-committee',
   templateUrl: './committee.component.html',
@@ -16,11 +24,10 @@ export class CommitteeComponent implements OnInit {
 
 	doShow: string = 'filings';
 	isLoading: boolean = false;
+	filters: FilingFilter;
 	committee: any = {};
 	filingData: any = [];
-	filingYear: number;
 	years: Array<number> = [];
-	formType: string;
 	formTypes: Array<String> = [];
 
 	constructor(private route: ActivatedRoute, private router: Router, private committeeService: CommitteeService, private filingService: FilingService) { }
@@ -39,16 +46,15 @@ export class CommitteeComponent implements OnInit {
 			this.years.push(i);
 		}
 		
-		this.filingYear = this.years[0];
+		this.filters = new FilingFilter(this.years[0]);
 	}
 	
-	
 	getData() {
-		if(this.formType){
+		if(this.filters.formType){
 			return this.filingData.filter(filing => {
 				let type = filing.form_type;
 
-				return type && this.formType === type;
+				return type && this.filters.formType === type;
 			});
 		}
 		
@@ -56,10 +62,10 @@ export class CommitteeComponent implements OnInit {
 	}
 	private getFilingData(){
 		this.formTypes = [];
-		this.formType = '';
+		this.filters.formType = '';
 		this.isLoading = true;
 
-		this.filingService.getByYear(this.committee.committee_id, this.filingYear, this.formType).subscribe(
+		this.filingService.getByYear(this.committee.committee_id, this.filters.filingYear, this.filters.formType).subscribe(
 				data => {
 					this.filingData = data.results;
 					this.filingData.forEach(filing => {

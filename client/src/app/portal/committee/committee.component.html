@@ -11,10 +11,10 @@
 <div class="row">
 	<div class="col-3">
 		<div class="filter">
-			<button class="filter-header" (click)="doShow = 'committee-info'">More About the Committee</button>
-			<button class="filter-header btn-link" (click)="doShow = 'filings'">Filings</button>
+			<button id="committee-info-btn" class="filter-header" (click)="doShow = 'committee-info'">More About the Committee</button>
+			<button id="filings-btn" class="filter-header btn-link" (click)="doShow = 'filings'">Filings</button>
 			<div class="filter-content">
-				<p class="strong">Filters
+				<p class="strong">Filters 
 				<hr>
 				<div class="row">
 					<div class="col">
@@ -22,9 +22,9 @@
 					</div>
 					<div class="col">
 						<div ngbDropdown class="filter-dropdown">
-					    	<button class="btn btn-light btn-sm" id="filing-year" ngbDropdownToggle>{{filingYear ? filingYear : 'Select Year'}}<i></i></button>
-					      	<div ngbDropdownMenu aria-labelledby="filing-year">
-					        	<button *ngFor="let year of years" class="dropdown-item" (click)="filingYear = year; getFilingData()">{{year}}</button>
+					    	<button id="filing-year-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{filters.filingYear ? filters.filingYear : 'Select Year'}}<i></i></button>
+					      	<div ngbDropdownMenu aria-labelledby="filing-year-dd">
+					        	<button id="filing-year-ddi-{{i}}" *ngFor="let year of years; let i = index" class="dropdown-item" (click)="filters.filingYear = year; getFilingData()">{{year}}</button>
 					      	</div>
 					    </div>	
 					</div>
@@ -37,9 +37,10 @@
 					</div>
 					<div class="col">
 						<div ngbDropdown class="filter-dropdown">
-					    	<button class="btn btn-light btn-sm" id="form-type" ngbDropdownToggle>{{formType ? formType : 'Select Form Type'}}<i></i></button>
-					      	<div ngbDropdownMenu aria-labelledby="filing-year">
-					        	<button *ngFor="let type of formTypes" class="dropdown-item" (click)="formType = type">{{type}}</button>
+					    	<button id="form-type-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{filters.formType ? filters.formType : 'Select Form Type'}}<i></i></button>
+					      	<div ngbDropdownMenu aria-labelledby="form-type-dd">
+					      		<button id="form-type-ddi-clear" class="dropdown-item" (click)="filters.formType = ''">Clear <i class="fa fa-times float-right"></i></button>
+					        	<button id="form-type-ddi{{i}}" *ngFor="let type of formTypes; let i = index" class="dropdown-item" (click)="filters.formType = type">{{type}}</button>
 					      	</div>
 					    </div>
 					</div>
