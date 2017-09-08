@@ -15,7 +15,7 @@
 	</div>
 	<div class="row">
 		<div class="col-3">
-			<ngb-accordion [closeOthers]="true" activeIds="static-1" (panelChange)="beforeChange($event)">
+			<ngb-accordion  activeIds="static-1" (panelChange)="beforeChange($event)">
 			  <ngb-panel id="committee-info-panel" title="Committee Info" (click)="doShow = 'committee-info'">
 			    <ng-template ngbPanelContent>
 			      

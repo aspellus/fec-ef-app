@@ -1,7 +1,6 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ReportComponent } from './portal/report/report.component';
 import { PortalComponent } from './portal/portal.component';
 import { CommitteeComponent } from './portal/committee/committee.component';
 import { CommitteeInfoComponent } from './portal/committee/committee-info/committee-info.component';
@@ -11,10 +10,6 @@ const appRoutes: Routes = [
   {
     path: '',
     component: PortalComponent
-  },
-  {
-    path: 'report/:committee_id',
-    component: ReportComponent
   },
   {
     path: 'portal',
