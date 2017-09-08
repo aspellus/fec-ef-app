@@ -1,9 +1,20 @@
 <div class="app-root-container">
-	<app-header [isLoggedIn]="isLoggedIn" (onToggleLogin)="onToggleLogin($event)" (onSelectCommittee)="onSelectCommittee($event)" [(committee)]="committee"></app-header>
+	<app-header [isLoggedIn]="isLoggedIn" (onLogout)="onLogout($event)"></app-header>
 
 	<div class="container-fluid app-main-content">
-		<app-portal *ngIf="!isLoggedIn"></app-portal>
-		<app-report *ngIf="isLoggedIn" [committee]="committee"></app-report>
+		<div class="container" *ngIf="!isLoggedIn">
+			<h2>Welcome to the EZ Amendment Portal</h2>
+			<h5>Enter your Committee ID and Login to review, amend, or add existing filings</h5>
+			<div class="jumbotron">
+				<div class="input-group">
+			     	<input type="text" class="form-control" [(ngModel)]="committeeId" placeholder="Committee ID" aria-label="Committee ID">
+			      	<span class="input-group-btn">
+			        	<button (click)="committeeLogin(committeeId)" class="btn btn-light" type="button">Login</button>
+			      	</span>
+			    </div>
+			</div>
+		</div>
+		<router-outlet *ngIf="isLoggedIn"></router-outlet>
 	</div>
 
 	<app-footer></app-footer>

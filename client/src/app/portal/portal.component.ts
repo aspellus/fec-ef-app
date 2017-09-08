@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { CommitteeService } from './committee/committee.service';
 
 @Component({
   selector: 'app-portal',
@@ -7,9 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PortalComponent implements OnInit {
 
-  constructor() { }
+  	constructor(private router: Router, private route: ActivatedRoute, private committeeService: CommitteeService) { }
 
-  ngOnInit() {
-  }
+  	ngOnInit() {
+  		
+  	}
 
+  
 }

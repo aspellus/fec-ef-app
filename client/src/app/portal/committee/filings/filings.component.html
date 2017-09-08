@@ -1,0 +1,20 @@
+<div class="report-content">
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th>Filing Description (ID)</th>
+	      <th>Coverage Period</th>
+	      <th>Last Update</th>
+	      <th>Receipt Date</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr *ngFor="let rec of filingData">
+	      <td>{{rec.document_description}} ({{rec.fec_file_id}})</td>
+	      <td>{{rec.coverage_start_date | date}} - {{rec.coverage_end_date | date}}</td>
+	      <td>{{rec.update_date | date}}</td>
+	      <td>{{rec.receipt_date | date}}</td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>

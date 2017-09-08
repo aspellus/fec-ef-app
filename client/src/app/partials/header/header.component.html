@@ -1,0 +1,19 @@
+<header class="app-header">
+	<div class="masthead">
+		<a class="masthead-title">
+			<span>
+				Federal Election Commission | United States of America
+			</span>
+		</a>
+	</div>
+	<div class="app-title">
+		<div class="row">
+			<div class="col-md-8">
+				<h1>EZ Amendment Portal</h1>
+			</div>
+			<div class="col-md-4">
+				<button *ngIf="isLoggedIn" (click)="logout()" class="btn btn-sm btn-primary float-right mb-1">Logout</button>
+			</div>
+		</div>
+	</div>
+</header>

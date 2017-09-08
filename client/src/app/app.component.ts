@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-
-import { Committee } from './models/committee';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +9,17 @@ import { Committee } from './models/committee';
 })
 export class AppComponent {
 	isLoggedIn: boolean;
-	committee: Committee;
 
-	constructor(){
+	constructor(private router: Router){
 		this.isLoggedIn = false;
 	}
-	
-	onToggleLogin(_isLoggedIn: boolean) {
-		this.isLoggedIn = _isLoggedIn;
+
+	committeeLogin(id: string){
+		this.isLoggedIn = true;
+		this.router.navigate(['/portal/committee/' + id]);
 	}
-	
-	onSelectCommittee(committee: Committee) {
-		this.committee = committee;
+	onLogout(_isLoggedIn: boolean) {
+		this.isLoggedIn = _isLoggedIn;
+		this.router.navigate(['/portal']);
 	}
 }

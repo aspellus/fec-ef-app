@@ -1,0 +1,76 @@
+<div>
+	<div *ngIf="!committee">
+		<h2>
+			Welcome to the EZ Amendment Portal
+			<br>
+			<small class="text-sm">Please search for a Committee ID below.</small>
+		</h2>
+	</div>
+	<div *ngIf="committee">
+		<h2>
+			{{committee.name}}
+			<br>
+			<small class="text-sm">{{committee.committee_type_full}} - {{committee.designation_full}} | ID: {{committee.committee_id}}</small>
+		</h2>
+	</div>
+	<div class="row">
+		<div class="col-3">
+			<ngb-accordion [closeOthers]="true" activeIds="static-1" (panelChange)="beforeChange($event)">
+			  <ngb-panel id="committee-info-panel" title="Committee Info" (click)="doShow = 'committee-info'">
+			    <ng-template ngbPanelContent>
+			      
+			    </ng-template>
+			  </ngb-panel>
+			  <ngb-panel id="filings-panel" title="Filings" (click)="doShow = 'filings'">
+			    <ng-template ngbPanelContent>
+			    	<div class="form-group">
+			    		<label>Filing Year: </label>
+				    	<br>
+				      	<div ngbDropdown class="d-inline-block">
+					      <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>{{filingYear ? filingYear : 'Select Year'}}</button>
+					      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+					        <button *ngFor="let year of years" class="dropdown-item" (click)="selectYear(year)">{{year}}</button>
+					      </div>
+					    </div>
+			    	</div>
+			    </ng-template>
+			  </ngb-panel>
+			</ngb-accordion>
+			<!-- <a (click)="doShow = 'committee-info'">Committee Info</a>
+			<br>
+			<a (click)="doShow = 'filings'">Filings</a> -->
+		</div>
+		<div class="col">
+			<app-committee-info *ngIf="doShow == 'committee-info'" [committee]="committee">Loading Committee Info...</app-committee-info>
+			<app-filings *ngIf="doShow == 'filings'" [filingData]="filingData">Loading Filings...</app-filings>
+			<!-- <router-outlet></router-outlet> -->
+		</div>
+	</div>
+</div>
+
+<!-- <div class="row" *ngIf="committee">
+	<div class="col">
+		<h2>
+			{{committee.name}}
+			<br>
+			<small class="text-sm">{{committee.committee_type_full}} - {{committee.designation_full}} | ID: {{committee.committee_id}}</small>
+		</h2>
+		<hr>
+	</div>
+</div>
+<div class="row">
+	<div class="col-3">
+		<div class="input-group">
+	     	<input type="text" class="form-control" [(ngModel)]="committeeSearch" placeholder="Committee ID Search" aria-label="Committee ID Search">
+	      	<span class="input-group-btn">
+	        	<button (click)="committeeSearchById(committeeSearch)" class="btn btn-light" type="button">Search</button>
+	      	</span>
+	    </div>
+	</div>
+	<div class="col">
+		<app-committee-info [committee]="committee">Loading Committee Info...</app-committee-info>
+	</div>
+</div> 
+
+<router-outlet></router-outlet>
+ <app-committee-info [committee]="committee">Loading Committee Info...</app-committee-info> -->

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import { Committee } from '../models/committee';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-filing-report',
@@ -27,6 +26,6 @@ export class FilingReportComponent implements OnInit {
 	  }
   }
 
-  @Input() committee: Committee;
+  @Input() committee: Observable<any>;
   
 }
