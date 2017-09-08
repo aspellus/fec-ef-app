@@ -3,4 +3,5 @@ export class Committee {
 		this.name = name;
 	}
 	name: string;
+	committee_id: string;
 }

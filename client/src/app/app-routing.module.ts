@@ -6,16 +6,16 @@ import { PortalComponent } from './modules/portal/portal.component';
 
 const appRoutes: Routes = [
   {
-    path: 'portal',
+    path: '',
     component: PortalComponent
   },
   {
-    path: 'report',
+    path: 'report/:committee_id',
     component: ReportComponent
   },
   {
 	  path: '',
-	  redirectTo: '/portal',
+	  redirectTo: '',
 	  pathMatch: 'full'
   }
 ];
@@ -25,7 +25,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       {
-        enableTracing: true // <-- debugging purposes only
+        //enableTracing: true // <-- debugging purposes only
       }
     )
   ],

@@ -19,13 +19,17 @@ export class AppComponent {
 	onToggleLogin(_isLoggedIn: boolean) {
 		this.isLoggedIn = _isLoggedIn;
 		if(this.isLoggedIn){
-			this.router.navigate(['/report']);
+			this.router.navigate(['/report', this.committee.committee_id]);
 		}else{
-			this.router.navigate(['/portal']);
+			delete this.committee;
+			this.router.navigate(['']);
 		}
 	}
 	
 	onSelectCommittee(committee: Committee) {
 		this.committee = committee;
+		if(this.isLoggedIn){
+			this.router.navigate(['/report', this.committee.committee_id]);
+		}
 	}
 }

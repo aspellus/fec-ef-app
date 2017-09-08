@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import {CommitteeService} from "../../services/committee.service";
 
@@ -19,7 +20,18 @@ export class HeaderComponent implements OnInit {
 	                         'C00634634',
 	                         'C00650770']
 	
-  constructor(private committeeService: CommitteeService) { }
+  constructor(private route: ActivatedRoute, private committeeService: CommitteeService) {
+  	this.route.params.subscribe(function (params) {
+  		if (Boolean(params.committee_id)) {
+  			committeeService.getOne(params.committee_id).subscribe(
+				data => {
+					this.committee = data.results[0];
+				},
+				error => console.log(error)
+			);
+  		}
+  	}.bind(this));
+  }
 
   ngOnInit() {
 	  this._committeeIds.forEach(function each(comId){
