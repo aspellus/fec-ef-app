@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080'
+  apiUrl: 'http://fec-ef-app-backend-stage.fec-ef-app.svc:8080/'
 };
