@@ -37,6 +37,7 @@ public class Portalpage extends Page {
 	protected void load() {
 		waitForAngular();
 
+		committeesVisible = false;
 		driver.get(LoadProperties.getApplicationURL());
 
 		new WebDriverWait(driver, 10)
@@ -92,8 +93,7 @@ public class Portalpage extends Page {
 
 		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
 
-		String header = driver.findElement(By.tagName("app-committee")).findElement(By.xpath(".//h2/small"))
-				.getText();
+		String header = driver.findElement(By.tagName("app-committee")).findElement(By.xpath(".//h2/small")).getText();
 		System.out.println(header);
 
 		Pattern p = Pattern.compile("ID: [A-Z0-9]+$");
@@ -105,7 +105,7 @@ public class Portalpage extends Page {
 	}
 
 	public Map<String, String> getCommitteeAboutInfo() {
-		
+
 		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
 
 		Map<String, String> committeeInfo = new HashMap<String, String>();
@@ -138,6 +138,27 @@ public class Portalpage extends Page {
 			return false;
 		}
 		return true;
+	}
+
+	public boolean isFilingPanelOpen() {
+		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		try {
+			driver.findElement(By.tagName("app-filing"));
+		} catch (NoSuchElementException nsee) {
+			return false;
+		}
+		return true;
+	}
+
+	public void openCommitteePanel() {
+		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+		List<String> committees = new ArrayList<String>();
+
+		WebElement committeeButton = driver.findElement(By.id("committee-info-btn"));
+
+		committeeButton.click();
+
 	}
 
 }
