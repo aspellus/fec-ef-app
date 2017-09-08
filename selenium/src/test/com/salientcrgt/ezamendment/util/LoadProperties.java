@@ -1,4 +1,4 @@
-package gov.fec.efapp.util;
+package com.salientcrgt.ezamendment.util;
 
 import java.io.IOException;
 import java.io.InputStream;

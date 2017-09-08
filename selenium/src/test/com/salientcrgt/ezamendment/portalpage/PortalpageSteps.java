@@ -1,4 +1,4 @@
-package gov.fec.efapp.homepage;
+package com.salientcrgt.ezamendment.portalpage;
 
 import org.junit.Assert;
 import org.springframework.stereotype.Component;
@@ -9,12 +9,12 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
 @Component
-public class HomepageSteps extends Steps {
-	private Homepage homepage;
+public class PortalpageSteps extends Steps {
+	private Portalpage homepage;
 
 	private void init() {
 		if (homepage == null) {
-			homepage = new Homepage(executionContext.getDriver());
+			homepage = new Portalpage(executionContext.getDriver());
 		}
 		homepage.get();
 	}
