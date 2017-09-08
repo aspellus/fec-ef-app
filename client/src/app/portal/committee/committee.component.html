@@ -1,76 +1,55 @@
-<div>
-	<div *ngIf="!committee">
-		<h2>
-			Welcome to the EZ Amendment Portal
-			<br>
-			<small class="text-sm">Please search for a Committee ID below.</small>
-		</h2>
-	</div>
-	<div *ngIf="committee">
-		<h2>
-			{{committee.name}}
-			<br>
-			<small class="text-sm">{{committee.committee_type_full}} - {{committee.designation_full}} | ID: {{committee.committee_id}}</small>
-		</h2>
-	</div>
-	<div class="row">
-		<div class="col-3">
-			<ngb-accordion  activeIds="static-1" (panelChange)="beforeChange($event)">
-			  <ngb-panel id="committee-info-panel" title="Committee Info" (click)="doShow = 'committee-info'">
-			    <ng-template ngbPanelContent>
-			      
-			    </ng-template>
-			  </ngb-panel>
-			  <ngb-panel id="filings-panel" title="Filings" (click)="doShow = 'filings'">
-			    <ng-template ngbPanelContent>
-			    	<div class="form-group">
-			    		<label>Filing Year: </label>
-				    	<br>
-				      	<div ngbDropdown class="d-inline-block">
-					      <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>{{filingYear ? filingYear : 'Select Year'}}</button>
-					      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-					        <button *ngFor="let year of years" class="dropdown-item" (click)="selectYear(year)">{{year}}</button>
-					      </div>
-					    </div>
-			    	</div>
-			    </ng-template>
-			  </ngb-panel>
-			</ngb-accordion>
-			<!-- <a (click)="doShow = 'committee-info'">Committee Info</a>
-			<br>
-			<a (click)="doShow = 'filings'">Filings</a> -->
-		</div>
-		<div class="col">
-			<app-committee-info *ngIf="doShow == 'committee-info'" [committee]="committee">Loading Committee Info...</app-committee-info>
-			<app-filings *ngIf="doShow == 'filings'" [filingData]="filingData">Loading Filings...</app-filings>
-			<!-- <router-outlet></router-outlet> -->
-		</div>
-	</div>
-</div>
-
-<!-- <div class="row" *ngIf="committee">
-	<div class="col">
-		<h2>
-			{{committee.name}}
-			<br>
-			<small class="text-sm">{{committee.committee_type_full}} - {{committee.designation_full}} | ID: {{committee.committee_id}}</small>
-		</h2>
-		<hr>
-	</div>
-</div>
+<h2 *ngIf="!committee">
+	Welcome to the EZ Amendment Portal
+	<br>
+	<small class="text-sm">Please search for a Committee ID below.</small>
+</h2>
+<h2 *ngIf="committee">
+	{{committee.name}}
+	<br>
+	<small class="text-sm">{{committee.committee_type_full}} - {{committee.designation_full}} | ID: {{committee.committee_id}}</small>
+</h2>
 <div class="row">
 	<div class="col-3">
-		<div class="input-group">
-	     	<input type="text" class="form-control" [(ngModel)]="committeeSearch" placeholder="Committee ID Search" aria-label="Committee ID Search">
-	      	<span class="input-group-btn">
-	        	<button (click)="committeeSearchById(committeeSearch)" class="btn btn-light" type="button">Search</button>
-	      	</span>
-	    </div>
+		<div class="filter">
+			<button class="filter-header" (click)="doShow = 'committee-info'">More About the Committee</button>
+			<button class="filter-header btn-link" (click)="doShow = 'filings'">Filings</button>
+			<div class="filter-content">
+				<p class="strong">Filters
+				<hr>
+				<div class="row">
+					<div class="col">
+						<label>Year</label>
+					</div>
+					<div class="col">
+						<div ngbDropdown class="filter-dropdown">
+					    	<button class="btn btn-light btn-sm" id="filing-year" ngbDropdownToggle>{{filingYear ? filingYear : 'Select Year'}}<i></i></button>
+					      	<div ngbDropdownMenu aria-labelledby="filing-year">
+					        	<button *ngFor="let year of years" class="dropdown-item" (click)="filingYear = year; getFilingData()">{{year}}</button>
+					      	</div>
+					    </div>	
+					</div>
+				</div>
+			    
+			    <hr>
+			    <div class="row">
+					<div class="col">
+						<label>Filing Type</label>
+					</div>
+					<div class="col">
+						<div ngbDropdown class="filter-dropdown">
+					    	<button class="btn btn-light btn-sm" id="form-type" ngbDropdownToggle>{{formType ? formType : 'Select Form Type'}}<i></i></button>
+					      	<div ngbDropdownMenu aria-labelledby="filing-year">
+					        	<button *ngFor="let type of formTypes" class="dropdown-item" (click)="formType = type">{{type}}</button>
+					      	</div>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="col">
-		<app-committee-info [committee]="committee">Loading Committee Info...</app-committee-info>
+		<app-committee-info *ngIf="doShow == 'committee-info' && !isLoading" [committee]="committee">Loading Committee Info...</app-committee-info>
+		<app-filing *ngIf="doShow == 'filings' && !isLoading" [filingData]="getData()">Loading Filings...</app-filing>
+		<div *ngIf="isLoading" class="text-center"><i class="fa fa-spinner fa-4x fa-pulse"></i></div>
 	</div>
-</div> 
-
-<router-outlet></router-outlet>
- <app-committee-info [committee]="committee">Loading Committee Info...</app-committee-info> -->
+</div>

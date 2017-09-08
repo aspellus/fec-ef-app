@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PortalComponent } from './portal/portal.component';
 import { CommitteeComponent } from './portal/committee/committee.component';
+
 import { CommitteeInfoComponent } from './portal/committee/committee-info/committee-info.component';
-import { FilingsComponent } from './portal/committee/filings/filings.component';
 import { FilingComponent } from './portal/committee/filing/filing.component';
 
 const appRoutes: Routes = [
@@ -17,19 +17,16 @@ const appRoutes: Routes = [
     component: PortalComponent,
     children: [{
 	    path: 'committee/:id',
-	    component: CommitteeComponent,
-	    children: [{
-	    	path: 'filings',
-	        component: FilingsComponent
-	    },
-	    {
-	    	path: 'committee-info',
-	        component: CommitteeInfoComponent
-	    }]
+	    component: CommitteeComponent
     },
     {
   	path: 'filing/:file_id',
 	component: FilingComponent
+    },
+    {
+  	  path: '',
+  	  redirectTo: '/portal',
+  	  pathMatch: 'full'
     }]
   },
   {
@@ -44,7 +41,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       {
-        enableTracing: true // <-- debugging purposes only
+        enableTracing: false // <-- debugging purposes only
       }
     )
   ],

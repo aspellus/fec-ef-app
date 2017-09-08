@@ -4,10 +4,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CommitteeService } from './committee.service';
 import { CommitteeComponent } from './committee.component';
-import { FilingsComponent } from './filings/filings.component';
 import { CommitteeInfoComponent } from './committee-info/committee-info.component';
 import { FilingComponent } from './filing/filing.component';
 import { FilingService } from './filing/filing.service';
+
+import { FilingInfoComponent } from './filing/filing-info/filing-info.component';
+
 
 @NgModule({
   imports: [
@@ -16,10 +18,10 @@ import { FilingService } from './filing/filing.service';
   ],
   exports: [
     CommitteeComponent,
-    FilingsComponent,
+    FilingComponent,
     CommitteeInfoComponent
   ],
-  declarations: [CommitteeComponent, FilingsComponent, CommitteeInfoComponent, FilingComponent],
+  declarations: [CommitteeComponent, FilingComponent, CommitteeInfoComponent, FilingInfoComponent],
   providers: [CommitteeService, FilingService]
 })
 export class CommitteeModule { }

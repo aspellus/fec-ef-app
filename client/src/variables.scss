@@ -1,3 +1,7 @@
 $fec_blue: #112e51;
 $fec_blue_light: #164f85;
-$fec_light_gray: #f1f1f1;
+$fec_gray: #e4e4e4;
+$fec_light_gray: lighten($fec_gray, 5%);
+$fec_dark_gray: darken($fec_gray, 5%);
+
+$fa-font-path : '../node_modules/font-awesome/fonts';

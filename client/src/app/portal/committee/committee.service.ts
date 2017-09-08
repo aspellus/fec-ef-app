@@ -15,8 +15,9 @@ export class CommitteeService {
         	      .map((response: Response) => response.json());
 	}
 
-    getFilingsByYear(id: string, year: number){
-        return this.http.get(environment.apiUrl + '/committee/' + id + '/filings/' + year)
+    getFilingsByYear(id: string, year: number, type: string){
+    	var url = environment.apiUrl + '/committee/' + id + '/filings/' + year + (type ? '/' + type : '');
+        return this.http.get(url)
                   .map((response: Response) => response.json());
     }
 }
