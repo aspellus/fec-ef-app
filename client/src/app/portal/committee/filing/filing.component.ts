@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilingComponent implements OnInit {
 
+  filing = {};
+  
   constructor() { }
 
   ngOnInit() {
