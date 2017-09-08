@@ -3,6 +3,11 @@
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
+@import '~variables.scss';
+
+$blue: $fec_blue_light;
+
+
 @import '~bootstrap/scss/bootstrap';
 
 @media (min-width: 1500px){

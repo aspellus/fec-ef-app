@@ -7,3 +7,16 @@
 		flex: auto;
 	}
 }
+
+#committee-select-group {
+	[ngbDropdownMenu] {
+		max-width: 100%;
+		
+		.dropdown-item {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		
+	}
+}
