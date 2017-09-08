@@ -14,10 +14,4 @@ export class CommitteeService {
         return this.http.get(environment.apiUrl + '/committee/' + id)
         	      .map((response: Response) => response.json());
 	}
-
-    getFilingsByYear(id: string, year: number, type: string){
-    	var url = environment.apiUrl + '/committee/' + id + '/filings/' + year + (type ? '/' + type : '');
-        return this.http.get(url)
-                  .map((response: Response) => response.json());
-    }
 }
