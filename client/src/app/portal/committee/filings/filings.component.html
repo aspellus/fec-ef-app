@@ -6,6 +6,7 @@
 	      <th>Coverage Period</th>
 	      <th>Last Update</th>
 	      <th>Receipt Date</th>
+	      <th>Action</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -14,6 +15,15 @@
 	      <td>{{rec.coverage_start_date | date}} - {{rec.coverage_end_date | date}}</td>
 	      <td>{{rec.update_date | date}}</td>
 	      <td>{{rec.receipt_date | date}}</td>
+	      <td>
+			<div class="btn-group" ngbDropdown placement="bottom-right">
+			  <button type="button" class="btn btn-primary">View/Ammend</button>
+			  <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+			  <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+				<button class="dropdown-item">Submit</button>
+			  </div>
+			</div>
+		  </td>
 	    </tr>
 	  </tbody>
 	</table>
