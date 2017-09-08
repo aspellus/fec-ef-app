@@ -1,8 +1,11 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ReportComponent } from './modules/report/report.component';
-import { PortalComponent } from './modules/portal/portal.component';
+import { ReportComponent } from './portal/report/report.component';
+import { PortalComponent } from './portal/portal.component';
+import { CommitteeComponent } from './portal/committee/committee.component';
+import { CommitteeInfoComponent } from './portal/committee/committee-info/committee-info.component';
+import { FilingsComponent } from './portal/committee/filings/filings.component';
 
 const appRoutes: Routes = [
   {
@@ -12,6 +15,22 @@ const appRoutes: Routes = [
   {
     path: 'report/:committee_id',
     component: ReportComponent
+  },
+  {
+    path: 'portal',
+    component: PortalComponent,
+    children: [{
+	    path: 'committee/:id',
+	    component: CommitteeComponent,
+	    children: [{
+	    	path: 'filings',
+	        component: FilingsComponent
+	    },
+	    {
+	    	path: 'committee-info',
+	        component: CommitteeInfoComponent
+	    }]
+    }]
   },
   {
 	  path: '',

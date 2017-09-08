@@ -8,14 +8,16 @@ import { HttpModule} from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { CommitteeService } from './services/committee.service';
+import { CommitteeService } from './portal/committee/committee.service';
 import { HeaderComponent } from './partials/header/header.component';
 import { FooterComponent } from './partials/footer/footer.component';
-import { ContentHeaderComponent } from './partials/content-header/content-header.component';
-import { PortalComponent } from './modules/portal/portal.component';
-import { ReportComponent } from './modules/report/report.component';
-import { ReportFiltersComponent } from './modules/report/report-filters/report-filters.component';
-import { FilingReportComponent } from './modules/report/filing-report/filing-report.component';
+import { PortalComponent } from './portal/portal.component';
+import { ReportComponent } from './portal/report/report.component';
+import { ReportFiltersComponent } from './portal/report/report-filters/report-filters.component';
+import { FilingReportComponent } from './portal/report/filing-report/filing-report.component';
+import { CommitteeComponent } from './portal/committee/committee.component';
+import { CommitteeInfoComponent } from './portal/committee/committee-info/committee-info.component';
+import { FilingsComponent } from './portal/committee/filings/filings.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,11 @@ import { FilingReportComponent } from './modules/report/filing-report/filing-rep
     PortalComponent,
     FilingReportComponent,
     ReportFiltersComponent,
-    ContentHeaderComponent,
     ReportComponent,
-    FooterComponent
+    FooterComponent,
+    CommitteeInfoComponent,
+    CommitteeComponent,
+    FilingsComponent
   ],
   imports: [
     BrowserModule,

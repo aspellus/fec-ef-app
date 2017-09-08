@@ -1,0 +1,50 @@
+<div class="jumbotron">
+	<h4>About this Committee</h4>
+	<hr>
+	<div class="row" *ngIf="committee">
+		<div class="col">
+			<div class="row">
+				<div class="col-4">
+					<strong>Political Party:</strong>
+				</div>
+				<div class="col-8">
+					{{committee.party_full ? committee.party_full : 'None'}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<strong>Mailing Address:</strong>
+				</div>
+				<div class="col-8">
+					{{committee.street_1}}
+					<br>
+					{{committee.treasurer_city}}, {{committee.state_full}} {{committee.zip}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<strong>Treasurer:</strong>
+				</div>
+				<div class="col-8">
+					{{committee.treasurer_name_1 ? committee.treasurer_name_1 : 'None'}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<strong>Committee Type:</strong>
+				</div>
+				<div class="col-8">
+					{{committee.committee_type_full ? committee.committee_type_full : 'None'}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<strong>Committee Designation:</strong>
+				</div>
+				<div class="col-8">
+					{{committee.designation_full ? committee.designation_full : 'None'}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
