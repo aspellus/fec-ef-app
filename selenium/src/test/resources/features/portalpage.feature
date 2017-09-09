@@ -1,18 +1,18 @@
 Feature: PortalPage
   As a committee treasurer/representative
-  I want to go to home page URL and enter my committee ID and submit
+  I want to go to portal page URL and enter my committee ID and submit
   So that I can view committee information and list of existing reports
   
 @regression @smoke
 Scenario: select a committee id from the drop down
-  Given I am on the home page
+  Given I am on the portal page
   When I select a committee ID from the drop down
   Then my custom portal page is displayed
     And Under the page header my committee basic information should be displayed
     And the filings view is displayed by default
 
 Scenario: select more committee info option to learn more about the committee
-  Given I am on the home page
+  Given I am on the portal page
   When I select a committee ID from the drop down
   Then my custom portal page is displayed
     And I select the committee info tab
@@ -21,7 +21,8 @@ Scenario: select more committee info option to learn more about the committee
 @regression @smoke
 Scenario: List Filings for committee ID
   Given I am on the portal page
-  When I select a committee ID from the drop down list
+  When I select a committee ID from the drop down
+  Then my custom portal page is displayed
   Then all my previously filed reports should show up in tabular Form 
     And Table will contain Report_ID, Report_Type, Coverage_Start_Date, Coverage_End_Date, Receipt_date and Last_Uploaded_Date
     And Show actions to AMEND the filing
@@ -29,7 +30,8 @@ Scenario: List Filings for committee ID
 @regression @smoke
 Scenario: Filter filings by Report Year
   Given I am on the portal page 
-  When I search for 2017 using Report Year Filter
+  When I select a committee ID from the drop down
+  Then I search for 2017 using Report Year Filter
   Then my results should be the reports filed for year 2017 coverage dates only
 
 @regression @smoke
