@@ -98,5 +98,20 @@ public class PortalpageSteps extends Steps {
 				Arrays.asList("Filing Description (ID)", "Coverage Period", "Last Update", "Receipt Date", "Action")));
 
 	}
+	
+	@Then("^Show actions to AMEND the filing$")
+	public void show_actions_to_AMEND_the_filing() throws Throwable {
+	    // make sure at least one filing has an amend option..
+		boolean amendActionFound = false;
+		Map<String, String> actions = homepage.getFilingActions();
+	    
+		for (String filing : actions.keySet()) {
+			if ("View/Amend".equals(actions.get(filing))) {
+				amendActionFound = true;
+			}
+		}
+		
+		Assert.assertTrue("At least one filing found to amend", amendActionFound);
+	}
 
 }

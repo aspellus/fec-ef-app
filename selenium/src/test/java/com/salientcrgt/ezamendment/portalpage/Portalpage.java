@@ -88,6 +88,8 @@ public class Portalpage extends Page {
 			committeesVisible = true;
 		}
 
+		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+		
 		committeeButton.findElements(By.className("dropdown-item")).get(i).click();
 
 	}
@@ -136,7 +138,7 @@ public class Portalpage extends Page {
 		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
 
 		try {
-			driver.findElement(By.tagName("app-portal"));
+			driver.findElement(By.tagName("app-committee"));
 		} catch (NoSuchElementException nsee) {
 			return false;
 		}
@@ -147,8 +149,10 @@ public class Portalpage extends Page {
 		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
 
 		try {
-			driver.findElement(By.className("report-content"));
+			
+			driver.findElement(By.xpath("//div[contains(@class, 'report-content')]"));
 		} catch (NoSuchElementException nsee) {
+			System.out.println("Not found");
 			return false;
 		}
 		return true;
@@ -177,7 +181,13 @@ public class Portalpage extends Page {
 	public int getFilingCount() {
 		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
 
-		WebElement filingTableBody = driver.findElement(By.className("report-content")).findElement(By.tagName("tbody"));
+		WebDriverWait wait = new WebDriverWait(driver, 30); 
+		
+		//wait for element to be clickable, then click
+		
+		WebElement filingTableBody = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'report-content')]/table")));
+		
+		//WebElement filingTableBody = driver.findElement(
 
 		return filingTableBody.findElements(By.tagName("tr")).size();
 
@@ -189,7 +199,7 @@ public class Portalpage extends Page {
 
 		List<String> fieldList = new ArrayList<String>();
 
-		WebElement filingTableHead = driver.findElement(By.className("report-content")).findElement(By.tagName("thead"));
+		WebElement filingTableHead = driver.findElement(By.xpath("//div[contains(@class, 'report-content')]/table/thead"));
 
 		for (WebElement fieldElement : filingTableHead.findElements(By.tagName("th"))) {
 
@@ -200,6 +210,35 @@ public class Portalpage extends Page {
 		}
 
 		return fieldList;
+	}
+
+	public Map<String, String> getFilingActions() {
+		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		Map<String, String> actions = new HashMap<String, String>();
+
+		WebElement filingTableHead = driver.findElement(By.xpath("//div[contains(@class, 'report-content')]/table/tbody"));
+
+		for (WebElement filingElement : filingTableHead.findElements(By.tagName("tr"))) {
+
+			System.out.println(filingElement.getText());
+			
+			// get filing
+			String filingDesc = filingElement.findElement(By.tagName("td")).getText();
+			System.out.println("Action: " + filingDesc);
+			Pattern p = Pattern.compile("(FEC-[0-9]+)");
+
+			String filingId = p.matcher(filingDesc).group(1);
+			
+			// get actions for row
+			WebElement filingActionElement = filingElement.findElement(By.tagName("button"));
+			
+			actions.put(filingId, filingActionElement.getText());
+
+
+		}
+
+		return actions;
 	}
 
 }
