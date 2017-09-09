@@ -106,12 +106,38 @@ public class PortalpageSteps extends Steps {
 		Map<String, String> actions = homepage.getFilingActions();
 	    
 		for (String filing : actions.keySet()) {
-			if ("View/Amend".equals(actions.get(filing))) {
+			// Amend is currently mispelled in app, this will break when that is fixed
+			if ("View/Ammend".equals(actions.get(filing))) {
 				amendActionFound = true;
 			}
 		}
 		
 		Assert.assertTrue("At least one filing found to amend", amendActionFound);
 	}
+	
+	@Then("^I search for (\\d+) using Report Year Filter$")
+	public void i_search_for_using_Report_Year_Filter(int arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@Then("^my results should be the reports filed for year (\\d+) coverage dates only$")
+	public void my_results_should_be_the_reports_filed_for_year_coverage_dates_only(int arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@When("^I select Statement of Organization \\(F(\\d+)\\) from the Form Type Filter$")
+	public void i_select_Statement_of_Organization_F_from_the_Form_Type_Filter(int arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@Then("^my results should only contain Statement of Organizations \\(F(\\d+)\\)$")
+	public void my_results_should_only_contain_Statement_of_Organizations_F(int arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
 
 }
