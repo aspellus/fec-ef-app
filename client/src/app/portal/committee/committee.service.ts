@@ -14,9 +14,4 @@ export class CommitteeService {
         return this.http.get(environment.apiUrl + '/committee/' + id)
         	      .map((response: Response) => response.json());
 	}
-
-    getFilingsByYear(id: string, year: number){
-        return this.http.get(environment.apiUrl + '/committee/' + id + '/filings/' + year)
-                  .map((response: Response) => response.json());
-    }
 }
