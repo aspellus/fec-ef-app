@@ -10,9 +10,14 @@ import javax.net.ssl.X509TrustManager;
 import java.security.cert.X509Certificate;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
 
 @SpringBootApplication
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class EZAmendmentApplication {
 
 	public static void main(String[] args) throws Exception {
