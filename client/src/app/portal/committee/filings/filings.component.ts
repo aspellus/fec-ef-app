@@ -13,7 +13,7 @@ export class FilingsComponent implements OnInit {
   ngOnInit() {
   }
   
-  viewFiling(committee_id, fec_file_id){
+  viewFiling(fec_file_id){
   	this.router.navigate(['/filing/' + fec_file_id]);
   }
 
