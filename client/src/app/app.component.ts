@@ -9,7 +9,7 @@ import { CommitteeService } from "./portal/committee/committee.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	committeeIds: String[] = ['C00577759','C00579599','C00615740','C00634634','C00431445','C00003418'];
+	committeeIds: String[] = ['C00577759','C00579599','C00615740','C00634634'];
 	committees: any[] = [];
 	
 	constructor(private router: Router, private committeeService: CommitteeService){

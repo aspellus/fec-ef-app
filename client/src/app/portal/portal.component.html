@@ -1,3 +1,38 @@
 <div class="container-fluid">
 	<router-outlet></router-outlet>
 </div>
+
+
+
+<!-- <div>
+	<div *ngIf="!committee">
+		<h2>
+			Welcome to the EZ Amendment Portal
+			<br>
+			<small class="text-sm">Please search for a Committee ID below.</small>
+		</h2>
+	</div>
+	<div *ngIf="committee">
+		<h2>
+			{{committee.name}}
+			<br>
+			<small class="text-sm">{{committee.committee_type_full}} - {{committee.designation_full}} | ID: {{committee.committee_id}}</small>
+		</h2>
+	</div>
+	<div class="row">
+		<div class="col-3">
+			<a routerLink="../committee-info">Committee Info</a>
+			<br>
+			<a routerLink="../filings">Filings</a>
+			<div class="input-group">
+		     	<input type="text" class="form-control" [(ngModel)]="committeeSearch" placeholder="Committee ID Search" aria-label="Committee ID Search">
+		      	<span class="input-group-btn">
+		        	<button (click)="committeeSearchById(committeeSearch)" class="btn btn-light" type="button">Search</button>
+		      	</span>
+		    </div>
+		</div>
+		<div class="col">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+</div> -->

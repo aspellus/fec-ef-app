@@ -3,21 +3,19 @@
 	  <thead>
 	    <tr>
 	      <th>Filing Description (ID)</th>
-	      <th class="text-center">Form Type</th>
-	      <th class="text-center">Coverage Period</th>
-	      <th class="text-center">Last Update</th>
-	      <th class="text-center">Receipt Date</th>
-	      <th class="text-center">Action</th>
+	      <th>Coverage Period</th>
+	      <th>Last Update</th>
+	      <th>Receipt Date</th>
+	      <th>Action</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	    <tr *ngFor="let filing of filingData">
 	      <td>{{filing.document_description}} ({{filing.fec_file_id}})</td>
-	      <td class="text-center">{{filing.form_type}}</td>
-	      <td class="text-center">{{filing.coverage_start_date | date}} - {{filing.coverage_end_date | date}}</td>
-	      <td class="text-center">{{filing.update_date | date}}</td>
-	      <td class="text-center">{{filing.receipt_date | date}}</td>
-	      <td class="text-center">
+	      <td>{{filing.coverage_start_date | date}} - {{filing.coverage_end_date | date}}</td>
+	      <td>{{filing.update_date | date}}</td>
+	      <td>{{filing.receipt_date | date}}</td>
+	      <td>
 			<div class="btn-group" ngbDropdown placement="bottom-right">
 			  <button type="button" class="btn btn-primary" (click)="viewFiling(filing.committee_id, filing.fec_file_id)">View/Ammend</button>
 			  <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
