@@ -36,7 +36,7 @@ Instructions on running the app locally on your box can be found in [install_app
 
 References:
 
-| Prototype URL | [http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com](http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com)|
+| Prototype URL |[http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com](http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com)|
 | --- | ---  |
 | Installation Document | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.md](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.md)   |
 | Dev Installation Document | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/developer_inst.md](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/developer_inst.md) |
