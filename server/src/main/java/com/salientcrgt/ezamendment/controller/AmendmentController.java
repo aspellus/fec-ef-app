@@ -44,7 +44,7 @@ public class AmendmentController {
 	@Autowired
 	ScheduleAService scheduleAService;
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*.b9ad.pro-us-east-1.openshiftapps.com")
 	@RequestMapping(value = "/committee/{committee_id}", method = RequestMethod.GET,produces = "application/json")
 	@ResponseBody
 	public JSONObject getCommitteeDetails(@PathVariable String committee_id) {
