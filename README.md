@@ -14,29 +14,31 @@ We started off by having a quick [Discovery phase](https://trello.com/b/pnKkdO92
 
 For every feature, our team used human-centered design techniques and tools to create a usable, simple, and intuitive system. This included creating [wireframes](https://github.com/SalientCRGT/fec-ef-app/tree/master/docs/ux/wireframes), a [persona](https://github.com/SalientCRGT/fec-ef-app/tree/master/docs/ux/personas), an application [style guide]() and [usability testing]().
 
-Throughout our development process, we used electronic [Scrum Board](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/jira/Sprint4-Scrum-Board.png), to keep track of pending work. Usin behavior driven development we produces [scenarios](https://github.com/SalientCRGT/fec-ef-app/tree/master/selenium/src/test/resources/features) that are used by selenium/cucumber for test automation.  [unit testing](), test-driven development, automated testing, and CI/CD along with the quality and security testing provided by our [DevOps CI/CD pipeline](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/SalientCRGT%20Jenkins%20Pipeline.png). 
+Throughout our development process, we used electronic [Scrum Board](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/jira/Sprint4-Scrum-Board.png), to keep track of pending work. Usin behavior driven development we produces [scenarios](https://github.com/SalientCRGT/fec-ef-app/tree/master/selenium/src/test/resources/features) that are used by selenium/cucumber code for test automation. Our development process use behavir-driven development, writing selenium test to fail the scenario, developers then write unit test to fail their application code, followed by writing code to make sure all unit test run successfully, and in-turn the selenium test then run successfully simulating business-behavior and user interactions. 
 
-## Understanding what people need
+Our[DevOps CI/CD pipeline](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/SalientCRGT%20Jenkins%20Pipeline.png) also focuses on static, code analaysis and security vulnerability check implemented via SonarQube. Engineers ensure high code quality by analyzing sonar reports. Further Static dependency security vulnerabilies are tested using OWASP tool, and dynamic security penetration testing is performed by Zed Attack Proxy (ZAP tool). In addition to automated tools, our agile process requires checklist-driven code reviews for security and code/design quality. All new code goes through the code-review process lead by technical team lead.
 
 ## Technical Details
 
-Our prototype application is written in **Angular 4** (client-side), **Spring Boot** (server-side) and **ProgreSQL** (database). We choose Angular 4 and Sprint Boot because [...add Pramod/Cris](). Our technology stack is completely open source and is built on top of SalientCRGT DevOps platform which is built using open source technologies such as JIRA, Jenkins, SonarQube, Artifactory, Jenkins-Plug-ins, Docker, OpenShift and AWS Cloud. Further, the application was designed using a responsive layout so that it works on multiple devices and form-factors (we tested it on PCs, tablets, and phones). 
+We used an open source technical stack comprising of **Angular 4** (client-side), **Spring Boot** (server-side) and **ProgreSQL** (database). We choose Angular 4 and Sprint Boot because [...add Pramod/Cris](). Our technology stack is completely open source and is built on top of SalientCRGT DevOps platform which is built using open source technologies such as JIRA, Jenkins, SonarQube, Artifactory, Jenkins-Plug-ins, Docker, OpenShift and AWS Cloud. Further, the application was designed using a responsive layout so that it works on multiple devices and form-factors (we tested it on PCs, tablets, and phones). 
 
-Our application prototype is deployed using OpenShift container management platform (PaaS). Our deployment process uses [Docker]() for containers, [Jenkins]() for Continuous Integration and [OpenShift]() for managing and deploying containers with orchestration and scaling provided by Kubernetes. We also used FEC 18F [open api](https://18f.gsa.gov/2015/07/08/openfec-api/) for retrieving FEC filings.
+Our application prototype is deployed using OpenShift container management platform (PaaS). Our deployment process uses [Docker]() for containers, [Jenkins](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/SalientCRGT%20Jenkins%20Pipeline.png) for Continuous Integration and [OpenShift](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_defined_PODS.png) for managing and deploying containers with orchestration and scaling provided by Kubernetes. We also used FEC 18F [open api](https://18f.gsa.gov/2015/07/08/openfec-api/) for retrieving FEC filings.
 
 ## Prerequisites 
+[Cris](Cris can you write)
 
 ## Installation and Local Deployment
-
-Instructions on running the app locally on your box can be found in [install_app.txt add Cris](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.txt) 
+[Cris](Cris can you write)
+Instructions on running the app locally on your box can be found in [install_app.txt](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.txt) 
 
 ## OpenShift configuration
+[Cris](Cris can you write)
 
 ## Usage 
-
+[Cris](Cris can you write)
 References:
 
-| Prototype URL |[http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com](http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com)|
+|Prototype URL|[http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com](http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com) |
 | --- | ---  |
 | Installation Document | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.md](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.md)   |
 | Dev Installation Document | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/developer_inst.md](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/developer_inst.md) |
