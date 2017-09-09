@@ -11,3 +11,10 @@ Scenario: list all my receipts
     And Receipts basic information will consists of Line Number, Date, Name and Amount
     
     
+@regression @smoke
+Scenario: Add new receipt
+  Given I am on the transaction page
+  When I click New Receipt
+  Then I should see a form to enter the receipt information
+    And the form should contain Line Number, First Name, Last Name, Prefix, Suffix, Date, Amount, Memo Indicator, Employer, Occupation and Description
+    And actions to Save or Delete
