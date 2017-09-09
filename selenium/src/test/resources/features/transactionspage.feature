@@ -20,8 +20,25 @@ Scenario: Add new receipt
     And actions to Save or Delete
     
 @regression @smoke
-Scenario: Add new receipt - Save Action
+Scenario: Add new receipt and Save Action
   Given I am on the transaction page and filled the form
   When I click save button
   Then the transactions should be saved in sched_a database table
-	  And I should be able to find the just added transactions in receipts tab
+    And I should be able to find the just added transactions in receipts tab
+
+@regression @smoke
+Scenario: Edit receipt and Save Action
+  Given I am on the transaction page and selected a receipt
+  When I update the Name and click save
+  Then the detailed receipt information should collapse 
+    And the Name should be updated in the data base
+    And the Updated Name should be displayed in the Receipts Tab
+    
+@regression @smoke
+Scenario: Delete receipt
+  Given I am on the transaction page and selected a receipt
+  When I click delete
+  Then alert me with a message "Are you sure you want to Delete this Receipt"
+    And if YES is selected then delete the receipt from the database
+    And remove the report from the Receipt Tab
+    
