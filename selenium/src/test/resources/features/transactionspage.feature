@@ -18,3 +18,10 @@ Scenario: Add new receipt
   Then I should see a form to enter the receipt information
     And the form should contain Line Number, First Name, Last Name, Prefix, Suffix, Date, Amount, Memo Indicator, Employer, Occupation and Description
     And actions to Save or Delete
+    
+@regression @smoke
+Scenario: Add new receipt - Save Action
+  Given I am on the transaction page and filled the form
+  When I click save button
+  Then the transactions should be saved in sched_a database table
+	  And I should be able to find the just added transactions in receipts tab
