@@ -5,9 +5,8 @@ Link to application prototype http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1
 
 References:
 
-| Prototype URL | [http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/] |
-| --- | --- |
-| GitHub Main Branch | master |
+| Prototype URL | [http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/](http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com)|
+| --- | ---  |
 | Installation Document | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.md](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.md)   |
 | Dev Installation Document | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/developer_inst.md](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/developer_inst.md) |
 | Style Guide | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/style-guide.html](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/style-guide.html) |
