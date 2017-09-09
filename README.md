@@ -1,21 +1,7 @@
 FEC E-filing Application - EZ Amendment Portal
 ==============================================
-References:
+Link to prototype application [EZ Amendment Portal](http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com)
 
-| Prototype URL | [http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com](http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com)|
-| --- | ---  |
-| Installation Document | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.md](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.md)   |
-| Dev Installation Document | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/developer_inst.md](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/developer_inst.md) |
-| Style Guide | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/style-guide.html](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/style-guide.html) |
-| Trello Board | [https://trello.com/b/pnKkdO92/fec-application-board](https://trello.com/b/pnKkdO92/fec-application-board) |
-| GitHub Issue Log | [https://github.com/SalientCRGT/fec-ef-app/issues](https://github.com/SalientCRGT/fec-ef-app/issues) |
-| Jenkins Pipeline | http://jenkins.salientcrgt-devops.com/job/FEC/job/fec-ef-app/view/FEC-EF-Delivery/  |
-| Wireframes | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe_board_1.jpg](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe_board_1.jpg), [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe1.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe1.png), [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe2.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe2.png), [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe_board_2.jpg](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe_board_2.jpg), [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe4.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe4.png),[https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe5.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe5.png) |
-| Personas | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/Personas.pdf](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/Personas.pdf) |
-| Usability Testing | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/usability-testing.pdf](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/usability-testing.pdf) |
-| Style Guide | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/style-guide.html](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/style-guide.html) |
-| User Acceptance Test | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/user-acceptance-test.pdf](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/user-acceptance-test.pdf) |
-| Continuous Monitoring OpenShift| [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_monitor_fe_pod.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_monitor_fe_pod.png), [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_monitor_be_pod.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_monitor_be_pod.png), [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_monitor_db_pod.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_monitor_db_pod.png)  |
 ## Description
 
 [EZ-Amendment](http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/.) application will allow FEC E-filing committee members to connect to EZ-Amendment portal and search/amend existing filing (transactions). This is a prototype to show SalientCRGT skills in agile software development, using open source, secured DevOps practices and incorporating Cloud. 
@@ -26,9 +12,9 @@ SalientCRGT quickly gathered an experience DevOps team consist puesdo Product Ow
 
 We started off by having a quick [Discovery phase](https://trello.com/b/pnKkdO92/fec-application-board) to understand the need of the RFP and select the application that will be developed to be shared as working code with the RFP, and be able to showcase our Agile, open source, APIs, DevOps and Cloud skills. We started with brainstorming on number of ideas and after down-select, narrowed it to 1 selected idea to build the application. We also discussed and decided to use AWS hosted [SalientCRGT DevOps](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/SalientCRGT%20SecDevOps.png) which provides us Dev, Test, Pre-Prod and Production environment with Cloud deployment and monitoring capabilities, a [Jenkins CI/CD Pipeline](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/SalientCRGT%20Jenkins%20Pipeline.png) that provides teams the necessary automated checks for quality, security and reliability. We further decided to use, SalientCRGT [bootstrap-app](https://github.com/SalientCRGT/app-bootstrap) project to get the team jump start and hit the ground running.
 
-For every feature, our team used human-centered design techniques and tools to create a usable, simple, and intuitive system. This included creating [wireframes](https://github.com/SalientCRGT/fec-ef-app/tree/master/docs/ux/wireframes), a [persona](https://github.com/SalientCRGT/fec-ef-app/tree/master/docs/ux/personas), a [flow diagram](), and an application [style guide](). performing [user interviews]() and [usability testing](), as well as creating 
+For every feature, our team used human-centered design techniques and tools to create a usable, simple, and intuitive system. This included creating [wireframes](https://github.com/SalientCRGT/fec-ef-app/tree/master/docs/ux/wireframes), a [persona](https://github.com/SalientCRGT/fec-ef-app/tree/master/docs/ux/personas), an application [style guide]() and [usability testing]().
 
-Throughout our development process, we used electronic [Scrum Board](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/jira/Sprint4-Scrum-Board.png), to keep track of pending work. Behavior driven development used produces [scenarios](https://github.com/SalientCRGT/fec-ef-app/tree/master/selenium/src/test/resources/features) that are used by selenium/cucumber for test automation.  [unit testing](), test-driven development, automated testing, and CI/CD along with every quality and security testing provided by our [DevOps CI/CD pipeline](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/SalientCRGT%20Jenkins%20Pipeline.png). 
+Throughout our development process, we used electronic [Scrum Board](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/jira/Sprint4-Scrum-Board.png), to keep track of pending work. Usin behavior driven development we produces [scenarios](https://github.com/SalientCRGT/fec-ef-app/tree/master/selenium/src/test/resources/features) that are used by selenium/cucumber for test automation.  [unit testing](), test-driven development, automated testing, and CI/CD along with the quality and security testing provided by our [DevOps CI/CD pipeline](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/SalientCRGT%20Jenkins%20Pipeline.png). 
 
 ## Understanding what people need
 
@@ -47,4 +33,21 @@ Instructions on running the app locally on your box can be found in [install_app
 ## OpenShift configuration
 
 ## Usage 
+
+References:
+
+| Prototype URL | [http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com](http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com)|
+| --- | ---  |
+| Installation Document | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.md](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.md)   |
+| Dev Installation Document | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/developer_inst.md](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/developer_inst.md) |
+| Style Guide | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/style-guide.html](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/style-guide.html) |
+| Trello Board | [https://trello.com/b/pnKkdO92/fec-application-board](https://trello.com/b/pnKkdO92/fec-application-board) |
+| GitHub Issue Log | [https://github.com/SalientCRGT/fec-ef-app/issues](https://github.com/SalientCRGT/fec-ef-app/issues) |
+| Jenkins Pipeline | http://jenkins.salientcrgt-devops.com/job/FEC/job/fec-ef-app/view/FEC-EF-Delivery/  |
+| Wireframes | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe_board_1.jpg](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe_board_1.jpg), [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe1.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe1.png), [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe2.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe2.png), [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe_board_2.jpg](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe_board_2.jpg), [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe4.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe4.png),[https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe5.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/wireframe5.png) |
+| Personas | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/Personas.pdf](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/Personas.pdf) |
+| Usability Testing | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/usability-testing.pdf](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/usability-testing.pdf) |
+| Style Guide | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/style-guide.html](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/style-guide.html) |
+| User Acceptance Test | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/user-acceptance-test.pdf](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/user-acceptance-test.pdf) |
+| Continuous Monitoring OpenShift| [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_monitor_fe_pod.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_monitor_fe_pod.png), [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_monitor_be_pod.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_monitor_be_pod.png), [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_monitor_db_pod.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/OpenShift_monitor_db_pod.png)  |
 
