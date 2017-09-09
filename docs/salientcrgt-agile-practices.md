@@ -13,14 +13,19 @@ We further use our [Secured DevOps CI/CD platform](https://github.com/SalientCRG
 Further detail about some of our development strategies and methods can be found below:
 
 ### Version/Source Control
+pramod to write
 
 ### Pair Programming
+pramod to write
 
 ### Test-driven Development (Unit Testing)
+pramod to write
 
 ### CLOUD Strategy 
+Cris to write
 
 ### Docker Containerization and Deployment, Management and Orchestration (Using OpenShift Kubernetes)
+Cris to write
 
 Quality Assurance Practices
 ===========================
@@ -38,14 +43,17 @@ We employed automated tests to confirm immediately that any new code did not adv
 Continuous integration, when combined with automated testing, ensures that a system works exactly as it’s designed to work after each and every change. Customer acceptance tests not only guarantee the code works properly, but also verify that the individual business functions of the system work correctly. By continuously performing integration testing and continuously building the applications, we were able to both ensure quality as well as provide our pseudo-users with live, working software (i.e., current-working-state versions) at virtually any time during the project.
 
 ### Static Code Analysis
+pramod to write
 
 ### Static Application Security Testing (SAST)
-[OWASP]()
+[OWASP](pramod to write)
 
 ### Dynamic Application Security Testing (DAST)
-[Zed Attack Proxy]()
+[Zed Attack Proxy](pramod to write)
 
 ### Performance Testing
+pramod to write
+Cris/Dan can we get results
 
 ## User Experience/Design Practices
 
