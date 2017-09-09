@@ -52,14 +52,17 @@ public class Portalpage extends Page {
 		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
 		List<String> committees = new ArrayList<String>();
 
-		WebElement committeeButton = driver.findElement(By.id("committee-select-group"));
+		WebElement committeePanel = driver.findElement(By.id("committee-select-group"));
+
+		WebElement committeeButton = committeePanel.findElement(By.tagName("button"));
 
 		if (!committeesVisible) {
+			System.out.println("Clicking committee dropdown");
 			committeeButton.click();
 			committeesVisible = true;
 		}
 
-		List<WebElement> elements = committeeButton.findElements(By.className("dropdown-item"));
+		List<WebElement> elements = committeePanel.findElements(By.className("dropdown-item"));
 
 		for (WebElement element : elements) {
 
@@ -144,7 +147,7 @@ public class Portalpage extends Page {
 		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
 
 		try {
-			driver.findElement(By.tagName("app-filing"));
+			driver.findElement(By.className("report-content"));
 		} catch (NoSuchElementException nsee) {
 			return false;
 		}
@@ -153,12 +156,50 @@ public class Portalpage extends Page {
 
 	public void openCommitteePanel() {
 		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
-		List<String> committees = new ArrayList<String>();
 
 		WebElement committeeButton = driver.findElement(By.id("committee-info-btn"));
 
 		committeeButton.click();
 
+	}
+
+	public boolean findAppFilingTag() {
+		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		try {
+			driver.findElement(By.className("report-content"));
+		} catch (NoSuchElementException nsee) {
+			return false;
+		}
+		return true;
+	}
+
+	public int getFilingCount() {
+		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		WebElement filingTableBody = driver.findElement(By.className("report-content")).findElement(By.tagName("tbody"));
+
+		return filingTableBody.findElements(By.tagName("tr")).size();
+
+	}
+
+	public List<String> getFilingFields() {
+
+		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		List<String> fieldList = new ArrayList<String>();
+
+		WebElement filingTableHead = driver.findElement(By.className("report-content")).findElement(By.tagName("thead"));
+
+		for (WebElement fieldElement : filingTableHead.findElements(By.tagName("th"))) {
+
+			System.out.println(fieldElement.getText());
+
+			fieldList.add(fieldElement.getText());
+
+		}
+
+		return fieldList;
 	}
 
 }
