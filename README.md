@@ -20,7 +20,7 @@ Throughout our development process, we used [iterative software development tech
 
 ## Technical Details
 
-Our prototype application is written in **Angular 4** (client-side), **Spring Boot** (server-side) and **ProgreSQL** (database). Our technology stack is completely open source and is built on top of SalientCRGT DevOps platform which is built using open source technologies such as JIRA, Jenkins, SonarQube, Artifactory, Jenkins-Plug-ins, Docker, OpenShift and AWS Cloud. Further, the application was designed using a responsive layout so that it works on multiple devices and form-factors (we tested it on PCs, tablets, and phones). 
+Our prototype application is written in **Angular 4** (client-side), **Spring Boot** (server-side) and **ProgreSQL** (database). We choose Angular 4 and Sprint Boot because [...add Pramod/Cris](). Our technology stack is completely open source and is built on top of SalientCRGT DevOps platform which is built using open source technologies such as JIRA, Jenkins, SonarQube, Artifactory, Jenkins-Plug-ins, Docker, OpenShift and AWS Cloud. Further, the application was designed using a responsive layout so that it works on multiple devices and form-factors (we tested it on PCs, tablets, and phones). 
 
 Our application prototype is deployed using OpenShift container management platform (PaaS). Our deployment process uses [Docker]() for containers, [Jenkins]() for Continuous Integration and [OpenShift]() for managing and deploying containers with orchestration and scaling provided by Kubernetes. We also used FEC 18F [open api](https://18f.gsa.gov/2015/07/08/openfec-api/) for retrieving FEC filings.
 
