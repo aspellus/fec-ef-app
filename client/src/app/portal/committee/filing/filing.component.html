@@ -1,6 +1,9 @@
 <ol class="breadcrumb">
 	<li class="breadcrumb-item">
-		<a href="/portal/committee/{{filing.committee_id}}">{{filing.committee_name}}</a>
+		<!--
+		<a [routerLink]="['/committee/',filing.committee_id]">{{filing.committee_name}}</a>
+		-->
+		<a href (click)="router.navigate(['/committee/'+filing.committee_id]); $event.preventDefault();">{{filing.committee_name}}</a>
 	</li>
 	<li class="breadcrumb-item active">{{filing.fec_file_id}}</li>
 </ol>

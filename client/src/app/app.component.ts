@@ -9,12 +9,11 @@ import { CommitteeService } from "./portal/committee/committee.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	isLoggedIn: boolean;
 	committeeIds: String[] = ['C00577759','C00579599','C00615740','C00634634'];
 	committees: any[] = [];
 	
 	constructor(private router: Router, private committeeService: CommitteeService){
-		this.isLoggedIn = false;
+		this.router = router;
 	}
 
 	ngOnInit(){
@@ -28,12 +27,13 @@ export class AppComponent {
 		}.bind(this));
 	}
 	
+	isLoggedIn(){
+		return this.router.url !== '/';
+	}
 	committeeLogin(id: string){
-		this.isLoggedIn = true;
-		this.router.navigate(['/portal/committee/' + id]);
+		this.router.navigate(['/committee/' + id]);
 	}
 	onLogout(_isLoggedIn: boolean) {
-		this.isLoggedIn = _isLoggedIn;
-		this.router.navigate(['/portal']);
+		this.router.navigate(['/']);
 	}
 }

@@ -14,7 +14,7 @@ export class FilingsComponent implements OnInit {
   }
   
   viewFiling(committee_id, fec_file_id){
-  	this.router.navigate(['/portal/filing/' + fec_file_id]);
+  	this.router.navigate(['/filing/' + fec_file_id]);
   }
 
   @Input() filingData: any;

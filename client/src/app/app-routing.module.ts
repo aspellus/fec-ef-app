@@ -8,35 +8,32 @@ import { FilingsComponent } from './portal/committee/filings/filings.component';
 import { FilingComponent } from './portal/committee/filing/filing.component';
 
 const appRoutes: Routes = [
-  {
-	    path: '',
-	    component: PortalComponent
-  },
-  {
-    path: 'portal',
-    component: PortalComponent,
-    children: [{
-	    path: 'committee/:id',
-	    component: CommitteeComponent,
-	    children: [{
-	    	path: 'filings',
-	        component: FilingsComponent
-	    },
-	    {
-	    	path: 'committee-info',
-	        component: CommitteeInfoComponent
-	    }]
-    },
-    {
-  	path: 'filing/:file_id',
-	component: FilingComponent
-    }]
-  },
-  {
-	  path: '',
-	  redirectTo: '',
-	  pathMatch: 'full'
-  }
+	{
+		path: '',
+		component: PortalComponent
+	},
+	{
+		path: 'portal',
+		component: PortalComponent
+	},
+	{
+		path: 'committee/:id',
+		component: CommitteeComponent,
+		children: [
+			{
+				path: 'filings',
+				component: FilingsComponent
+			},
+			{
+				path: 'committee-info',
+				component: CommitteeInfoComponent
+			}
+		]
+	},
+	{
+  		path: 'filing/:file_id',
+		component: FilingComponent
+	}
 ];
 
 @NgModule({

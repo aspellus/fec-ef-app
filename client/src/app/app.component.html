@@ -2,14 +2,14 @@
 	<app-header [isLoggedIn]="isLoggedIn" (onLogout)="onLogout($event)"></app-header>
 
 	<div class="container-fluid app-main-content">
-		<div class="container" *ngIf="!isLoggedIn">
+		<div class="container" *ngIf="!isLoggedIn()">
 			<h2>Welcome to the EZ Amendment Portal</h2>
 			<h5>Choose your Committee and Login to review, amend, or add filings</h5>
 			<div class="row">
 				<form class="col-sm-8 col-md-6 col-lg-5 form">
 					<div class="form-group" id="committee-select-group">
 						<div ngbDropdown>
-							<button class="form-control btn btn-lg btn-primary btn-block" ngbDropdownToggle id="committee-select">
+							<button type="button" class="form-control btn btn-lg btn-primary btn-block" ngbDropdownToggle id="committee-select">
 								Choose a Committee
 							</button>
 							<div ngbDropdownMenu aria-labelledby="committee-select">
@@ -23,7 +23,7 @@
 				</form>
 			</div>
 		</div>
-		<router-outlet *ngIf="isLoggedIn"></router-outlet>
+		<router-outlet></router-outlet>
 	</div>
 
 	<app-footer></app-footer>
