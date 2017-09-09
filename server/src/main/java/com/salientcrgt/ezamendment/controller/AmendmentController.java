@@ -167,11 +167,7 @@ public class AmendmentController {
 		return jsonObject;
 	}
 	
-<<<<<<< HEAD
 	@CrossOrigin(origins = "*")
-=======
-	@CrossOrigin(origins = "http://localhost:4200")
->>>>>>> master
 	@RequestMapping(value = "/report/{report_id}/receipts", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
 	@ResponseBody
 	public String getScheduleAByReportId(@PathVariable long report_id) {
