@@ -5,5 +5,5 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'http://prod-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com'
+  apiUrl: 'http://prod-backend-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com'
 };
