@@ -3,7 +3,13 @@
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
+@import '~variables.scss';
+
+$blue: $fec_blue_light;
+
+
 @import '~bootstrap/scss/bootstrap';
+@import '~font-awesome/scss/font-awesome';
 
 @media (min-width: 1500px){
 	.container {
@@ -15,4 +21,10 @@
 }
 .text-sm {
 	font-size: 50%;
+}
+
+.tab-content {
+	padding: 5px;
+	border: 1px solid $nav-tabs-link-active-border-color;
+	border-top-width: 0;
 }

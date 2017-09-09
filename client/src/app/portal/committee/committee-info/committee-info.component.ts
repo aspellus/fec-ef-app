@@ -16,8 +16,6 @@ export class CommitteeInfoComponent implements OnInit {
   	constructor(private route: ActivatedRoute, private committeeService: CommitteeService) { }
 
   	ngOnInit() {
-  		console.log('committee-info init');
-  		
   	}
   	
   	@Input() committee: any;

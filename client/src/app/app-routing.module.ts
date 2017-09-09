@@ -1,42 +1,39 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ReportComponent } from './portal/report/report.component';
 import { PortalComponent } from './portal/portal.component';
 import { CommitteeComponent } from './portal/committee/committee.component';
 import { CommitteeInfoComponent } from './portal/committee/committee-info/committee-info.component';
 import { FilingsComponent } from './portal/committee/filings/filings.component';
+import { FilingComponent } from './portal/committee/filing/filing.component';
 
 const appRoutes: Routes = [
-  {
-    path: '',
-    component: PortalComponent
-  },
-  {
-    path: 'report/:committee_id',
-    component: ReportComponent
-  },
-  {
-    path: 'portal',
-    component: PortalComponent,
-    children: [{
-	    path: 'committee/:id',
-	    component: CommitteeComponent,
-	    children: [{
-	    	path: 'filings',
-	        component: FilingsComponent
-	    },
-	    {
-	    	path: 'committee-info',
-	        component: CommitteeInfoComponent
-	    }]
-    }]
-  },
-  {
-	  path: '',
-	  redirectTo: '',
-	  pathMatch: 'full'
-  }
+	{
+		path: '',
+		component: PortalComponent
+	},
+	{
+		path: 'portal',
+		component: PortalComponent
+	},
+	{
+		path: 'committee/:id',
+		component: CommitteeComponent,
+		children: [
+			{
+				path: 'filings',
+				component: FilingsComponent
+			},
+			{
+				path: 'committee-info',
+				component: CommitteeInfoComponent
+			}
+		]
+	},
+	{
+  		path: 'filing/:file_id',
+		component: FilingComponent
+	}
 ];
 
 @NgModule({
@@ -44,7 +41,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       {
-        //enableTracing: true // <-- debugging purposes only
+        enableTracing: false // <-- debugging purposes only
       }
     )
   ],
