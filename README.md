@@ -42,7 +42,6 @@ References:
 | --- | ---  |
 | Installation Document | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.md](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.md)   |
 | Dev Installation Document | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/developer_inst.md](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/developer_inst.md) |
-| Style Guide | [https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/style-guide.html](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/style-guide.html) |
 | Trello Board | [https://trello.com/b/pnKkdO92/fec-application-board](https://trello.com/b/pnKkdO92/fec-application-board) |
 | GitHub Issue Log | [https://github.com/SalientCRGT/fec-ef-app/issues](https://github.com/SalientCRGT/fec-ef-app/issues) |
 | Jenkins Pipeline | http://jenkins.salientcrgt-devops.com/job/FEC/job/fec-ef-app/view/FEC-EF-Delivery/  |
