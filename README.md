@@ -27,4 +27,4 @@ Our application prototype is deployed using OpenShift container management platf
 
 ## Installation and Local Deployment
 
-Instructions on running the app locally on your box can be found in [install_app.txt](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.txt) 
+Instructions on running the app locally on your box can be found in [install_app.txt add Cris](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/install_app.txt) 
