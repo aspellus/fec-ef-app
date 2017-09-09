@@ -44,7 +44,7 @@ public class AmendmentController {
 	@Autowired
 	ScheduleAService scheduleAService;
 	
-	@CrossOrigin(origins = "*.b9ad.pro-us-east-1.openshiftapps.com")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/committee/{committee_id}", method = RequestMethod.GET,produces = "application/json")
 	@ResponseBody
 	public JSONObject getCommitteeDetails(@PathVariable String committee_id) {
@@ -83,7 +83,7 @@ public class AmendmentController {
 		return jsonObject;
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/committee/{committee_id}/filings/{report_year}", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
 	@ResponseBody
 	public JSONObject getCommitteeReportsByYear(@PathVariable String committee_id, @PathVariable String report_year) {
@@ -124,7 +124,7 @@ public class AmendmentController {
 		return jsonObject;
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/committee/{committee_id}/filings/{report_year}/{form_type}", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
 	@ResponseBody
 	public JSONObject getCommitteeReportsByYearAndFormType(@PathVariable String committee_id, @PathVariable String report_year, @PathVariable String form_type) {
@@ -167,7 +167,7 @@ public class AmendmentController {
 		return jsonObject;
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/report/{report_id}/receipts", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
 	@ResponseBody
 	public String getScheduleAByReportId(@PathVariable long report_id) {
