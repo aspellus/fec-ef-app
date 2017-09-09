@@ -1,8 +1,5 @@
 FEC E-filing Application - EZ-Amendment 
 =======================================
-
-Link to application prototype http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/.
-
 References:
 
 | Prototype URL | [http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/](http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com)|
