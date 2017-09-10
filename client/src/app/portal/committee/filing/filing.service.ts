@@ -22,7 +22,7 @@ export class FilingService {
     }
     
     getReceipts(report_id: number) {
-    	var url = environment.apiUrl + '/report/' + report_id + '/receipts/';
+    	var url = environment.apiUrl + '/schedules/' + report_id + '/schedule_a/';
         return this.http.get(url)
          	.map((response: Response) => response.json());
     }

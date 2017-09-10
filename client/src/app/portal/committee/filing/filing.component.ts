@@ -51,7 +51,8 @@ export class FilingComponent implements OnInit {
 	  });
 	  
 	  this.filingService.getReceipts(this.report_id).subscribe(data => {
-		  data.sort(function(receipt_a, receipt_b){
+		this.receipts = data.list;
+		this.receipts.sort(function(receipt_a, receipt_b){
 		  	var line_num_a = receipt_a.line_num.toUpperCase(),
 		  		line_num_b = receipt_a.line_num.toUpperCase(),
 		  		date_a = new Date(receipt_a.date_con),
@@ -71,7 +72,6 @@ export class FilingComponent implements OnInit {
 		  	//console.log(receipt);
 		  	return 0;
 		  });
-		  this.receipts = data;
 	  });  
   }
   
