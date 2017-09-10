@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 
 import { FilingService } from "./filing.service";
+import { CommitteeService } from '../committee.service';
 
 @Component({
   selector: 'app-filing',
@@ -12,13 +13,23 @@ export class FilingComponent implements OnInit {
 
   filing = {"fec_url":"http://docquery.fec.gov/dcdev/posted/1178702.fec","opposition_personal_funds":null,"amendment_chain":[1178702],"total_communication_cost":null,"pdf_url":"http://docquery.fec.gov/pdf/692/201708119070320692/201708119070320692.pdf","senate_personal_funds":null,"form_type":"F3","office":null,"pages":4,"is_amended":false,"primary_general_indicator":"P","candidate_name":null,"state":null,"most_recent":true,"sub_id":"4081120171446512792","amendment_indicator":"N","cash_on_hand_beginning_period":0,"beginning_image_number":"201708119070320692","fec_file_id":"FEC-1178702","report_type":"Q2","update_date":"2017-08-11T21:12:34","debts_owed_to_committee":0,"ending_image_number":"201708119070320695","html_url":"http://docquery.fec.gov/cgi-bin/forms/C00577759/1178702/","report_year":2017,"election_year":null,"party":null,"committee_id":"C00577759","coverage_start_date":"2017-04-01T00:00:00","csv_url":"http://docquery.fec.gov/csv/702/1178702.csv","request_type":null,"previous_file_number":1178702,"house_personal_funds":null,"document_description":"JULY QUARTERLY 2017","document_type_full":null,"treasurer_name":null,"cycle":2018,"total_independent_expenditures":null,"total_disbursements":0,"candidate_id":null,"file_number":1178702,"committee_name":"UBERPAC","net_donations":null,"means_filed":"e-file","amendment_version":0,"document_type":null,"total_individual_contributions":null,"report_type_full":"JULY QUARTERLY","most_recent_file_number":1178702,"cash_on_hand_end_period":0,"total_receipts":0,"coverage_end_date":"2017-06-30T00:00:00","receipt_date":"2017-08-11T00:00:00","debts_owed_by_committee":0};
   report_id: number;
+  filing_year: number;
+  form_type: string;
   receipts: Array<any> = [];
   lineNums: Array<any>;
+  committee: any;
   
-  constructor(private router: Router, private route: ActivatedRoute, private filingService: FilingService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private filingService: FilingService, private committeeService: CommitteeService) { }
 
   ngOnInit() {
-	  console.log('init');
+	  
+	  this.committee = this.committeeService.committee;
+	  
+	  if(!this.committee) {
+		  this.router.navigate(['/']);
+		  return;
+	  }
+	  
 	  this.lineNums = [{id: '11A', desc: 'Individual Contribution'},
 	                    {id: '11B', desc: 'Political Party Contribution'},
 	                    {id: '11C', desc: 'Political Committee (Other) Contribution'},
@@ -31,7 +42,19 @@ export class FilingComponent implements OnInit {
 	  
 	  this.route.params.subscribe(params => {
 		 this.report_id = params['file_id']; 
+		 
 	  });
+	  this.route.queryParams.subscribe(params => {
+		  this.filing_year = params['filing_year'];
+		  this.form_type = params['form_type'] ? params['form_type'] : null;
+	  });
+	  
+	  this.filingService.getByYear(this.committee.committee_id, this.filing_year, this.form_type).subscribe(data => {
+		  this.filing = data.results.find(filing => {
+			  return filing.file_number == this.report_id;
+		  });
+	  });
+	  
 	  this.filingService.getReceipts(this.report_id).subscribe(data => {
 		  data.sort(function(receipt_a, receipt_b){
 		  	var line_num_a = receipt_a.line_num.toUpperCase(),
