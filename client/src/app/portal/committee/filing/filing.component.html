@@ -94,7 +94,7 @@
 					<ngb-panel *ngFor="let rec of [{}].concat(receipts); let first = first">
 						<ng-template ngbPanelTitle>
 							<div *ngIf="first">
-								New Receipt
+								Add New Receipt
 							</div>
 							<div class="row" *ngIf="!first">
 								<div class="col">{{rec.line_num}}</div>
@@ -169,15 +169,24 @@
 			</ng-template>
 		</ngb-tab>
 
-		<ngb-tab title="Disbursements" [disabled]="true">
+		<ngb-tab [disabled]="true">
+			<ng-template ngbTabTitle>
+			      <div title="Not Implemented">Disbursements</div>
+			</ng-template>
 			<ng-template ngbTabContent></ng-template>
 		</ngb-tab>
 
-		<ngb-tab title="Loans" [disabled]="true">
+		<ngb-tab [disabled]="true">
+			<ng-template ngbTabTitle>
+			      <div title="Not Implemented">Loans</div>
+			</ng-template>
 			<ng-template ngbTabContent></ng-template>
 		</ngb-tab>
 
-		<ngb-tab title="Debts" [disabled]="true">
+		<ngb-tab [disabled]="true">
+			<ng-template ngbTabTitle>
+			      <div title="Not Implemented">Debts</div>
+			</ng-template>
 			<ng-template ngbTabContent></ng-template>
 		</ngb-tab>
 	</ngb-tabset>
