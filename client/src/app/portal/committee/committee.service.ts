@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class CommitteeService {
 
+	committee: any;
 
 	constructor(private http: Http) { }
 
