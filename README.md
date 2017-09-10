@@ -4,7 +4,7 @@ Link to prototype application [EZ Amendment Portal](http://dev-fecportal-fec-ef-
 
 ## Description
 
-[EZ-Amendment](http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/.) application will allow FEC E-filing committee members to connect to EZ-Amendment portal and search/amend existing filing (transactions). This is a prototype to show SalientCRGT skills in agile software development, using open source, secured DevOps practices and incorporating Cloud. 
+[EZ-Amendment](http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/.) application will allow FEC E-filing committee members to connect to EZ-Amendment portal and search/amend existing filing (transactions). This is a prototype to show SalientCRGT skills in agile software development, using open source, secured DevOps practices using Cloud. 
 
 ## Agile Software Development Approach
 
