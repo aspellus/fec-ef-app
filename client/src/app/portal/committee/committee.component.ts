@@ -87,7 +87,7 @@ export class CommitteeComponent implements OnInit {
 		console.log(this.filters.getQueryParams());
 		this.router.navigate([], {
 	        queryParams: this.filters.getQueryParams(),
-	        queryParamsHandling: 'merge',
+	        
 	        relativeTo: this.route
 	    });
 	}
@@ -105,11 +105,11 @@ export class CommitteeComponent implements OnInit {
 	}
 	private getFilingData(){
 		
-		this.updateUrl();
-		
 		this.formTypes = [];
 		this.filters.formType = '';
 		this.isLoading = true;
+		
+		this.updateUrl();
 
 		this.filingService.getByYear(this.committee.committee_id, this.filters.filingYear, this.filters.formType).subscribe(
 				data => {
