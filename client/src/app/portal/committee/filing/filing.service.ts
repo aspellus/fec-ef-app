@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
@@ -24,5 +24,18 @@ export class FilingService {
     	var url = environment.apiUrl + '/report/' + report_id + '/receipts/';
         return this.http.get(url)
          	.map((response: Response) => response.json());
+    }
+    
+    saveReceipt(receipt: any){
+    	var url = environment.apiUrl + '/schedules/' + receipt.repid + '/schedule_a/' + receipt.tran_id;
+	let headers = new Headers({ 'Content-Type': 'application/json' });
+	let options = new RequestOptions({ headers: headers });
+    	
+    	return this.http[Boolean(receipt.tran_id) ? 'put' : 'post'](url, receipt, options).map((response: Response) => response.json());
+    }
+    
+    deleteReceipt(receipt: any){
+    	var url = environment.apiUrl + '/schedules/' + receipt.repid + '/schedule_a/' + receipt.tran_id;
+    	return this.http.delete(url).map((response: Response) => response.json());
     }
 }

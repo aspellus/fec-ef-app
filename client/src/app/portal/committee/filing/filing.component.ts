@@ -19,16 +19,11 @@ export class FilingComponent implements OnInit {
   lineNums: Array<any>;
   committee: any;
   
-  constructor(private router: Router, private route: ActivatedRoute, private filingService: FilingService, private committeeService: CommitteeService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private filingService: FilingService, private committeeService: CommitteeService) {}
 
   ngOnInit() {
 	  
 	  this.committee = this.committeeService.committee;
-	  
-	  if(!this.committee) {
-		  this.router.navigate(['/']);
-		  return;
-	  }
 	  
 	  this.lineNums = [{id: '11A', desc: 'Individual Contribution'},
 	                    {id: '11B', desc: 'Political Party Contribution'},
@@ -49,7 +44,7 @@ export class FilingComponent implements OnInit {
 		  this.form_type = params['form_type'] ? params['form_type'] : null;
 	  });
 	  
-	  this.filingService.getByYear(this.committee.committee_id, this.filing_year, this.form_type).subscribe(data => {
+	  this.filingService.getByYear(this.filing.committee_id, this.filing_year, this.form_type).subscribe(data => {
 		  this.filing = data.results.find(filing => {
 			  return filing.file_number == this.report_id;
 		  });
@@ -80,8 +75,14 @@ export class FilingComponent implements OnInit {
 	  });  
   }
   
-	getSortedReceipts(){
-		console.log('get');
-		return this.receipts;
-	}
+  saveReceipt(receipt){
+  	this.filingService.saveReceipt(receipt).subscribe(data => {
+  		receipt = data;
+  	});
+  }
+  deleteReceipt(receipt){
+  	this.filingService.deleteReceipt(receipt).subscribe(data => {
+  		receipt = data;
+  	});
+  }
 }
