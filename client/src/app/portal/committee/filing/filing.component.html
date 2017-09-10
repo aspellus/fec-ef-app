@@ -13,13 +13,13 @@
 		{{filing.document_description}}
 	</h2>
 	<hr>
-	
+
 	<!--
 	the dates are coming in as iso-8601 except the missing timezone
 	coverage_start_date
 	coverage_end_date
 	-->
-	
+
 	<!-- <form>
 		<div class="row">
 			<div class="col-sm-4 col-md-3 col-xl-2 form-group">
@@ -67,7 +67,7 @@
 	</form> -->
 
 	<h3 class="mt-5">Transactions</h3>
-	
+
 	<ngb-tabset [justify]="'fill'">
 		<ngb-tab title="Receipts">
 			<ng-template ngbTabContent>
@@ -83,7 +83,7 @@
 					<div class="row">
 						<div class="col-lg-5 p-4">
 							<ngb-alert type="info" dismissible="false">
-							 	No Receipts have been filed for this report 
+							 	No Receipts have been filed for this report
 							 	<br>
 							 	Add a new receipt or go back to <a href (click)="router.navigate(['/committee/'+filing.committee_id]); $event.preventDefault();">your committee page</a>
 							</ngb-alert>
@@ -91,7 +91,7 @@
 					</div>
 				</div>
 				<ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
-					<ngb-panel *ngFor="let rec of receipts; let first = first">
+					<ngb-panel *ngFor="let rec of [{}].concat(receipts); let first = first">
 						<ng-template ngbPanelTitle>
 							<div *ngIf="first">
 								New Receipt
@@ -110,9 +110,9 @@
 										<div class="col-sm-3 col-md-2 col-lg-1 form-group">
 											<label>Line</label>
 											<div ngbDropdown>
-										    	<button id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{rec.line_num ? rec.line_num : 'Select Line Num'}}<i></i></button>
+										    	<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{rec.line_num ? rec.line_num : 'Select Line Num'}}<i></i></button>
 										      	<div ngbDropdownMenu aria-labelledby="filing-year-dd">
-										        	<button id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="null;">{{lineNum.id + ' - ' + lineNum.desc}}</button>
+										        	<button type="button" id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="rec.line_num = lineNum.id">{{lineNum.id + ' - ' + lineNum.desc}}</button>
 										      	</div>
 										    </div>
 										</div>
@@ -168,15 +168,15 @@
 				</ngb-accordion>
 			</ng-template>
 		</ngb-tab>
-	
+
 		<ngb-tab title="Disbursements" [disabled]="true">
 			<ng-template ngbTabContent></ng-template>
 		</ngb-tab>
-	
+
 		<ngb-tab title="Loans" [disabled]="true">
 			<ng-template ngbTabContent></ng-template>
 		</ngb-tab>
-	
+
 		<ngb-tab title="Debts" [disabled]="true">
 			<ng-template ngbTabContent></ng-template>
 		</ngb-tab>
