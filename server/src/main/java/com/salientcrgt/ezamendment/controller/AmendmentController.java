@@ -105,7 +105,7 @@ public class AmendmentController {
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/committee/{committee_id}/filings/", produces = "application/json")
-	public JSONObject getCommitteeReportsByYearAndFormType(@PathVariable String committee_id, @RequestParam String report_year, @RequestParam String form_type) {
+	public JSONObject getCommitteeReportsByYearAndFormType(@PathVariable String committee_id, @RequestParam String report_year, @RequestParam(value="", required=false) String form_type) {
 		JSONObject jsonObject = null;
 		HttpURLConnection conn = null;
 		try {
