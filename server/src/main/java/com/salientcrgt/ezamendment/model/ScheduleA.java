@@ -15,27 +15,12 @@ import org.dom4j.tree.AbstractEntity;
 */
 @Entity
 @Table(name = "sched_a")
-/*@NamedQueries({
-        @NamedQuery(
-                name = ScheduleA.FIND_BY_REPORTID,
-                query = "select sa from temp_sched_a sa where sa.reportId = :reportId"
-        )//,
-        //@NamedQuery(
-        //        name = ScheduleA.FIND_BY_REPTRANID,
-        //        query = "select sa from temp_sched_a sa where reportId = :reportId and tranId = :tranId"
-        //)
-})*/
-/*@NamedQuery(
-        name = ScheduleA.FIND_BY_REPORTID,
-        query = "select sa from temp_sched_a sa where reportId = :reportId"
-)*/
+
 public class ScheduleA  extends AbstractEntity {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1915138817685864614L;
-	//public static final String FIND_BY_REPORTID = "ScheduleA.findByReportId";
-	//public static final String FIND_BY_REPTRANID = "ScheduleA.findByRepTranId";
 	@Id
 	private long repid;
 	private String line_num;
@@ -65,6 +50,8 @@ public class ScheduleA  extends AbstractEntity {
 	private String indemp;
 	private String indocc;
 	private String memo_code;
+	//Add-A, Change-C, Delete-D
+	private String amend;
 	
 	public ScheduleA() {
 		
@@ -73,7 +60,7 @@ public class ScheduleA  extends AbstractEntity {
 	public ScheduleA(long repid, String line_num, long rel_lineno, String comid, String tran_id, String entity, String name, 
 			String fname, String mname, String prefix, String suffix, String str1, String str2, String city, String state,
 			String zip, String pgo, String pg_des, Date date_con, double amount, double ytd, String transdesc, String indemp, 
-			String indocc, String memo_code) {
+			String indocc, String memo_code, String amend) {
 		this.repid = repid;
 		this.line_num = line_num;
 		this.rel_lineno = rel_lineno;
@@ -99,6 +86,7 @@ public class ScheduleA  extends AbstractEntity {
 		this.indemp = indemp;
 		this.indocc = indocc;
 		this.memo_code = memo_code;
+		this.amend = amend;
 	}
 
 	public long getRepid() {
@@ -315,5 +303,13 @@ public class ScheduleA  extends AbstractEntity {
 
 	public void setMemo_code(String memo_code) {
 		this.memo_code = memo_code;
+	}
+
+	public String getAmend() {
+		return amend;
+	}
+
+	public void setAmend(String amend) {
+		this.amend = amend;
 	}
 }
