@@ -19,7 +19,7 @@
           <td class="text-center">{{filing.receipt_date | date}}</td>
           <td class="text-center">
 			<div class="btn-group" ngbDropdown placement="bottom-right">
-			  <button [disabled]="!filing.file_number" type="button" class="btn btn-primary" (click)="viewFiling(filing.file_number)">View/Ammend</button>
+			  <button [disabled]="!filing.file_number" type="button" class="btn btn-primary" (click)="viewFiling(filing.file_number)">View/Amend</button>
 			  <button [disabled]="!filing.file_number" class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
 			  <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
 				<button class="dropdown-item">Submit</button>
