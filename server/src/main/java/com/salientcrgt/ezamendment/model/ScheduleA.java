@@ -1,6 +1,6 @@
 package com.salientcrgt.ezamendment.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,11 +15,27 @@ import org.dom4j.tree.AbstractEntity;
 */
 @Entity
 @Table(name = "sched_a")
+/*@NamedQueries({
+        @NamedQuery(
+                name = ScheduleA.FIND_BY_REPORTID,
+                query = "select sa from temp_sched_a sa where sa.reportId = :reportId"
+        )//,
+        //@NamedQuery(
+        //        name = ScheduleA.FIND_BY_REPTRANID,
+        //        query = "select sa from temp_sched_a sa where reportId = :reportId and tranId = :tranId"
+        //)
+})*/
+/*@NamedQuery(
+        name = ScheduleA.FIND_BY_REPORTID,
+        query = "select sa from temp_sched_a sa where reportId = :reportId"
+)*/
 public class ScheduleA  extends AbstractEntity {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1915138817685864614L;
+	//public static final String FIND_BY_REPORTID = "ScheduleA.findByReportId";
+	//public static final String FIND_BY_REPTRANID = "ScheduleA.findByRepTranId";
 	@Id
 	private long repid;
 	private String line_num;
@@ -48,13 +64,16 @@ public class ScheduleA  extends AbstractEntity {
 	private String limit_ind;
 	private String indemp;
 	private String indocc;
+	private String memo_code;
+	
 	public ScheduleA() {
 		
 	}
 	
 	public ScheduleA(long repid, String line_num, long rel_lineno, String comid, String tran_id, String entity, String name, 
 			String fname, String mname, String prefix, String suffix, String str1, String str2, String city, String state,
-			String zip, String pgo, String pg_des, Date date_con, double amount, double ytd, String transdesc, String indemp, String indocc) {
+			String zip, String pgo, String pg_des, Date date_con, double amount, double ytd, String transdesc, String indemp, 
+			String indocc, String memo_code) {
 		this.repid = repid;
 		this.line_num = line_num;
 		this.rel_lineno = rel_lineno;
@@ -79,6 +98,7 @@ public class ScheduleA  extends AbstractEntity {
 		this.transdesc = transdesc;
 		this.indemp = indemp;
 		this.indocc = indocc;
+		this.memo_code = memo_code;
 	}
 
 	public long getRepid() {
@@ -287,5 +307,13 @@ public class ScheduleA  extends AbstractEntity {
 
 	public void setIndocc(String indocc) {
 		this.indocc = indocc;
+	}
+
+	public String getMemo_code() {
+		return memo_code;
+	}
+
+	public void setMemo_code(String memo_code) {
+		this.memo_code = memo_code;
 	}
 }
