@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
   @Output() onLogout = new EventEmitter<boolean>();
   
   logout() {
-	  this.isLoggedIn = false;
 	  this.onLogout.emit(this.isLoggedIn);
   }
 }
