@@ -3,19 +3,18 @@
 
 	<div class="container-fluid app-main-content">
 		<div class="container" *ngIf="!isLoggedIn()">
-			<h2>Welcome to the EZ Amendment Portal</h2>
-			<h5>Choose your Committee and Login to review, amend, or add filings</h5>
+			<h2 class="display-4 mb-5">Welcome to the EZ Amendment Portal</h2>
 			<div class="row">
 				<form class="col-sm-8 col-md-6 col-lg-5 form">
 					<div class="form-group" id="committee-select-group">
 						<div ngbDropdown>
-							<button type="button" class="form-control btn btn-lg btn-primary btn-block" ngbDropdownToggle id="committee-select">
+							<button type="button" class="form-control btn btn-lg btn-secondary btn-block" ngbDropdownToggle id="committee-select">
 								Choose a Committee
 							</button>
-							<div ngbDropdownMenu aria-labelledby="committee-select">
-								<button class="dropdown-item" *ngFor="let committee of committees" (click)="committeeLogin(committee.committee_id)">
-								<b>{{committee.committee_id}}</b><br/>
-								{{committee.name}}
+							<div type="button" ngbDropdownMenu aria-labelledby="committee-select">
+								<button type="button" class="dropdown-item" *ngFor="let committee of committees" (click)="committeeLogin(committee.committee_id)">
+									<b>{{committee.committee_id}}</b><br/>
+									{{committee.name}}
 								</button>
 							</div>
 						</div>
