@@ -16,15 +16,15 @@ import cucumber.api.java.en.When;
 
 @Component
 public class PortalpageSteps extends Steps {
-	private Portalpage homepage;
+	private Portalpage portalPage;
 
 	private void init() {
-		if (homepage == null) {
-			homepage = new Portalpage(executionContext.getDriver());
+		if (portalPage == null) {
+			portalPage = new Portalpage(executionContext.getDriver());
 		}
-		homepage.get();
+		portalPage.get();
 	}
-
+/*
 	@Given("^I am on the portal page$")
 	public void i_am_on_the_portal_page() throws Throwable {
 		init();
@@ -106,8 +106,8 @@ public class PortalpageSteps extends Steps {
 		Map<String, String> actions = homepage.getFilingActions();
 	    
 		for (String filing : actions.keySet()) {
-			// Amend is currently mispelled in app, this will break when that is fixed
-			if ("View/Ammend".equals(actions.get(filing))) {
+			
+			if ("View/Amend".equals(actions.get(filing))) {
 				amendActionFound = true;
 			}
 		}
@@ -138,6 +138,6 @@ public class PortalpageSteps extends Steps {
 	    // Write code here that turns the phrase above into concrete actions
 	    
 	}
-
+*/
 
 }

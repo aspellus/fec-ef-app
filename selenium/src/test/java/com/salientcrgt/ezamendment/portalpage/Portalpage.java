@@ -25,8 +25,11 @@ public class Portalpage extends Page {
 
 	private boolean committeesVisible = false;
 
+	protected WebDriverWait wait = null;
+
 	public Portalpage(WebDriver driver) {
 		super(driver);
+		wait = new WebDriverWait(driver, 30);
 	}
 
 	@Override
@@ -50,7 +53,9 @@ public class Portalpage extends Page {
 	}
 
 	public List<String> getCommittees() {
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		waitForAngular();
+
 		List<String> committees = new ArrayList<String>();
 
 		WebElement committeePanel = driver.findElement(By.id("committee-select-group"));
@@ -63,6 +68,8 @@ public class Portalpage extends Page {
 			committeesVisible = true;
 		}
 
+		waitForAngular();
+
 		List<WebElement> elements = committeePanel.findElements(By.className("dropdown-item"));
 
 		for (WebElement element : elements) {
@@ -74,14 +81,17 @@ public class Portalpage extends Page {
 	}
 
 	public boolean isImageDisplayed() {
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		waitForAngular();
+
 		String attr = ActionByLocator.getElement(driver, By.xpath("//body/app-root/div/img"), TIME_OUT_SECONDS)
 				.getAttribute("src");
 		return attr.contains("data:image/svg");
 	}
 
 	public void clickCommittee(int i) {
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		waitForAngular();
 
 		WebElement committeeButton = driver.findElement(By.id("committee-select-group"));
 		if (!committeesVisible) {
@@ -89,7 +99,7 @@ public class Portalpage extends Page {
 			committeesVisible = true;
 		}
 
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+		waitForAngular();
 
 		committeeButton.findElements(By.className("dropdown-item")).get(i).click();
 
@@ -97,7 +107,7 @@ public class Portalpage extends Page {
 
 	public boolean findCommitteeIDHeader() {
 
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+		waitForAngular();
 
 		String header = driver.findElement(By.tagName("app-committee")).findElement(By.xpath(".//h2/small")).getText();
 		System.out.println(header);
@@ -112,11 +122,13 @@ public class Portalpage extends Page {
 
 	public Map<String, String> getCommitteeAboutInfo() {
 
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+		waitForAngular();
 
 		Map<String, String> committeeInfo = new HashMap<String, String>();
 
-		WebElement infoElement = driver.findElement(By.xpath("//div[contains(@class, 'jumbotron')]/div/div"));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebElement infoElement = wait.until(
+				ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'jumbotron')]/div/div")));
 
 		for (WebElement rowElement : infoElement.findElements(By.className("row"))) {
 			List<WebElement> cols = rowElement.findElements(By.xpath(".//div"));
@@ -136,7 +148,8 @@ public class Portalpage extends Page {
 	}
 
 	public boolean findAppPortalTag() {
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		waitForAngular();
 
 		try {
 			driver.findElement(By.tagName("app-committee"));
@@ -147,7 +160,8 @@ public class Portalpage extends Page {
 	}
 
 	public boolean isFilingPanelOpen() {
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		waitForAngular();
 
 		try {
 
@@ -160,7 +174,8 @@ public class Portalpage extends Page {
 	}
 
 	public void openCommitteePanel() {
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		waitForAngular();
 
 		WebElement committeeButton = driver.findElement(By.id("committee-info-btn"));
 
@@ -169,7 +184,8 @@ public class Portalpage extends Page {
 	}
 
 	public boolean findAppFilingTag() {
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		waitForAngular();
 
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -181,7 +197,8 @@ public class Portalpage extends Page {
 	}
 
 	public int getFilingCount() {
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		waitForAngular();
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -198,7 +215,7 @@ public class Portalpage extends Page {
 
 	public List<String> getFilingFields() {
 
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+		waitForAngular();
 
 		List<String> fieldList = new ArrayList<String>();
 
@@ -217,14 +234,19 @@ public class Portalpage extends Page {
 	}
 
 	public Map<String, String> getFilingActions() {
-		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
+
+		waitForAngular();
 
 		Map<String, String> actions = new HashMap<String, String>();
 
-		WebElement filingTableHead = driver
-				.findElement(By.xpath("//div[contains(@class, 'report-content')]/table/tbody"));
+		// wait for element to be clickable, then click
+
+		WebElement filingTableHead = wait.until(ExpectedConditions
+				.elementToBeClickable(By.xpath("//div[contains(@class, 'report-content')]/table/tbody")));
 
 		for (WebElement filingElement : filingTableHead.findElements(By.tagName("tr"))) {
+
+			wait.until(ExpectedConditions.elementToBeClickable(filingElement));
 
 			System.out.println(filingElement.getText());
 
@@ -251,4 +273,96 @@ public class Portalpage extends Page {
 		return actions;
 	}
 
+	// TODO refactor clickCommittee methods to avoid duplicated logic
+	public void clickCommittee(String selectedCommittee) throws Exception {
+		waitForAngular();
+
+		WebElement committeeButton = driver.findElement(By.id("committee-select-group"));
+		if (!committeesVisible) {
+			committeeButton.click();
+			committeesVisible = true;
+		}
+
+		waitForAngular();
+
+		for (WebElement committeeElement : committeeButton.findElements(By.className("dropdown-item"))) {
+
+			wait.until(ExpectedConditions.elementToBeClickable(committeeElement));
+			System.out.println(committeeElement.getText());
+
+			if (selectedCommittee.equals(committeeElement.findElement(By.xpath(".//b")).getText())) {
+				committeeElement.click();
+				return;
+			}
+
+		}
+		throw new Exception("Committee not found");
+
+	}
+
+	public void amendReport(String amendReport) throws Exception {
+		waitForAngular();
+
+		WebElement filingTableHead = wait.until(ExpectedConditions
+				.elementToBeClickable(By.xpath("//div[contains(@class, 'report-content')]/table/tbody")));
+
+		for (WebElement filingElement : filingTableHead.findElements(By.tagName("tr"))) {
+
+			wait.until(ExpectedConditions.elementToBeClickable(filingElement));
+
+			System.out.println(filingElement.getText());
+
+			// get filing
+			String filingDesc = filingElement.findElement(By.tagName("td")).getText();
+			System.out.println("Action: " + filingDesc);
+			Pattern p = Pattern.compile("(FEC-[0-9]+)");
+			Matcher m = p.matcher(filingDesc);
+
+			// for now some edge cases will not have a FEC ID, until they
+			// are
+			// excluded from the report we make sure there's a match
+			if (m.find()) {
+
+				String filingId = m.group();
+
+				if (filingId.equals(amendReport)) {
+					wait.until(ExpectedConditions.elementToBeClickable(filingElement.findElement(By.tagName("button"))))
+							.click();
+					return;
+
+				}
+
+			}
+
+		}
+
+		throw new Exception("Report not found");
+
+	}
+
+	public void clickReceipts() {
+
+		// TODO only receipts are supported at this time so this is a noop step
+		// implement test when other transaction types are supported
+	}
+
+	public List<String> getTransactionPageFields() {
+		waitForAngular();
+
+		List<String> fields = new ArrayList<String>();
+
+		WebElement receiptsFieldListElement = driver
+				.findElement(By.xpath("//ngb-tabset/div/div/div"));
+
+		for (WebElement fieldElement : receiptsFieldListElement.findElements(By.tagName("div"))) {
+
+			wait.until(ExpectedConditions.elementToBeClickable(fieldElement));
+
+			System.out.println(fieldElement.getText());
+
+			fields.add(fieldElement.getText());
+		}
+
+		return fields;
+	}
 }
