@@ -3,7 +3,7 @@
 	<br>
 	<small class="text-sm">Please search for a Committee ID below.</small>
 </h2>
-<h2 *ngIf="committee">
+<h2 *ngIf="committee" class="mb-4">
 	{{committee.name}}
 	<br>
 	<small class="text-sm">{{committee.committee_type_full}} - {{committee.designation_full}} | ID: {{committee.committee_id}}</small>
@@ -12,13 +12,13 @@
 	<div class="col-3">
 		<div class="filter">
 			<button id="committee-info-btn" class="filter-header" (click)="doShow = 'committee-info'">
-				More About the Committee
+				Committee Info
 			</button>
-			<button id="filings-btn" class="filter-header btn-link" (click)="doShow = 'filings'">
+			<button id="filings-btn" class="filter-header" (click)="doShow = 'filings'">
 				Filings
 			</button>
 
-			<div class="filter-content">
+			<div class="filter-content" *ngIf="doShow == 'filings'">
 				<h5>Filters</h5>
 				<hr>
 
@@ -32,7 +32,7 @@
 					</div>
 				</div>
 
-				<label>Filing Type</label>
+				<label>Form Type</label>
 				<div ngbDropdown class="filter-dropdown">
 					<button id="form-type-dd" class="btn btn-block btn-light btn-sm" ngbDropdownToggle>{{filters.formType ? filters.formType : 'Select Form Type'}}<i></i></button>
 					<div ngbDropdownMenu aria-labelledby="form-type-dd">

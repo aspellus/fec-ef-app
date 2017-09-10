@@ -34,4 +34,8 @@
 	    </tr>
 	  </tbody>
 	</table>
+	<hr *ngIf="filingData.length % 2 == 0">
+	<div class="font-italic text-muted text-center">
+		{{filingData.length}} record{{filingData.length == 1 ? '' : 's'}} found
+	</div>
 </div>
