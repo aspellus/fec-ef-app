@@ -16,7 +16,9 @@ Further detail about some of our development strategies and methods can be found
 pramod to write
 
 ### Behavior-Driven Development / Test-driven Development (unit testing)
-pramod to write
+We use Behavior Driven Development (BDD), which is an extension of Test Driven Development(TDD), to gather and develop requirements. With the BDD approach, application development focuses on the behavior of the system and brings the development team closer to the business team. Requirements are captured as scenarios written in easy-to-understand English (e.g., Gherkin) that describe the application behavior from the user perspective.
+
+These same requirements become test scenarios for TDD development using Cucumber and Selenium to drive test automation in each Sprint. BDD achieves common understanding and consensus on requirements much faster, results in ready-to-use test cases for the development team to implement during test automation, and ensures that the requirement documentation is readily available and is kept current as changes get implemented with each Sprint. Above all, BDD scenario documentation facilitates an analytical validation of requirements from all stakeholders before they are transformed into executable test cases by the development team.
 
 ### CLOUD Strategy 
 Cris to write
@@ -52,8 +54,14 @@ pramod to write
 pramod to write
 Cris/Dan can we get results
 
-## User Experience/Design Practices
+## User Experience and User-Centered Design (UCD) Practices
+We believe that an application cannot be successful without an engaging user interface (UI) that is built on a foundation of high usability and customer satisfaction. Using a UCD approach to research, design, and validate, our UI/user experience (UX) Engineers and BA work iteratively with the product owner and users to address the business process flow, messaging, and functions. They design the overall usability of the application to meet business goals, use various artifacts (e.g., wireframes, mockups, templates, and navigational flow) to iteratively work with business and end-users to design the best user experience. Each member of our design/user experience team includes a Visual Designer to ensure good design and user expereince is the foundation of the application from start to finish.
 
-Our success with delivering the best possible functional design and user experience (UX) stems from two primary areas: skilled designers and environment. Each member of our design/user experience team (including the Visual Designer who worked on this project) goes through a stringent certification program for usability analysis and interaction design. Each designer is responsible for introducing elements of the user experience process such as card sorting, task flow analysis, prototyping, and usability testing to every project. 
+Our Visual Designers and UX Engineers engage with users and—using research tools in the Team’s UX toolkit—identify challenges and design needs. We use wireframes and sketches to rapidly express the complete business workflow, which facilitates constructive feedback from customers and business users. With the goal of a working prototype, our design engineers collaborate with the BA to draft wireframes that capture the application workflow and requirements, while continuously working with Business to enhance and modify the wireframes. Mockups and UI layouts with workflows are drafted and reviewed regularly, which enables business to experience the complete business workflow (application) up front. This approach also provides a platform to provide early feedback.
 
-The Visual Designer for this project was embedded into the project team, which ensured that good design and user experience were woven into the fabric of the application from start to finish. We generally employ any number of UX strategies and methods, such as the [user-interviews]() and [usability testing](), [wireframes](), the [flow diagram](), and application [style guide]() for this project, to ensure that our designs are not only functional and easy to use, but also meet customer and user expectations and needs.
+Our process is data driven and focuses on measurable outcomes, while embracing users and their perspective as an essential part of what it means to develop a system. We conduct user testing against each design to validate that our design achieves the goals set by the user and the client. If the design is successful, the development team, working with the UX Designer, commits it to final coding in the application. The picture below shows how our four-step UCD process which incorporates a feedback loop and establishes goals for UX design
+
+![https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/UCD%20Approach%20pic1.jpg](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/UCD%20Approach%20pic1.jpg)
+
+
+For the prototype application the  Visual Designer/UX was 1person and was embedded into the project team. For this project we used  UX strategies, such as the [user-interviews](Frank interview User Mahi) and [personas](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/ux/personas/Personas.pdf) [wireframes](https://github.com/SalientCRGT/fec-ef-app/tree/master/docs/ux/wireframes), [usability testing](), and application [style guide](). These methods ensure that our designs are not only functional and easy to use, but also meet customer and user expectations and needs.
