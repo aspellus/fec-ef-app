@@ -8,14 +8,21 @@ import { Router } from '@angular/router';
 })
 export class FilingsComponent implements OnInit {
 
+	@Input() filingData: any;
+	@Input() filters: any;
+	
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
   
-  viewFiling(committee_id, fec_file_id){
-  	this.router.navigate(['/filing/' + fec_file_id]);
+  viewFiling(fec_file_id){
+  	this.router.navigate(['/filing/' + fec_file_id], {queryParams: {'filing_year': this.filters.filingYear}});
   }
 
-  @Input() filingData: any;
+  
+  
+  	isButtonHidden(filing: any) {
+		return ['RFAI','F1'].includes(filing.formType) || !filing.fec_file_id;
+	}
 }

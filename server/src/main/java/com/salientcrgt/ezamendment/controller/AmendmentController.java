@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Random;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -21,10 +23,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.salientcrgt.ezamendment.model.ScheduleA;
 import com.salientcrgt.ezamendment.service.ScheduleAService;
 
@@ -44,6 +48,11 @@ public class AmendmentController {
 	@Autowired
 	ScheduleAService scheduleAService;
 	
+	/**
+    *
+    * This service will return Committee basic details
+    *
+    */
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/committee/{committee_id}", method = RequestMethod.GET,produces = "application/json")
 	@ResponseBody
@@ -83,6 +92,11 @@ public class AmendmentController {
 		return jsonObject;
 	}
 	
+	/**
+    *
+    * This service will return Filings by year
+    *
+    */
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/committee/{committee_id}/filings/{report_year}", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
 	@ResponseBody
@@ -124,6 +138,11 @@ public class AmendmentController {
 		return jsonObject;
 	}
 	
+	/**
+    *
+    * This service will return Filings by year and Form Type
+    *
+    */
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/committee/{committee_id}/filings/{report_year}/{form_type}", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
 	@ResponseBody
@@ -167,6 +186,11 @@ public class AmendmentController {
 		return jsonObject;
 	}
 	
+	/**
+    *
+    * This service will return Receipts for a Report
+    *
+    */
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/report/{report_id}/receipts", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
 	@ResponseBody
@@ -175,7 +199,7 @@ public class AmendmentController {
 		try {
 			List<ScheduleA> scheduleAList = scheduleAService.findByReportId(report_id);
 			System.out.println(scheduleAList);
-			Gson gson = new Gson();
+			Gson gson = (new GsonBuilder()).serializeNulls().create();
 		    // convert your list to json
 		    saJson = gson.toJson(scheduleAList);
 		} catch (Exception e) {
@@ -184,6 +208,66 @@ public class AmendmentController {
 		return saJson;
 	}
 	
+	/**
+    *
+    * This service will update a Receipt or Create a new one if it doesn't exist
+    *
+    */
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/report/{report_id}/receipts/merge", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
+	@ResponseBody
+	public String mergeScheduleA(@PathVariable long report_id, @RequestParam("comid") String committee_id, 
+								@RequestParam("line_num") String line_num, @RequestParam("tran_id") String tran_id,
+								@RequestParam("name") String lname, @RequestParam("fname") String fname, @RequestParam("mname") String mname, 
+								@RequestParam("prefix") String prefix, @RequestParam("suffix") String suffix,@RequestParam("str1") String str1, 
+								@RequestParam("str2") String str2, @RequestParam("city") String city, @RequestParam("state") String state, 
+								@RequestParam("zip") String zip, @RequestParam("date_con") String date_con, @RequestParam("amount") double amount, 
+								@RequestParam("transdesc") String transdesc, @RequestParam("indemp") String indemp, @RequestParam("indocc") String indocc,
+								@RequestParam("memo_code") String memo_code) {
+		String saJson = null;
+		Gson gson = (new GsonBuilder()).serializeNulls().create();
+		try {
+			//check to see if tran_id exist, if exist then we need to update else we need to create new ScheduleA
+			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+			if(tran_id != null && !tran_id.trim().equals("")) {
+				ScheduleA scheduleA = scheduleAService.mergeScheduleA(report_id, committee_id, line_num, tran_id, lname, fname, mname, 
+												prefix, suffix, str1, str2, city, state, zip, sdf.parse(date_con), 
+												amount, transdesc, indemp, indocc, memo_code);
+				// convert to json
+				saJson = gson.toJson(scheduleA);
+			} else {
+				long randomNumber = new Random().nextLong();
+				tran_id = "SA-"+randomNumber;
+				ScheduleA scheduleA = scheduleAService.createScheduleA(report_id, committee_id, line_num, tran_id, lname, fname, mname, 
+												prefix, suffix, str1, str2, city, state, zip, sdf.parse(date_con), 
+												amount, transdesc, indemp, indocc, memo_code);
+				// convert to json
+				saJson = gson.toJson(scheduleA);
+			
+			
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return saJson;
+	}
+	
+	/**
+    *
+    * This service will delete a Receipt
+    *
+    */
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/report/{report_id}/receipts/delete", method = {RequestMethod.GET, RequestMethod.POST})
+	public void deleteScheduleA(@PathVariable long report_id, @RequestParam("tran_id") String tran_id) {
+		scheduleAService.deleteScheduleA(report_id, tran_id);
+	}
+	
+	/**
+    *
+    * ExceptionHandler for EZ Amendment Application
+    *
+    */
 	@ExceptionHandler(Exception.class)
     public ResponseEntity<String> errorHandler(Exception exc) {
 		logger.error(exc.getMessage(), exc);

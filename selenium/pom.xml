@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>gov.fec.efapp</groupId>
+	<groupId>com.salientcrgt.ezamendment</groupId>
 	<artifactId>efapp-selenium</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
@@ -228,17 +228,48 @@
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.12.4</version>
 				<configuration>
-					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
-					<includes>
-						<include>**/CaloriesTrackerRunner.java</include>
-					</includes>
+					<skip>false</skip>
+
 				</configuration>
+				<executions>
+					<execution>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+							<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+							<includes>
+								<include>**/EFAppRunner.java</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>selenium-maven-plugin</artifactId>
+				<executions>
+
+					<execution>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start-server</goal>
+						</goals>
+						<configuration>
+							<background>true</background>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
 		</plugins>
 	</build>
 

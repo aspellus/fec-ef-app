@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,21 +33,32 @@ public class ScheduleARepository {
      * @return  a List of matching ScheduleA's.
      */
     @SuppressWarnings("unchecked")
-	  public List<ScheduleA> findByReportId(long reportId) {
-
-      return em.createQuery("select sa from ScheduleA sa where repid = :reportId")
+	public List<ScheduleA> findByReportId(long reportId) {
+        return em.createQuery("select sa from ScheduleA sa where repid = :reportId")
     			.setParameter("reportId", reportId)
     			.getResultList();
+    }
+    
+    /**
+     * finds a list of ScheduleA's for reportId
+     *
+     * @param reportId - the report Id to view ScheduleA's 
+     * @return  a List of matching ScheduleA's.
+     */
+    public ScheduleA findByReportTranId(long reportId, String tranId) {
+        return (ScheduleA)em.createQuery("select sa from ScheduleA sa where repid = :reportId and tran_id = :tranId")
+    			.setParameter("reportId", reportId)
+    			.setParameter("tranId", tranId)
+    			.getSingleResult();
     }
 
 
     /**
      * Delete a ScheduleA, given its identifier
      *
-     * @param deletedSubId - the id of the ScheduleA to be deleted
      */
-    public void delete(Long deletedSubId) {
-    	ScheduleA delete = em.find(ScheduleA.class, deletedSubId);
+    public void delete(long reportId, String tranId) {
+    	ScheduleA delete = findByReportTranId(reportId, tranId);
         em.remove(delete);
     }
 
@@ -57,8 +67,18 @@ public class ScheduleARepository {
      * save changes made to a scheduleA, or create the scheduleA if its a new.
      *
      */
-    public ScheduleA save(ScheduleA scheduleA) {
+    public ScheduleA merge(ScheduleA scheduleA) {
         return em.merge(scheduleA);
     }
+    
+    /**
+    *
+    * save changes made to a scheduleA, or create the scheduleA if its a new.
+    *
+    */
+	public ScheduleA create(ScheduleA scheduleA) {
+		em.persist(scheduleA);
+		return findByReportTranId(scheduleA.getRepid(), scheduleA.getTran_id());
+	}
 
 }

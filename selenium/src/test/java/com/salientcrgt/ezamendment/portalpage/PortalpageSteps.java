@@ -16,15 +16,15 @@ import cucumber.api.java.en.When;
 
 @Component
 public class PortalpageSteps extends Steps {
-	private Portalpage homepage;
+	private Portalpage portalPage;
 
 	private void init() {
-		if (homepage == null) {
-			homepage = new Portalpage(executionContext.getDriver());
+		if (portalPage == null) {
+			portalPage = new Portalpage(executionContext.getDriver());
 		}
-		homepage.get();
+		portalPage.get();
 	}
-
+/*
 	@Given("^I am on the portal page$")
 	public void i_am_on_the_portal_page() throws Throwable {
 		init();
@@ -98,5 +98,46 @@ public class PortalpageSteps extends Steps {
 				Arrays.asList("Filing Description (ID)", "Coverage Period", "Last Update", "Receipt Date", "Action")));
 
 	}
+	
+	@Then("^Show actions to AMEND the filing$")
+	public void show_actions_to_AMEND_the_filing() throws Throwable {
+	    // make sure at least one filing has an amend option..
+		boolean amendActionFound = false;
+		Map<String, String> actions = homepage.getFilingActions();
+	    
+		for (String filing : actions.keySet()) {
+			
+			if ("View/Amend".equals(actions.get(filing))) {
+				amendActionFound = true;
+			}
+		}
+		
+		Assert.assertTrue("At least one filing found to amend", amendActionFound);
+	}
+	
+	@Then("^I search for (\\d+) using Report Year Filter$")
+	public void i_search_for_using_Report_Year_Filter(int arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@Then("^my results should be the reports filed for year (\\d+) coverage dates only$")
+	public void my_results_should_be_the_reports_filed_for_year_coverage_dates_only(int arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@When("^I select Statement of Organization \\(F(\\d+)\\) from the Form Type Filter$")
+	public void i_select_Statement_of_Organization_F_from_the_Form_Type_Filter(int arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@Then("^my results should only contain Statement of Organizations \\(F(\\d+)\\)$")
+	public void my_results_should_only_contain_Statement_of_Organizations_F(int arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+*/
 
 }

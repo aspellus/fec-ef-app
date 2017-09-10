@@ -19,4 +19,10 @@ export class FilingService {
         return this.http.get(url)
          	.map((response: Response) => response.json());
     }
+    
+    getReceipts(report_id: number) {
+    	var url = environment.apiUrl + '/report/' + report_id + '/receipts/';
+        return this.http.get(url)
+         	.map((response: Response) => response.json());
+    }
 }

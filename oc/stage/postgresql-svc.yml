@@ -4,7 +4,7 @@ metadata:
   labels:
     app: postgresql
     env: stage
-  name: postgresql
+  name: postgresql-stage
   namespace: fec-ef-app
 spec:
   ports:
@@ -13,7 +13,6 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    name: postgresql
     app: postgresql
     env: stage
   sessionAffinity: None
