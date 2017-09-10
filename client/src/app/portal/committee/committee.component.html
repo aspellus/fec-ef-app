@@ -11,38 +11,33 @@
 <div class="row">
 	<div class="col-3">
 		<div class="filter">
-			<button id="committee-info-btn" class="filter-header" (click)="doShow = 'committee-info'">More About the Committee</button>
-			<button id="filings-btn" class="filter-header btn-link" (click)="doShow = 'filings'">Filings</button>
+			<button id="committee-info-btn" class="filter-header" (click)="doShow = 'committee-info'">
+				More About the Committee
+			</button>
+			<button id="filings-btn" class="filter-header btn-link" (click)="doShow = 'filings'">
+				Filings
+			</button>
+
 			<div class="filter-content">
-				<p class="strong">Filters 
+				<h5>Filters</h5>
 				<hr>
-				<div class="row">
-					<div class="col-lg-6">
-						<label>Year</label>
-					</div>
-					<div class="col-lg-6">
-						<div ngbDropdown class="filter-dropdown">
-					    	<button id="filing-year-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{filters.filingYear ? filters.filingYear : 'Select Year'}}<i></i></button>
-					      	<div ngbDropdownMenu aria-labelledby="filing-year-dd">
-					        	<button id="filing-year-ddi-{{i}}" *ngFor="let year of years; let i = index" class="dropdown-item" (click)="filters.filingYear = year; getFilingData()">{{year}}</button>
-					      	</div>
-					    </div>	
+
+				<div class="form-group">
+					<label>Year</label>
+					<div ngbDropdown class="filter-dropdown">
+						<button id="filing-year-dd" class="btn btn-block btn-light btn-sm" ngbDropdownToggle>{{filters.filingYear ? filters.filingYear : 'Select Year'}}<i></i></button>
+						<div ngbDropdownMenu aria-labelledby="filing-year-dd">
+							<button id="filing-year-ddi-{{i}}" *ngFor="let year of years; let i = index" class="dropdown-item" (click)="filters.filingYear = year; getFilingData()">{{year}}</button>
+						</div>
 					</div>
 				</div>
-			    
-			    <hr>
-			    <div class="row">
-					<div class="col-lg-6">
-						<label>Filing Type</label>
-					</div>
-					<div class="col-lg-6">
-						<div ngbDropdown class="filter-dropdown">
-					    	<button id="form-type-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{filters.formType ? filters.formType : 'Select Form Type'}}<i></i></button>
-					      	<div ngbDropdownMenu aria-labelledby="form-type-dd">
-					      		<button id="form-type-ddi-clear" class="dropdown-item" (click)="filters.formType = ''">Clear <i class="fa fa-times float-right"></i></button>
-					        	<button id="form-type-ddi{{i}}" *ngFor="let type of formTypes; let i = index" class="dropdown-item" (click)="filters.formType = type">{{type}}</button>
-					      	</div>
-					    </div>
+
+				<label>Filing Type</label>
+				<div ngbDropdown class="filter-dropdown">
+					<button id="form-type-dd" class="btn btn-block btn-light btn-sm" ngbDropdownToggle>{{filters.formType ? filters.formType : 'Select Form Type'}}<i></i></button>
+					<div ngbDropdownMenu aria-labelledby="form-type-dd">
+						<button id="form-type-ddi-clear" class="dropdown-item" (click)="filters.formType = ''">Clear <i class="fa fa-times float-right"></i></button>
+						<button id="form-type-ddi{{i}}" *ngFor="let type of formTypes; let i = index" class="dropdown-item" (click)="filters.formType = type">{{type}}</button>
 					</div>
 				</div>
 			</div>
