@@ -5,29 +5,41 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.springframework.stereotype.Component;
+import org.openqa.selenium.WebDriver;
 
-import com.karsun.kic.tan.duke.Steps;
+import com.salientcrgt.ezamendment.util.Util;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-@Component
-public class TransactionspageSteps extends Steps {
+public class TransactionspageSteps {
 
 	private Portalpage portalPage;
+	private WebDriver driver;
 
-	private void init() {
-		if (portalPage == null) {
-			portalPage = new Portalpage(executionContext.getDriver());
-		}
-		portalPage.get();
+	public TransactionspageSteps() {
+
+	}
+
+	@Before()
+	public void init() {
+		driver = Util.getDriver();
+		portalPage = new Portalpage(driver);
+
+	}
+
+	@After()
+	public void cleanup() {
+		portalPage = null;
+		driver.quit();
 	}
 
 	@Given("^I am on the transaction page$")
 	public void i_am_on_the_transaction_page() throws Throwable {
-		init();
+		portalPage.get();
 
 		List<String> committees = portalPage.getCommittees();
 

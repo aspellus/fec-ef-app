@@ -15,30 +15,29 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.karsun.kic.tan.duke.Page;
-import com.karsun.kic.tan.duke.util.ActionByLocator;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 import com.salientcrgt.ezamendment.util.LoadProperties;
 
-public class Portalpage extends Page {
-	private static final int TIME_OUT_SECONDS = 5;
+public class Portalpage {
 
 	private boolean committeesVisible = false;
 
 	protected WebDriverWait wait = null;
+protected WebDriver driver = null;
 
 	public Portalpage(WebDriver driver) {
-		super(driver);
+		
+		this.driver = driver;
 		wait = new WebDriverWait(driver, 30);
 	}
 
-	@Override
+	
 	protected boolean isLoaded() {
 		return driver.getTitle().contains("Client");
 	}
 
-	@Override
-	protected void load() {
+	
+	protected void get() {
 		waitForAngular();
 
 		committeesVisible = false;
@@ -78,15 +77,6 @@ public class Portalpage extends Page {
 		}
 		return committees;
 
-	}
-
-	public boolean isImageDisplayed() {
-
-		waitForAngular();
-
-		String attr = ActionByLocator.getElement(driver, By.xpath("//body/app-root/div/img"), TIME_OUT_SECONDS)
-				.getAttribute("src");
-		return attr.contains("data:image/svg");
 	}
 
 	public void clickCommittee(int i) {
@@ -165,7 +155,7 @@ public class Portalpage extends Page {
 
 		try {
 
-			driver.findElement(By.xpath("//div[contains(@class, 'report-content')]"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'report-content')]")));
 		} catch (NoSuchElementException nsee) {
 			System.out.println("Not found");
 			return false;
@@ -188,7 +178,7 @@ public class Portalpage extends Page {
 		waitForAngular();
 
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+
 			wait.until(ExpectedConditions.elementToBeClickable(By.className("report-content")));
 		} catch (NoSuchElementException nsee) {
 			return false;
@@ -351,8 +341,7 @@ public class Portalpage extends Page {
 
 		List<String> fields = new ArrayList<String>();
 
-		WebElement receiptsFieldListElement = driver
-				.findElement(By.xpath("//ngb-tabset/div/div/div"));
+		WebElement receiptsFieldListElement = driver.findElement(By.xpath("//ngb-tabset/div/div/div"));
 
 		for (WebElement fieldElement : receiptsFieldListElement.findElements(By.tagName("div"))) {
 
