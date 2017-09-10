@@ -82,7 +82,10 @@ export class FilingComponent implements OnInit {
   }
   deleteReceipt(receipt){
   	this.filingService.deleteReceipt(receipt).subscribe(data => {
-  		receipt = data;
+  		var index = this.receipts.findIndex(r => {
+			return r.tran_id == receipt.tran_id;
+		});
+		this.receipts.splice(index, 1);
   	});
   }
 }
