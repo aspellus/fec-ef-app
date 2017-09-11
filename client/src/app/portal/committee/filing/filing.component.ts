@@ -51,32 +51,41 @@ export class FilingComponent implements OnInit {
 	  
 	  this.filingService.getReceipts(this.report_id).subscribe(data => {
 		this.receipts = data.list;
-		this.receipts.sort(function(receipt_a, receipt_b){
-		  	var line_num_a = receipt_a.line_num.toUpperCase(),
-		  		line_num_b = receipt_a.line_num.toUpperCase(),
-		  		date_a = new Date(receipt_a.date_con),
-		  		date_b = new Date(receipt_b.date_con),
-		  		name_a = (receipt_a.name + receipt_a.fname).toUpperCase(),
-		  		name_b = (receipt_b.name + receipt_b.fname).toUpperCase();
-		  	
-		  	if (line_num_a < line_num_b) { return -1; }
-		  	if (line_num_a > line_num_b) { return 1; }
-		  	if (date_a < date_b) { return -1; }
-		  	if (date_a > date_b) { return 1; }
-		  	if (name_a < name_b) { return -1; }
-		  	if (name_a > name_b) { return 1; }
-		  	if (receipt_a.amount < receipt_b.amount) { return -1; }
-		  	if (receipt_a.amount > receipt_b.amount) { return 1; }
-		  	
-		  	//console.log(receipt);
-		  	return 0;
-		  });
+		this.sortReceipts();
 	  });  
+  }
+  
+  sortReceipts(){
+	this.receipts.sort(function(receipt_a, receipt_b){
+		var line_num_a = receipt_a.line_num.toUpperCase(),
+			line_num_b = receipt_a.line_num.toUpperCase(),
+			date_a = new Date(receipt_a.date_con),
+			date_b = new Date(receipt_b.date_con),
+			name_a = (receipt_a.name + receipt_a.fname).toUpperCase(),
+			name_b = (receipt_b.name + receipt_b.fname).toUpperCase();
+
+		if (line_num_a < line_num_b) { return -1; }
+		if (line_num_a > line_num_b) { return 1; }
+		if (date_a < date_b) { return -1; }
+		if (date_a > date_b) { return 1; }
+		if (name_a < name_b) { return -1; }
+		if (name_a > name_b) { return 1; }
+		if (receipt_a.amount < receipt_b.amount) { return -1; }
+		if (receipt_a.amount > receipt_b.amount) { return 1; }
+
+		//console.log(receipt);
+		return 0;
+	  });
   }
   
   saveReceipt(receipt){
   	this.filingService.saveReceipt(receipt).subscribe(data => {
-  		receipt = data;
+  		if (Boolean(receipt.tran_id)) {
+  			receipt = data;
+  		} else {
+  			this.receipts.push(data);
+  			receipt = {tran_id: '', repid: this.report_id};
+  		}
   	});
   }
   deleteReceipt(receipt){
