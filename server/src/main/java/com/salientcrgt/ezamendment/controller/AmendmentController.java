@@ -51,7 +51,7 @@ public class AmendmentController {
 	private static final Logger logger = LoggerFactory.getLogger(AmendmentController.class);
 	
 	@Autowired
-	ScheduleAService scheduleAService;
+	private ScheduleAService scheduleAService;
 	
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/**", method = RequestMethod.OPTIONS)
@@ -133,10 +133,6 @@ public class AmendmentController {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
 
-			// Checking for Response Code
-			if (conn.getResponseCode() != 200) 
-				logger.error("Failed : HTTP error code : " + conn.getResponseCode());
-			
 			// Building JSONObject from API call
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 				(conn.getInputStream())));
@@ -196,7 +192,6 @@ public class AmendmentController {
 	@CrossOrigin(origins = "*")
 	@PutMapping(value = "/schedules/{report_id}/schedule_a", produces = "application/json")
 	public ScheduleADTO mergeScheduleA(@PathVariable long report_id, @RequestBody ScheduleADTO scheduleADTO) {
-		logger.info("tran_id: " + scheduleADTO.getTran_id());
 		ScheduleA scheduleA = scheduleAService.mergeScheduleA(report_id, scheduleADTO.getTran_id(), scheduleADTO);
 		return ScheduleADTO.mapFromScheduleAEntity(scheduleA);
 	}
