@@ -1,19 +1,17 @@
 package com.salientcrgt.ezamendment;
 
 import java.security.SecureRandom;
-import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import java.security.cert.X509Certificate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 
 @SpringBootApplication
@@ -27,9 +25,9 @@ public class EZAmendmentApplication {
 			      @Override
 			      public X509Certificate[] getAcceptedIssuers(){ return null; }
 			      @Override
-			      public void checkClientTrusted(X509Certificate[] certs, String authType) throws CertificateException {}
+			      public void checkClientTrusted(X509Certificate[] certs, String authType) {}
 			      @Override
-			      public void checkServerTrusted(X509Certificate[] certs, String authType) throws CertificateException{}
+			      public void checkServerTrusted(X509Certificate[] certs, String authType) {}
 			    }
 			  };
 		SSLContext sslContext = SSLContext.getInstance("SSL");
