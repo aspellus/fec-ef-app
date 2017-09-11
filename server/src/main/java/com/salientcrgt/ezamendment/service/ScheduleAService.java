@@ -1,7 +1,8 @@
 package com.salientcrgt.ezamendment.service;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.List;
-import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,8 +63,13 @@ public class ScheduleAService {
    @Transactional
    public ScheduleA createScheduleA(long report_id, ScheduleADTO scheduleADTO) {
 	   if(scheduleADTO.getTran_id() == null || scheduleADTO.getTran_id().trim().equals("")){
-		   long randomNumber = new Random().nextLong();
-		   scheduleADTO.setTran_id("SA-"+randomNumber);
+		   long randomNumber=0L;
+		   try {
+			   randomNumber = SecureRandom.getInstanceStrong().nextLong();
+			} catch (NoSuchAlgorithmException e) {
+			   logger.error(e.getMessage());
+			}
+		   	scheduleADTO.setTran_id("SA"+randomNumber);
 	   }
 	   	
 	   	ScheduleA scheduleA = new ScheduleA(scheduleADTO.getRepid(), scheduleADTO.getLine_num(), 0L, scheduleADTO.getComid(), scheduleADTO.getTran_id(), "", 
