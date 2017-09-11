@@ -23,20 +23,18 @@ public class Portalpage {
 	private boolean committeesVisible = false;
 
 	protected WebDriverWait wait = null;
-protected WebDriver driver = null;
+	protected WebDriver driver = null;
 
 	public Portalpage(WebDriver driver) {
-		
+
 		this.driver = driver;
 		wait = new WebDriverWait(driver, 30);
 	}
 
-	
 	protected boolean isLoaded() {
 		return driver.getTitle().contains("Client");
 	}
 
-	
 	protected void get() {
 		waitForAngular();
 
@@ -57,12 +55,13 @@ protected WebDriver driver = null;
 
 		List<String> committees = new ArrayList<String>();
 
-		WebElement committeePanel = driver.findElement(By.id("committee-select-group"));
+		WebElement committeePanel = wait
+				.until(ExpectedConditions.elementToBeClickable(By.id("committee-select-group")));
 
-		WebElement committeeButton = committeePanel.findElement(By.tagName("button"));
+		WebElement committeeButton = wait
+				.until(ExpectedConditions.elementToBeClickable(committeePanel.findElement(By.tagName("button"))));
 
 		if (!committeesVisible) {
-			System.out.println("Clicking committee dropdown");
 			committeeButton.click();
 			committeesVisible = true;
 		}
@@ -83,7 +82,9 @@ protected WebDriver driver = null;
 
 		waitForAngular();
 
-		WebElement committeeButton = driver.findElement(By.id("committee-select-group"));
+		WebElement committeeButton = wait
+				.until(ExpectedConditions.elementToBeClickable(By.id("committee-select-group")));
+
 		if (!committeesVisible) {
 			committeeButton.click();
 			committeesVisible = true;
@@ -99,7 +100,16 @@ protected WebDriver driver = null;
 
 		waitForAngular();
 
-		String header = driver.findElement(By.tagName("app-committee")).findElement(By.xpath(".//h2/small")).getText();
+		// we need to wait for the filing table to run before this will be
+		// populated.. this will currently break on a committee that has no filings
+		// need to figure out a better way to wait for the final table rather than the interim
+		// no results found table that shows until the angular load completes..
+		wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'report-content')]/table/tbody/tr/td/button")));
+	
+		waitForAngular();
+		
+		String header = driver.findElement(By.xpath("//app-committee/h2/small")).getText();
 		System.out.println(header);
 
 		Pattern p = Pattern.compile("ID: [A-Z0-9]+$");
@@ -116,7 +126,6 @@ protected WebDriver driver = null;
 
 		Map<String, String> committeeInfo = new HashMap<String, String>();
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
 		WebElement infoElement = wait.until(
 				ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'jumbotron')]/div/div")));
 
@@ -142,7 +151,7 @@ protected WebDriver driver = null;
 		waitForAngular();
 
 		try {
-			driver.findElement(By.tagName("app-committee"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.tagName("app-committee")));
 		} catch (NoSuchElementException nsee) {
 			return false;
 		}
@@ -341,7 +350,10 @@ protected WebDriver driver = null;
 
 		List<String> fields = new ArrayList<String>();
 
-		WebElement receiptsFieldListElement = driver.findElement(By.xpath("//ngb-tabset/div/div/div"));
+		WebElement receiptsFieldListElement = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//ngb-tabset/div/div/div")));
+		
+		// = driver.findElement(By.xpath("//ngb-tabset/div/div/div"));
 
 		for (WebElement fieldElement : receiptsFieldListElement.findElements(By.tagName("div"))) {
 
