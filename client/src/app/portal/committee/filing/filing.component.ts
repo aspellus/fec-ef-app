@@ -51,6 +51,10 @@ export class FilingComponent implements OnInit {
 	  
 	  this.filingService.getReceipts(this.report_id).subscribe(data => {
 		this.receipts = data.list;
+		this.receipts.forEach(receipt => {
+			receipt.$isSaving = false;
+			receipt.$isDeleting = false;
+		});
 		this.receipts.sort(function(receipt_a, receipt_b){
 		  	var line_num_a = receipt_a.line_num.toUpperCase(),
 		  		line_num_b = receipt_a.line_num.toUpperCase(),
@@ -75,12 +79,15 @@ export class FilingComponent implements OnInit {
   }
   
   saveReceipt(receipt){
+	  receipt.$isSaving = true; 
   	this.filingService.saveReceipt(receipt).subscribe(data => {
+  		receipt.$isSaving = false;
   		receipt = data;
   	});
   }
   deleteReceipt(receipt){
-  	this.filingService.deleteReceipt(receipt).subscribe(data => {
+	  receipt.$isDeleting = true;
+  	this.filingService.deleteReceipt(receipt).subscribe(resp => {
   		var index = this.receipts.findIndex(r => {
 			return r.tran_id == receipt.tran_id;
 		});

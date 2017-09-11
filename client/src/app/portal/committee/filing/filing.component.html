@@ -149,13 +149,15 @@
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label class="invisible"></label>
 												<button type="button" class="btn btn-primary form-control" (click)="saveReceipt(rec)">
-													<i class="fa fa-save"></i> Save
+													<span *ngIf="!rec.$isSaving"><i class="fa fa-save"></i> Save</span>
+													<span *ngIf="rec.$isSaving"><i class="fa fa-spinner fa-4x fa-pulse"></i> Saving...</span>
 												</button>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group" *ngIf="!first">
 												<label class="invisible"></label>
 												<button type="button" class="btn btn-danger form-control" (click)="deleteReceipt(rec)">
-													<i class="fa fa-times"></i> Delete
+													<span *ngIf="!rec.$isDeleting"><i class="fa fa-times"></i> Delete</span>
+													<span *ngIf="rec.$isDeleting"><i class="fa fa-spinner fa-pulse"></i> Deleting...</span>
 												</button>
 											</div>
 										</div>
