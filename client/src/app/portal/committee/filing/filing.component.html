@@ -1,6 +1,9 @@
 <div *ngIf="filing">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">
+			<a href (click)="router.navigate(['']); $event.preventDefault();">Home</a>
+		</li>
+		<li class="breadcrumb-item">
 			<a href (click)="router.navigate(['/committee/'+filing.committee_id], {queryParamsHandling: 'merge'}); $event.preventDefault();">{{filing.committee_name}}</a>
 		</li>
 		<li class="breadcrumb-item active">{{filing.fec_file_id}}</li>
