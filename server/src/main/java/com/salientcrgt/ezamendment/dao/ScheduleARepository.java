@@ -34,7 +34,7 @@ public class ScheduleARepository {
      */
     @SuppressWarnings("unchecked")
 	public List<ScheduleA> findByReportId(long reportId) {
-        return em.createQuery("select sa from ScheduleA sa where repid = :reportId")
+        return em.createQuery("select sa from ScheduleA sa where repid = :reportId and amend!= 'D'")
     			.setParameter("reportId", reportId)
     			.getResultList();
     }
