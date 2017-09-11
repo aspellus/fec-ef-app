@@ -61,8 +61,11 @@ public class ScheduleAService {
    */
    @Transactional
    public ScheduleA createScheduleA(long report_id, ScheduleADTO scheduleADTO) {
-	   	long randomNumber = new Random().nextLong();
-	   	scheduleADTO.setTran_id("SA-"+randomNumber);
+	   if(scheduleADTO.getTran_id() == null || scheduleADTO.getTran_id().trim().equals("")){
+		   long randomNumber = new Random().nextLong();
+		   scheduleADTO.setTran_id("SA-"+randomNumber);
+	   }
+	   	
 	   	ScheduleA scheduleA = new ScheduleA(scheduleADTO.getRepid(), scheduleADTO.getLine_num(), 0L, scheduleADTO.getComid(), scheduleADTO.getTran_id(), "", 
  												scheduleADTO.getName(), scheduleADTO.getFname(), scheduleADTO.getMname(),scheduleADTO.getPrefix(), 
  												scheduleADTO.getSuffix(), scheduleADTO.getStr1(), scheduleADTO.getStr2(), scheduleADTO.getCity(), scheduleADTO.getState(), 
