@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.salientcrgt.ezamendment.controller.AmendmentController;
 import com.salientcrgt.ezamendment.dao.ScheduleARepository;
 import com.salientcrgt.ezamendment.dto.ScheduleADTO;
 import com.salientcrgt.ezamendment.model.ScheduleA;
@@ -23,7 +22,7 @@ import com.salientcrgt.ezamendment.model.ScheduleA;
 @Service
 public class ScheduleAService {
 
-	private static final Logger logger = LoggerFactory.getLogger(AmendmentController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ScheduleAService.class);
     
     @Autowired
     private ScheduleARepository scheduleARepository;
