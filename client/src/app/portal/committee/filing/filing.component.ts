@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 
 import { FilingService } from "./filing.service";
-import { CommitteeService } from '../committee.service';
 
 @Component({
   selector: 'app-filing',
@@ -18,15 +17,12 @@ export class FilingComponent implements OnInit {
   form_type: string;
   receipts: Array<any> = [];
   lineNums: Array<any>;
+  committee_id: string;
   committee: any;
   
-  constructor(private router: Router, private route: ActivatedRoute, private filingService: FilingService, private committeeService: CommitteeService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private filingService: FilingService) {}
 
   ngOnInit() {
-	  var committee_id = this.router.url.split('/')[2]
-	  
-	  this.committee = this.committeeService.committee;
-	  
 	  this.lineNums = [{id: '11A', desc: 'Individual Contribution'},
 	                    {id: '11B', desc: 'Political Party Contribution'},
 	                    {id: '11C', desc: 'Political Committee (Other) Contribution'},
@@ -39,7 +35,7 @@ export class FilingComponent implements OnInit {
 	  
 	  this.route.params.subscribe(params => {
 		 this.report_id = params['file_id']; 
-		 
+		 this.committee_id = params['committee_id'];
 	  });
 	  this.route.queryParams.subscribe(params => {
 		  this.filing_year = params['filing_year'];
@@ -47,7 +43,7 @@ export class FilingComponent implements OnInit {
 	  });
 	  
 
-	  this.filingService.getByYear(committee_id, this.filing_year, this.form_type).subscribe(data => {
+	  this.filingService.getByYear(this.committee_id, this.filing_year, this.form_type).subscribe(data => {
 		  this.filing = data.results.find(filing => {
 			  return filing.file_number == this.report_id;
 		  });

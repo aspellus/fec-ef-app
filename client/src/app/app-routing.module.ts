@@ -31,7 +31,7 @@ const appRoutes: Routes = [
 		]
 	},
 	{
-  		path: 'committee/:id/filing/:file_id',
+  		path: 'committee/:committee_id/filing/:file_id',
 		component: FilingComponent
 	}
 ];
