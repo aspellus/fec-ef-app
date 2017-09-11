@@ -24,7 +24,7 @@ public class ScheduleARepository {
 	private static final Logger logger = LoggerFactory.getLogger(ScheduleARepository.class);
 
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
     
     /**
      * finds a list of ScheduleA's for reportId
