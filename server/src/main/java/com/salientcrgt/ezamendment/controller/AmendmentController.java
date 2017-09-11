@@ -171,7 +171,7 @@ public class AmendmentController {
     */
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
-	@CrossOrigin(origins = "*.b9ad.pro-us-east-1.openshiftapps.com, localhost:4200")
+	@CrossOrigin(origins = "*")
 	@PostMapping(value = "/schedules/{report_id}/schedule_a/", produces = "application/json")
 	public ScheduleADTO createScheduleA(@PathVariable long report_id, @RequestBody ScheduleADTO scheduleADTO) {
 		ScheduleA scheduleA = scheduleAService.createScheduleA(report_id, scheduleADTO);
@@ -185,7 +185,7 @@ public class AmendmentController {
     */
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
-	@CrossOrigin(origins = "*.b9ad.pro-us-east-1.openshiftapps.com, localhost:4200")
+	@CrossOrigin(origins = "*")
 	@PutMapping(value = "/schedules/{report_id}/schedule_a/", produces = "application/json")
 	public ScheduleADTO mergeScheduleA(@PathVariable long report_id, @PathVariable String tran_id, @RequestBody ScheduleADTO scheduleADTO) {
 		ScheduleA scheduleA = scheduleAService.mergeScheduleA(report_id, scheduleADTO);
@@ -199,7 +199,7 @@ public class AmendmentController {
     */
 	
 	@ResponseStatus(HttpStatus.OK)
-	@CrossOrigin(origins = "*.b9ad.pro-us-east-1.openshiftapps.com, localhost:4200")
+	@CrossOrigin(origins = "*")
 	@DeleteMapping(value = "/schedules/{report_id}/schedule_a/{tran_id}")
 	public void deleteScheduleA(@PathVariable long report_id, @PathVariable("tran_id") String tran_id) {
 		scheduleAService.deleteScheduleA(report_id, tran_id);
