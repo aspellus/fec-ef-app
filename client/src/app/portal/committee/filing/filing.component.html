@@ -1,190 +1,192 @@
-<ol class="breadcrumb">
-	<li class="breadcrumb-item">
-		<a href (click)="router.navigate(['/committee/'+filing.committee_id], {queryParamsHandling: 'merge'}); $event.preventDefault();">{{filing.committee_name}}</a>
-	</li>
-	<li class="breadcrumb-item active">{{filing.fec_file_id}}</li>
-</ol>
+<div *ngIf="filing">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href (click)="router.navigate(['/committee/'+filing.committee_id], {queryParamsHandling: 'merge'}); $event.preventDefault();">{{filing.committee_name}}</a>
+		</li>
+		<li class="breadcrumb-item active">{{filing.fec_file_id}}</li>
+	</ol>
 
-<div class="container">
-	<h2>
-		{{filing.document_description}}
-	</h2>
-	<hr>
+	<div class="container">
+		<h2>
+			{{filing.document_description}}
+		</h2>
+		<hr>
 
-	<!--
-	the dates are coming in as iso-8601 except the missing timezone
-	coverage_start_date
-	coverage_end_date
-	-->
+		<!--
+		the dates are coming in as iso-8601 except the missing timezone
+		coverage_start_date
+		coverage_end_date
+		-->
 
-	<!-- <form>
-		<div class="row">
-			<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-				<label>Coverage Start</label>
-				<div class="input-group">
-					<input class="form-control" placeholder="mm/dd/yyyy" name="coverageStart" ngbDatepicker #coverageStart="ngbDatepicker">
-					<button class="input-group-addon" (click)="coverageStart.toggle()" type="button">
-						<i class="fa fa-calendar"></i>
-					</button>
-				</div>
-			</div>
-			<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-				<label>Coverage Start</label>
-				<div class="input-group">
-					<input class="form-control" placeholder="mm/dd/yyyy" name="coverageEnd" ngbDatepicker #coverageEnd="ngbDatepicker">
-					<button class="input-group-addon" (click)="coverageEnd.toggle()" type="button">
-						<i class="fa fa-calendar"></i>
-					</button>
-				</div>
-			</div>
-			<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-				<label>Last Update</label>
-				<p class="form-control-static">
-					{{filing.update_date | date}}
-				</p>
-			</div>
-			<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-				<label>Receipt Date</label>
-				<p class="form-control-static">
-					{{filing.receipt_date | date}}
-				</p>
-			</div>
-			<div class="col-sm-8 col-md-6 col-xl-4 form-group">
-				<button type="button" class="btn btn-primary mr-3">
-					<i class="fa fa-paper-plane"></i> Submit
-				</button>
-				<button type="button" class="btn btn-default mr-3">
-					<i class="fa fa-save"></i> Save
-				</button>
-				<button type="button" class="btn btn-danger">
-					<i class="fa fa-times"></i> Delete
-				</button>
-			</div>
-		</div>
-	</form> -->
-
-	<h3 class="mt-5">Transactions</h3>
-
-	<ngb-tabset [justify]="'fill'">
-		<ngb-tab title="Receipts">
-			<ng-template ngbTabContent>
-				<div class="container-fluid mt-5" *ngIf="receipts && receipts.length > 0">
-					<div class="row h5 px-1">
-						<div class="col">Line</div>
-						<div class="col">Date</div>
-						<div class="col">Name</div>
-						<div class="col">Amount</div>
+		<!-- <form>
+			<div class="row">
+				<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+					<label>Coverage Start</label>
+					<div class="input-group">
+						<input class="form-control" placeholder="mm/dd/yyyy" name="coverageStart" ngbDatepicker #coverageStart="ngbDatepicker">
+						<button class="input-group-addon" (click)="coverageStart.toggle()" type="button">
+							<i class="fa fa-calendar"></i>
+						</button>
 					</div>
 				</div>
-				<div *ngIf="!receipts || receipts.length === 0">
-					<div class="row">
-						<div class="col-lg-5 p-4">
-							<ngb-alert type="info" dismissible="false">
-							 	No Receipts have been filed for this report
-							 	<br>
-							 	Add a new receipt or go back to <a href (click)="router.navigate(['/committee/'+filing.committee_id]); $event.preventDefault();">your committee page</a>
-							</ngb-alert>
+				<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+					<label>Coverage Start</label>
+					<div class="input-group">
+						<input class="form-control" placeholder="mm/dd/yyyy" name="coverageEnd" ngbDatepicker #coverageEnd="ngbDatepicker">
+						<button class="input-group-addon" (click)="coverageEnd.toggle()" type="button">
+							<i class="fa fa-calendar"></i>
+						</button>
+					</div>
+				</div>
+				<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+					<label>Last Update</label>
+					<p class="form-control-static">
+						{{filing.update_date | date}}
+					</p>
+				</div>
+				<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+					<label>Receipt Date</label>
+					<p class="form-control-static">
+						{{filing.receipt_date | date}}
+					</p>
+				</div>
+				<div class="col-sm-8 col-md-6 col-xl-4 form-group">
+					<button type="button" class="btn btn-primary mr-3">
+						<i class="fa fa-paper-plane"></i> Submit
+					</button>
+					<button type="button" class="btn btn-default mr-3">
+						<i class="fa fa-save"></i> Save
+					</button>
+					<button type="button" class="btn btn-danger">
+						<i class="fa fa-times"></i> Delete
+					</button>
+				</div>
+			</div>
+		</form> -->
+
+		<h3 class="mt-5">Transactions</h3>
+
+		<ngb-tabset [justify]="'fill'">
+			<ngb-tab title="Receipts">
+				<ng-template ngbTabContent>
+					<div class="container-fluid mt-5" *ngIf="receipts && receipts.length > 0">
+						<div class="row h5 px-1">
+							<div class="col">Line</div>
+							<div class="col">Date</div>
+							<div class="col">Name</div>
+							<div class="col">Amount</div>
 						</div>
 					</div>
-				</div>
-				<ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
-					<ngb-panel *ngFor="let rec of [{}].concat(receipts); let first = first">
-						<ng-template ngbPanelTitle>
-							<div id="new-receipt-link" *ngIf="first">
-								Add New Receipt
+					<div *ngIf="!receipts || receipts.length === 0">
+						<div class="row">
+							<div class="col-lg-5 p-4">
+								<ngb-alert type="info" dismissible="false">
+									No Receipts have been filed for this report
+									<br>
+									Add a new receipt or go back to <a href (click)="router.navigate(['/committee/'+filing.committee_id]); $event.preventDefault();">your committee page</a>
+								</ngb-alert>
 							</div>
-							<div class="row" *ngIf="!first">
-								<div class="col">{{rec.line_num}}</div>
-								<div class="col">{{rec.date_con}}</div>
-								<div class="col">{{rec.name}}, {{rec.fname}}</div>
-								<div class="col">{{rec.amount | currency:'USD':true}}</div>
-							</div>
-						</ng-template>
-						<ng-template ngbPanelContent>
-							<form>
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-sm-3 col-md-2 col-lg-1 form-group">
-											<label>Line</label>
-											<div ngbDropdown>
-										    	<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{rec.line_num ? rec.line_num : 'Select Line Num'}}<i></i></button>
-										      	<div ngbDropdownMenu aria-labelledby="filing-year-dd">
-										        	<button type="button" id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="rec.line_num = lineNum.id">{{lineNum.id + ' - ' + lineNum.desc}}</button>
-										      	</div>
-										    </div>
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label for="date_con">Date</label>
-											<input id="date_con_input" name="date_con" class="form-control" [(ngModel)]="rec.date_con" placeholder="mm/dd/yyyy">
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label>First Name</label>
-											<input id="fname_input" name="fname" [(ngModel)]="rec.fname" class="form-control" placeholder="First Name">
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label>Last Name</label>
-											<input id="name_input" name="name" [(ngModel)]="rec.name" class="form-control" placeholder="Last Name">
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label>Amount</label>
-											<input id="amount_input" name="amount" [(ngModel)]="rec.amount" class="form-control" placeholder="$0.00">
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label>Memo Ind</label>
-											<input type="checkbox" class="form-control">
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label>Employer Name</label>
-											<input id="indemp-input" name="indemp" [(ngModel)]="rec.indemp" class="form-control" placeholder="Employer Name">
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label>Occupation</label>
-											<input id="indocc-input" name="indocc" [(ngModel)]="rec.indocc" class="form-control" placeholder="Occupation">
-										</div>
-										<div class="col-sm-8 col-md-6 col-xl-4 form-group">
-											<label>Description</label>
-											<textarea class="form-control" name="transdesc" [(ngModel)]="rec.transdesc" rows="3"></textarea>
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label class="invisible"></label>
-											<button type="button" class="btn btn-primary form-control" (click)="saveReceipt(rec)">
-												<i class="fa fa-save"></i> Save
-											</button>
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group" *ngIf="!first">
-											<label class="invisible"></label>
-											<button type="button" class="btn btn-danger form-control" (click)="deleteReceipt(rec)">
-												<i class="fa fa-times"></i> Delete
-											</button>
+						</div>
+					</div>
+					<ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+						<ngb-panel *ngFor="let rec of [{}].concat(receipts); let first = first">
+							<ng-template ngbPanelTitle>
+								<div id="new-receipt-link" *ngIf="first">
+									Add New Receipt
+								</div>
+								<div class="row" *ngIf="!first">
+									<div class="col">{{rec.line_num}}</div>
+									<div class="col">{{rec.date_con}}</div>
+									<div class="col">{{rec.name}}, {{rec.fname}}</div>
+									<div class="col">{{rec.amount | currency:'USD':true}}</div>
+								</div>
+							</ng-template>
+							<ng-template ngbPanelContent>
+								<form>
+									<div class="container-fluid">
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-lg-1 form-group">
+												<label>Line</label>
+												<div ngbDropdown>
+													<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{rec.line_num ? rec.line_num : 'Select Line Num'}}<i></i></button>
+													<div ngbDropdownMenu aria-labelledby="filing-year-dd">
+														<button type="button" id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="rec.line_num = lineNum.id">{{lineNum.id + ' - ' + lineNum.desc}}</button>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label for="date_con">Date</label>
+												<input id="date_con_input" name="date_con" class="form-control" [(ngModel)]="rec.date_con" placeholder="mm/dd/yyyy">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>First Name</label>
+												<input id="fname_input" name="fname" [(ngModel)]="rec.fname" class="form-control" placeholder="First Name">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>Last Name</label>
+												<input id="name_input" name="name" [(ngModel)]="rec.name" class="form-control" placeholder="Last Name">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>Amount</label>
+												<input id="amount_input" name="amount" [(ngModel)]="rec.amount" class="form-control" placeholder="$0.00">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>Memo Ind</label>
+												<input type="checkbox" class="form-control">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>Employer Name</label>
+												<input id="indemp-input" name="indemp" [(ngModel)]="rec.indemp" class="form-control" placeholder="Employer Name">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>Occupation</label>
+												<input id="indocc-input" name="indocc" [(ngModel)]="rec.indocc" class="form-control" placeholder="Occupation">
+											</div>
+											<div class="col-sm-8 col-md-6 col-xl-4 form-group">
+												<label>Description</label>
+												<textarea class="form-control" name="transdesc" [(ngModel)]="rec.transdesc" rows="3"></textarea>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label class="invisible"></label>
+												<button type="button" class="btn btn-primary form-control" (click)="saveReceipt(rec)">
+													<i class="fa fa-save"></i> Save
+												</button>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group" *ngIf="!first">
+												<label class="invisible"></label>
+												<button type="button" class="btn btn-danger form-control" (click)="deleteReceipt(rec)">
+													<i class="fa fa-times"></i> Delete
+												</button>
+											</div>
 										</div>
 									</div>
-								</div>
-							</form>
-						</ng-template>
-					</ngb-panel>
-				</ngb-accordion>
-			</ng-template>
-		</ngb-tab>
+								</form>
+							</ng-template>
+						</ngb-panel>
+					</ngb-accordion>
+				</ng-template>
+			</ngb-tab>
 
-		<ngb-tab [disabled]="true">
-			<ng-template ngbTabTitle>
-			      <div title="Not Implemented">Disbursements</div>
-			</ng-template>
-			<ng-template ngbTabContent></ng-template>
-		</ngb-tab>
+			<ngb-tab [disabled]="true">
+				<ng-template ngbTabTitle>
+					  <div title="Not Implemented">Disbursements</div>
+				</ng-template>
+				<ng-template ngbTabContent></ng-template>
+			</ngb-tab>
 
-		<ngb-tab [disabled]="true">
-			<ng-template ngbTabTitle>
-			      <div title="Not Implemented">Loans</div>
-			</ng-template>
-			<ng-template ngbTabContent></ng-template>
-		</ngb-tab>
+			<ngb-tab [disabled]="true">
+				<ng-template ngbTabTitle>
+					  <div title="Not Implemented">Loans</div>
+				</ng-template>
+				<ng-template ngbTabContent></ng-template>
+			</ngb-tab>
 
-		<ngb-tab [disabled]="true">
-			<ng-template ngbTabTitle>
-			      <div title="Not Implemented">Debts</div>
-			</ng-template>
-			<ng-template ngbTabContent></ng-template>
-		</ngb-tab>
-	</ngb-tabset>
+			<ngb-tab [disabled]="true">
+				<ng-template ngbTabTitle>
+					  <div title="Not Implemented">Debts</div>
+				</ng-template>
+				<ng-template ngbTabContent></ng-template>
+			</ngb-tab>
+		</ngb-tabset>
+	</div>
 </div>
