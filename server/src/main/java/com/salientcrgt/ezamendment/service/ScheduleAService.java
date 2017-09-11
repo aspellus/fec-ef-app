@@ -28,6 +28,11 @@ public class ScheduleAService {
     private ScheduleARepository scheduleARepository;
 
     @Transactional(readOnly = true)
+    public ScheduleA findByReportTranId(long reportId, String tranId) {
+        return scheduleARepository.findByReportTranId(reportId, tranId);
+    }
+    
+    @Transactional(readOnly = true)
     public List<ScheduleA> findByReportId(long reportId) {
         return scheduleARepository.findByReportId(reportId);
     }
@@ -38,8 +43,8 @@ public class ScheduleAService {
     *
     */
     @Transactional
-    public ScheduleA mergeScheduleA(long report_id, ScheduleADTO scheduleADTO) {
- 		ScheduleA scheduleA = new ScheduleA(scheduleADTO.getRepid(), scheduleADTO.getLine_num(), 0L, scheduleADTO.getComid(), scheduleADTO.getTran_id(), "", 
+    public ScheduleA mergeScheduleA(long report_id, String tran_id, ScheduleADTO scheduleADTO) {
+ 		ScheduleA scheduleA = new ScheduleA(report_id, scheduleADTO.getLine_num(), 0L, scheduleADTO.getComid(), tran_id, "", 
 												scheduleADTO.getName(), scheduleADTO.getFname(), scheduleADTO.getMname(),scheduleADTO.getPrefix(), 
 												scheduleADTO.getSuffix(), scheduleADTO.getStr1(), scheduleADTO.getStr2(), scheduleADTO.getCity(), scheduleADTO.getState(), 
 												scheduleADTO.getZip(), "", "", scheduleADTO.getDate_con(), scheduleADTO.getAmount(), scheduleADTO.getYtd(), 
