@@ -106,7 +106,7 @@
 								</div>
 								<div class="row" *ngIf="!first">
 									<div class="col">{{rec.line_num}}</div>
-									<div class="col">{{rec.date_con}}</div>
+									<div class="col">{{rec.date_con | date: 'MM/dd/yyyy'}}</div>
 									<div class="col">{{rec.name}}, {{rec.fname}}</div>
 									<div class="col">{{rec.amount | currency:'USD':true}}</div>
 								</div>
@@ -126,7 +126,7 @@
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label for="date_con">Date</label>
-												<input id="date_con_input" name="date_con" class="form-control" [(ngModel)]="rec.date_con" placeholder="mm/dd/yyyy">
+												<input id="date_con_input" name="date_con" type="date" class="form-control" [(ngModel)]="rec.date_con" placeholder="mm/dd/yyyy">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label>First Name</label>

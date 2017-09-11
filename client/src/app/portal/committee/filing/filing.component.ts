@@ -53,6 +53,7 @@ export class FilingComponent implements OnInit {
 		this.receipts = data.list;
 		this.sortReceipts();
 		this.receipts.forEach(receipt => {
+			receipt.date_con = receipt.date_con.split('T')[0];
 			receipt.$isSaving = false;
 			receipt.$isDeleting = false;
 		});
@@ -83,7 +84,9 @@ export class FilingComponent implements OnInit {
   }
   
   saveReceipt(receipt){
-	receipt.$isSaving = true; 
+	receipt.$isSaving = true;
+	receipt.date_con = receipt.date_con + 'T05:00:00';
+
 	this.filingService.saveReceipt(receipt).subscribe(data => {
 		if (Boolean(receipt.tran_id)) {
 			receipt = data;
