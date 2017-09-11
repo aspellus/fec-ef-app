@@ -82,10 +82,6 @@ public class AmendmentController {
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
 
-			// Checking for Response Code
-			if (conn.getResponseCode() != 200) 
-				logger.error("Failed : HTTP error code : " + conn.getResponseCode());
-			
 			// Building JSONObject from API call
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 				(conn.getInputStream())));
