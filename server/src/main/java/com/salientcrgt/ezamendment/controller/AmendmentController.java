@@ -194,9 +194,9 @@ public class AmendmentController {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
-	@PutMapping(value = "/schedules/{report_id}/schedule_a/", produces = "application/json")
+	@PutMapping(value = "/schedules/{report_id}/schedule_a/{tran_id}", produces = "application/json")
 	public ScheduleADTO mergeScheduleA(@PathVariable long report_id, @PathVariable String tran_id, @RequestBody ScheduleADTO scheduleADTO) {
-		ScheduleA scheduleA = scheduleAService.mergeScheduleA(report_id, scheduleADTO);
+		ScheduleA scheduleA = scheduleAService.mergeScheduleA(report_id, tran_id, scheduleADTO);
 		return ScheduleADTO.mapFromScheduleAEntity(scheduleA);
 	}
 	
