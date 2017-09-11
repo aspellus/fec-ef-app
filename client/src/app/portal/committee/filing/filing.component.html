@@ -89,7 +89,7 @@
 						</div>
 					</div>
 					<ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
-						<ngb-panel *ngFor="let rec of [{}].concat(receipts); let first = first">
+						<ngb-panel *ngFor="let rec of [{tran_id: '', repid: report_id}].concat(receipts); let first = first">
 							<ng-template ngbPanelTitle>
 								<div id="new-receipt-link" *ngIf="first">
 									Add New Receipt
