@@ -118,7 +118,7 @@
 											<div class="col-sm-3 col-md-2 col-lg-1 form-group">
 												<label>Line</label>
 												<div ngbDropdown>
-													<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{rec.line_num ? rec.line_num : 'Select Line Num'}}<i></i></button>
+													<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{rec.line_num ? rec.line_num : '##'}}<i></i></button>
 													<div ngbDropdownMenu aria-labelledby="filing-year-dd">
 														<button type="button" id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="rec.line_num = lineNum.id">{{lineNum.id + ' - ' + lineNum.desc}}</button>
 													</div>
