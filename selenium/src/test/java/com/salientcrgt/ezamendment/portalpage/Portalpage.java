@@ -350,7 +350,10 @@ public class Portalpage {
 
 		List<String> fields = new ArrayList<String>();
 
-		WebElement receiptsFieldListElement = driver.findElement(By.xpath("//ngb-tabset/div/div/div"));
+		WebElement receiptsFieldListElement = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//ngb-tabset/div/div/div")));
+		
+		// = driver.findElement(By.xpath("//ngb-tabset/div/div/div"));
 
 		for (WebElement fieldElement : receiptsFieldListElement.findElements(By.tagName("div"))) {
 
