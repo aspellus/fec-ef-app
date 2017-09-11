@@ -52,7 +52,11 @@ export class FilingComponent implements OnInit {
 	  this.filingService.getReceipts(this.report_id).subscribe(data => {
 		this.receipts = data.list;
 		this.sortReceipts();
-	  });  
+		this.receipts.forEach(receipt => {
+			receipt.$isSaving = false;
+			receipt.$isDeleting = false;
+		});
+	  });
   }
   
   sortReceipts(){
@@ -79,17 +83,20 @@ export class FilingComponent implements OnInit {
   }
   
   saveReceipt(receipt){
-  	this.filingService.saveReceipt(receipt).subscribe(data => {
-  		if (Boolean(receipt.tran_id)) {
-  			receipt = data;
-  		} else {
-  			this.receipts.push(data);
-  			receipt = {tran_id: '', repid: this.report_id};
-  		}
+	receipt.$isSaving = true; 
+	this.filingService.saveReceipt(receipt).subscribe(data => {
+		if (Boolean(receipt.tran_id)) {
+			receipt = data;
+		} else {
+			this.receipts.push(data);
+			receipt = {tran_id: '', repid: this.report_id};
+		}
+		receipt.$isSaving = false;
   	});
   }
   deleteReceipt(receipt){
-  	this.filingService.deleteReceipt(receipt).subscribe(data => {
+	receipt.$isDeleting = true;
+  	this.filingService.deleteReceipt(receipt).subscribe(resp => {
   		var index = this.receipts.findIndex(r => {
 			return r.tran_id == receipt.tran_id;
 		});

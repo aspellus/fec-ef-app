@@ -39,6 +39,8 @@ public class ScheduleADTO {
 	private String memo_code;
 	private String amend;
 	
+	public ScheduleADTO() {}
+	
 	public ScheduleADTO(long repid, String comid, String line_num, String tran_id, String name, String fname, String mname, 
 			String prefix, String suffix, String str1, String str2, String city, String state, String zip, Date date_con, 
 			double amount, double ytd, String transdesc, String indemp, String indocc, String memo_code, String amend) {
