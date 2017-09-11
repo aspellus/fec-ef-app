@@ -99,12 +99,73 @@
 						</div>
 					</div>
 					<ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
-						<ngb-panel *ngFor="let rec of [{tran_id: '', repid: report_id}].concat(receipts); let first = first">
+						<ngb-panel>
 							<ng-template ngbPanelTitle>
-								<div id="new-receipt-link" *ngIf="first">
+								<div id="new-receipt-link">
 									Add New Receipt
 								</div>
-								<div class="row" *ngIf="!first">
+							</ng-template>
+							<ng-template ngbPanelContent>
+								<form>
+									<div class="container-fluid">
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-lg-1 form-group">
+												<label>Line</label>
+												<div ngbDropdown>
+													<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>##<i></i></button>
+													<div ngbDropdownMenu aria-labelledby="filing-year-dd">
+														<button type="button" id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="newTranForm.line_num = lineNum.id">{{lineNum.id + ' - ' + lineNum.desc}}</button>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label for="date_con">Date</label>
+												<input id="date_con_input" name="date_con" type="date" class="form-control" [(ngModel)]="newTranForm.date_con" placeholder="mm/dd/yyyy">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>First Name</label>
+												<input id="fname_input" name="fname" [(ngModel)]="newTranForm.fname" class="form-control" placeholder="First Name">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>Last Name</label>
+												<input id="name_input" name="name" [(ngModel)]="newTranForm.name" class="form-control" placeholder="Last Name">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>Amount</label>
+												<input id="amount_input" name="amount" [(ngModel)]="newTranForm.amount" class="form-control" placeholder="$0.00">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>Memo Ind</label>
+												<input type="checkbox" class="form-control">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>Employer Name</label>
+												<input id="indemp-input" name="indemp" [(ngModel)]="newTranForm.indemp" class="form-control" placeholder="Employer Name">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>Occupation</label>
+												<input id="indocc-input" name="indocc" [(ngModel)]="newTranForm.indocc" class="form-control" placeholder="Occupation">
+											</div>
+											<div class="col-sm-8 col-md-6 col-xl-4 form-group">
+												<label>Description</label>
+												<textarea class="form-control" name="transdesc" [(ngModel)]="newTranForm.transdesc" rows="3"></textarea>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label class="invisible"></label>
+												<button type="button" class="btn btn-primary form-control" (click)="saveReceipt(newTranForm)">
+													<span *ngIf="!newTranForm.$isSaving"><i class="fa fa-save"></i> Save</span>
+													<span *ngIf="newTranForm.$isSaving"><i class="fa fa-spinner fa-pulse"></i> Saving...</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</ng-template>
+						</ngb-panel>
+						<ngb-panel *ngFor="let rec of receipts">
+							<ng-template ngbPanelTitle>
+								
+								<div class="row">
 									<div class="col">{{rec.line_num}}</div>
 									<div class="col">{{rec.date_con | date: 'MM/dd/yyyy'}}</div>
 									<div class="col">{{rec.name}}, {{rec.fname}}</div>
@@ -163,7 +224,7 @@
 													<span *ngIf="rec.$isSaving"><i class="fa fa-spinner fa-pulse"></i> Saving...</span>
 												</button>
 											</div>
-											<div class="col-sm-4 col-md-3 col-xl-2 form-group" *ngIf="!first">
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label class="invisible"></label>
 												<button type="button" class="btn btn-danger form-control" (click)="deleteReceipt(rec)">
 													<span *ngIf="!rec.$isDeleting"><i class="fa fa-times"></i> Delete</span>

@@ -3,6 +3,30 @@ import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 
 import { FilingService } from "./filing.service";
 
+class TranForm {
+	constructor (repid: number, comid: string) {
+		this.repid = repid;
+		this.comid = comid;
+	}
+	
+	repid: number;
+	line_num: string;
+	comid: string;
+	tran_id: string;
+	name: string;
+	fname: string;
+	mname: string;
+	date_con: string;
+	amount: number
+	ytd: number
+	transdesc: string;
+	indemp: string;
+	indocc: string;
+	memo_code: string;
+	$isSaving: boolean = false;
+	$isDeleting: boolean = false;
+}
+
 @Component({
   selector: 'app-filing',
   templateUrl: './filing.component.html',
@@ -19,10 +43,12 @@ export class FilingComponent implements OnInit {
   lineNums: Array<any>;
   committee_id: string;
   committee: any;
+  newTranForm: TranForm;
   
   constructor(private router: Router, private route: ActivatedRoute, private filingService: FilingService) {}
 
   ngOnInit() {
+	  
 	  this.lineNums = [{id: '11A', desc: 'Individual Contribution'},
 	                    {id: '11B', desc: 'Political Party Contribution'},
 	                    {id: '11C', desc: 'Political Committee (Other) Contribution'},
@@ -36,6 +62,7 @@ export class FilingComponent implements OnInit {
 	  this.route.params.subscribe(params => {
 		 this.report_id = params['file_id']; 
 		 this.committee_id = params['committee_id'];
+		 this.initTranForm();
 	  });
 	  this.route.queryParams.subscribe(params => {
 		  this.filing_year = params['filing_year'];
@@ -60,6 +87,10 @@ export class FilingComponent implements OnInit {
 	  });
   }
   
+  initTranForm() {
+	  this.newTranForm = new TranForm(this.report_id, this.committee_id);
+  }
+  
   sortReceipts(){
 	this.receipts.sort(function(receipt_a, receipt_b){
 		var line_num_a = receipt_a.line_num.toUpperCase(),
@@ -78,24 +109,26 @@ export class FilingComponent implements OnInit {
 		if (receipt_a.amount < receipt_b.amount) { return -1; }
 		if (receipt_a.amount > receipt_b.amount) { return 1; }
 
-		//console.log(receipt);
 		return 0;
 	  });
   }
   
-  saveReceipt(receipt){
-	receipt.$isSaving = true;
-	receipt.date_con = receipt.date_con + 'T05:00:00';
-
-	this.filingService.saveReceipt(receipt).subscribe(data => {
-		if (Boolean(receipt.tran_id)) {
-			receipt = data;
-		} else {
-			this.receipts.push(data);
-			receipt = {tran_id: '', repid: this.report_id};
-		}
-		receipt.$isSaving = false;
-  	});
+  	saveReceipt(receipt){
+  		let isNew = !Boolean(receipt.tran_id);
+  		receipt.$isSaving = true;
+  		receipt.date_con = receipt.date_con + 'T05:00:00';
+  		receipt.comid = this.committee_id;
+	
+		this.filingService.saveReceipt(receipt).subscribe(data => {
+			receipt.$isSaving = false;
+			if (!isNew) {
+				receipt = data;
+			} else {
+				data.date_con = data.date_con.split('T')[0];
+				this.receipts.push(data);
+				this.initTranForm();
+			}
+	  	});
   }
   deleteReceipt(receipt){
 	receipt.$isDeleting = true;
