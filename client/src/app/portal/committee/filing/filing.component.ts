@@ -46,6 +46,8 @@ export class FilingComponent implements OnInit {
   committee_id: string;
   committee: any;
   newTranForm: TranForm;
+  glossaryTitle: string;
+  glossaryBody: Array<string>;
   
   constructor(private router: Router, private route: ActivatedRoute, private filingService: FilingService, private modalService: NgbModal) {}
 
@@ -142,7 +144,9 @@ export class FilingComponent implements OnInit {
   	});
   }
 
-  open(content) {
-	this.modalService.open(content);
+  openGlossary(modal, title, body) {
+	this.glossaryTitle = title;
+	this.glossaryBody = body;
+	this.modalService.open(modal, {size: 'lg'});
   }
 }

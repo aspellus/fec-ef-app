@@ -151,6 +151,22 @@
 							<button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
 						</div>
 					</ng-template>
+					<ng-template #dynamicGlossary let-c="close" let-d="dismiss">
+						<div class="modal-header">
+							<h4 class="modal-title">
+								<i class="fa fa-info-circle"></i> {{glossaryTitle}}
+							</h4>
+							<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p *ngFor="let body of glossaryBody">{{body}}</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+						</div>
+					</ng-template>
 					<ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
 						<ngb-panel>
 							<ng-template ngbPanelTitle>
@@ -174,35 +190,51 @@
 												</div>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label for="date_con">Date</label>
+												<label for="date_con">
+													Date <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Transaction Date',['The date of receipt for reporting purposes is the date the committee (or its agent) actually obtains possession of the contribution. See 11 CFR 102.8(a).'])"></i>
+												</label>
 												<input id="date_con_input" name="date_con" type="date" class="form-control" [(ngModel)]="newTranForm.date_con" placeholder="mm/dd/yyyy">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label>First Name</label>
+												<label>
+													First Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Name',['Name of the contributor(individuals/Organizations/Political Committees)'])"></i>
+												</label>
 												<input id="fname_input" name="fname" [(ngModel)]="newTranForm.fname" class="form-control" placeholder="First Name">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label>Last Name</label>
+												<label>
+													Last Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Name',['Name of the contributor(individuals/Organizations/Political Committees)'])"></i>
+												</label>
 												<input id="name_input" name="name" [(ngModel)]="newTranForm.name" class="form-control" placeholder="Last Name">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label>Amount</label>
+												<label>
+													Amount <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Amount',['Amount Received from the  contributor'])"></i>
+												</label>
 												<input id="amount_input" name="amount" [(ngModel)]="newTranForm.amount" class="form-control" placeholder="$0.00">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label>Memo Ind</label>
+												<label>
+													Memo Y/N <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Memo',['Check  the  \'Memo\' box  for  informational entries that do not affect the committee\'s cash on hand (e.g., contributor attribution, conduit information, ultimate payee information, etc.)'])"></i>
+												</label>
 												<input type="checkbox" class="form-control">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label>Employer Name</label>
+												<label>
+													Employer Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Employer Name',['The organization or person by whom an individual is employed, and not the name of his or her supervisor. Use \'self-employed\', if applicable.','The name of employer is only required to be provided for receipts from individuals.'])"></i>
+												</label>
 												<input id="indemp-input" name="indemp" [(ngModel)]="newTranForm.indemp" class="form-control" placeholder="Employer Name">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label>Occupation</label>
+												<label>
+													Occupation <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Occupation',['The principal job title or position of an individual.','The occupation is only required to be provided for receipts from individuals.'])"></i>
+												</label>
 												<input id="indocc-input" name="indocc" [(ngModel)]="newTranForm.indocc" class="form-control" placeholder="Occupation">
 											</div>
 											<div class="col-sm-8 col-md-6 col-xl-4 form-group">
-												<label>Description</label>
+												<label>
+													Description <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Description',['Description of the transaction'])"></i>
+												</label>
 												<textarea class="form-control" name="transdesc" [(ngModel)]="newTranForm.transdesc" rows="3"></textarea>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
@@ -243,35 +275,51 @@
 												</div>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label for="date_con">Date</label>
+												<label for="date_con">
+													Date <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Transaction Date',['The date of receipt for reporting purposes is the date the committee (or its agent) actually obtains possession of the contribution. See 11 CFR 102.8(a).'])"></i>
+												</label>
 												<input id="date_con_input" name="date_con" type="date" class="form-control" [(ngModel)]="rec.date_con" placeholder="mm/dd/yyyy">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label>First Name</label>
+												<label>
+													First Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Name',['Name of the contributor(individuals/Organizations/Political Committees)'])"></i>
+												</label>
 												<input id="fname_input" name="fname" [(ngModel)]="rec.fname" class="form-control" placeholder="First Name">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label>Last Name</label>
+												<label>
+													Last Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Name',['Name of the contributor(individuals/Organizations/Political Committees)'])"></i>
+												</label>
 												<input id="name_input" name="name" [(ngModel)]="rec.name" class="form-control" placeholder="Last Name">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label>Amount</label>
+												<label>
+													Amount <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Amount',['Amount Received from the  contributor'])"></i>
+												</label>
 												<input id="amount_input" name="amount" [(ngModel)]="rec.amount" class="form-control" placeholder="$0.00">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label>Memo Ind</label>
+												<label>
+													Memo Y/N <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Memo',['Check  the  \'Memo\' box  for  informational entries that do not affect the committee\'s cash on hand (e.g., contributor attribution, conduit information, ultimate payee information, etc.)'])"></i>
+												</label>
 												<input type="checkbox" class="form-control">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label>Employer Name</label>
+												<label>
+													Employer Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Employer Name',['The organization or person by whom an individual is employed, and not the name of his or her supervisor. Use \'self-employed\', if applicable.','The name of employer is only required to be provided for receipts from individuals.'])"></i>
+												</label>
 												<input id="indemp-input" name="indemp" [(ngModel)]="rec.indemp" class="form-control" placeholder="Employer Name">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-												<label>Occupation</label>
+												<label>
+													Occupation <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Occupation',['The principal job title or position of an individual.','The occupation is only required to be provided for receipts from individuals.'])"></i>
+												</label>
 												<input id="indocc-input" name="indocc" [(ngModel)]="rec.indocc" class="form-control" placeholder="Occupation">
 											</div>
 											<div class="col-sm-8 col-md-6 col-xl-4 form-group">
-												<label>Description</label>
+												<label>
+													Description <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Description',['Description of the transaction'])"></i>
+												</label>
 												<textarea class="form-control" name="transdesc" [(ngModel)]="rec.transdesc" rows="3"></textarea>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
