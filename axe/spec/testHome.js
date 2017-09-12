@@ -15,7 +15,7 @@ describe('ezamendment demo', function() {
             .forBrowser('chrome')
             .build();
 
-        driver.get('http://stage-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com')
+        driver.get('http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/')
             .then(function () {
                 done();
             });

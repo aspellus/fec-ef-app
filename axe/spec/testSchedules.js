@@ -15,7 +15,7 @@ describe('ezamendment demo', function() {
             .forBrowser('chrome')
             .build();
 
-        driver.get('http://stage-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/schedules/1178702/schedule_a')
+        driver.get('http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/committee/C00577759/filing/1178702?filing_year=2017')
             .then(function () {
                 done();
             });
@@ -29,7 +29,7 @@ describe('ezamendment demo', function() {
     });
 
 
-    it('should analyze the Schedules Page', function (done) {
+    it('should analyze the Transactions Page', function (done) {
 
 
         AxeBuilder(driver)

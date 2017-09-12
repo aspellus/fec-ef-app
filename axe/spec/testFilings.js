@@ -15,7 +15,7 @@ describe('ezamendment demo', function() {
             .forBrowser('chrome')
             .build();
 
-        driver.get('http://stage-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/committee/C00577759/filings?report_year=2017')
+        driver.get('http://dev-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/committee/C00431445?filing_year=2017')
             .then(function () {
                 done();
             });
