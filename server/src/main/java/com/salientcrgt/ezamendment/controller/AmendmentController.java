@@ -59,9 +59,9 @@ public class AmendmentController {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
-	@GetMapping(value = "/committee/{committeeId}", produces = "application/json")
-	public JSONObject getCommitteeDetails(@PathVariable String committeeId) {
-		return scheduleAService.getCommitteeDetails(committeeId);
+	@GetMapping(value = "/committee/{committee_id}", produces = "application/json")
+	public JSONObject getCommitteeDetails(@PathVariable String committee_id) {
+		return scheduleAService.getCommitteeDetails(committee_id);
 	}
 	
 	/**
@@ -72,9 +72,9 @@ public class AmendmentController {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
-	@GetMapping(value = "/committee/{committeeId}/filings", produces = "application/json")
-	public JSONObject getCommitteeReportsByYearAndFormType(@PathVariable String committeeId, @RequestParam String reportYear, @RequestParam(value="", required=false) String formType) {
-		return scheduleAService.getCommitteeReportsByYearAndFormType(committeeId, reportYear, formType);
+	@GetMapping(value = "/committee/{committee_id}/filings", produces = "application/json")
+	public JSONObject getCommitteeReportsByYearAndFormType(@PathVariable String committee_id, @RequestParam String report_year, @RequestParam(value="", required=false) String form_type) {
+		return scheduleAService.getCommitteeReportsByYearAndFormType(committee_id, report_year, form_type);
 	}
 	
 	/**
@@ -85,9 +85,9 @@ public class AmendmentController {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
-	@GetMapping(value = "/schedules/{reportId}/schedule_a", produces = "application/json")
-	public ResponseList getScheduleAsByReportId(@PathVariable long reportId) {
-		List<ScheduleA> scheduleAList = scheduleAService.findByReportId(reportId);
+	@GetMapping(value = "/schedules/{report_id}/schedule_a", produces = "application/json")
+	public ResponseList getScheduleAsByReportId(@PathVariable long report_id) {
+		List<ScheduleA> scheduleAList = scheduleAService.findByReportId(report_id);
 		List<Object> scheduleADTOList = scheduleAList.stream().map(ScheduleADTO::mapFromScheduleAEntity).collect(Collectors.toList());
 		ResponseList scheduleAResponseList = new ResponseList();
 		scheduleAResponseList.setList(scheduleADTOList);
@@ -102,9 +102,9 @@ public class AmendmentController {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
-	@PostMapping(value = "/schedules/{reportId}/schedule_a", produces = "application/json")
-	public ScheduleADTO createScheduleA(@PathVariable long reportId, @RequestBody ScheduleADTO scheduleADTO) {
-		ScheduleA scheduleA = scheduleAService.createScheduleA(reportId, scheduleADTO);
+	@PostMapping(value = "/schedules/{report_id}/schedule_a", produces = "application/json")
+	public ScheduleADTO createScheduleA(@PathVariable long report_id, @RequestBody ScheduleADTO scheduleADTO) {
+		ScheduleA scheduleA = scheduleAService.createScheduleA(report_id, scheduleADTO);
 		return ScheduleADTO.mapFromScheduleAEntity(scheduleA);
 	}
 	
@@ -116,9 +116,9 @@ public class AmendmentController {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
-	@PutMapping(value = "/schedules/{reportId}/schedule_a", produces = "application/json")
-	public ScheduleADTO mergeScheduleA(@PathVariable long reportId, @RequestBody ScheduleADTO scheduleADTO) {
-		ScheduleA scheduleA = scheduleAService.mergeScheduleA(reportId, scheduleADTO.getTran_id(), scheduleADTO);
+	@PutMapping(value = "/schedules/{report_id}/schedule_a/{tran_id}", produces = "application/json")
+	public ScheduleADTO mergeScheduleA(@PathVariable long report_id, @PathVariable String tran_id, @RequestBody ScheduleADTO scheduleADTO) {
+		ScheduleA scheduleA = scheduleAService.mergeScheduleA(report_id, tran_id, scheduleADTO);
 		return ScheduleADTO.mapFromScheduleAEntity(scheduleA);
 	}
 	
@@ -130,9 +130,9 @@ public class AmendmentController {
 	
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
-	@DeleteMapping(value = "/schedules/{reportId}/schedule_a/{tran_id}")
-	public void deleteScheduleA(@PathVariable long reportId, @PathVariable("tran_id") String tranId) {
-		scheduleAService.deleteScheduleA(reportId, tranId);
+	@DeleteMapping(value = "/schedules/{report_id}/schedule_a/{tran_id}")
+	public void deleteScheduleA(@PathVariable long report_id, @PathVariable("tran_id") String tran_id) {
+		scheduleAService.deleteScheduleA(report_id, tran_id);
 	}
 	
 	/**
