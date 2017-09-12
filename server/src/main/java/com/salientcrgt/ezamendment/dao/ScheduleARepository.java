@@ -7,8 +7,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.salientcrgt.ezamendment.model.ScheduleA;
@@ -21,9 +19,7 @@ import com.salientcrgt.ezamendment.model.ScheduleA;
 @Repository
 public class ScheduleARepository {
 
-	private static final Logger logger = LoggerFactory.getLogger(ScheduleARepository.class);
-
-    @PersistenceContext
+	@PersistenceContext
     private EntityManager em;
     
     /**
@@ -60,8 +56,7 @@ public class ScheduleARepository {
     public void delete(long reportId, String tranId) {
     	ScheduleA scheduleA = findByReportTranId(reportId, tranId);
     	// Technically we are not deleting from database, we would be updating Amend indicator to D
-        //em.remove(scheduleA);
-        scheduleA.setAmend("D");
+        scheduleA.setAmendment("D");
     	em.merge(scheduleA);
     }
 
