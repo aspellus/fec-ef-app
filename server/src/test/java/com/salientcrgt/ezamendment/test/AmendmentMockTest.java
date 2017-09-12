@@ -43,7 +43,7 @@ public class AmendmentMockTest {
     @Test
     public void shouldReturnCommiteeFilingDetails() throws Exception {
         this.mockMvc
-                .perform(get("/committee/C00577759/filings/?report_year=2017"))
+                .perform(get("/committee/C00577759/filings/?reportYear=2017"))
                 .andDo(print())
                 .andExpect(status().isOk());
 
@@ -52,7 +52,7 @@ public class AmendmentMockTest {
     @Test
     public void shouldReturnCommiteeFilingDetailsByFormType() throws Exception {
         this.mockMvc
-                .perform(get("/committee/C00577759/filings/?report_year=2017&form_type=F3"))
+                .perform(get("/committee/C00577759/filings/?reportYear=2017&form_type=F3"))
                 .andDo(print())
                 .andExpect(status().isOk());
 

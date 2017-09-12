@@ -130,8 +130,8 @@ public class AmendmentController {
 	
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
-	@DeleteMapping(value = "/schedules/{reportId}/schedule_a")
-	public void deleteScheduleA(@PathVariable long reportId, @RequestParam("tran_id") String tranId) {
+	@DeleteMapping(value = "/schedules/{reportId}/schedule_a/{tran_id}")
+	public void deleteScheduleA(@PathVariable long reportId, @PathVariable("tran_id") String tranId) {
 		scheduleAService.deleteScheduleA(reportId, tranId);
 	}
 	
