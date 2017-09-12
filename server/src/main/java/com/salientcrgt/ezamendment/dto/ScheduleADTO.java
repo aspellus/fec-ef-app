@@ -29,7 +29,6 @@ public class ScheduleADTO {
 	private String state;
 	private String zip;
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-	//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-mm-ddThh:mi:ss")
 	private Date date_con;
 	private double amount;
 	private double ytd;
@@ -39,42 +38,36 @@ public class ScheduleADTO {
 	private String memo_code;
 	private String amend;
 	
-	public ScheduleADTO() {}
-	
-	public ScheduleADTO(long repid, String comid, String line_num, String tran_id, String name, String fname, String mname, 
-			String prefix, String suffix, String str1, String str2, String city, String state, String zip, Date date_con, 
-			double amount, double ytd, String transdesc, String indemp, String indocc, String memo_code, String amend) {
+	//Default Constructor
+	public ScheduleADTO() {
 		
-		this.repid = repid;
-		this.line_num = line_num;
-		this.comid = comid;
-		this.tran_id = tran_id;
-		this.name = name;
-		this.fname = fname;
-		this.mname = mname;
-		this.prefix = prefix;
-		this.suffix = suffix;
-		this.str1 = str1;
-		this.str2 = str2;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-		this.date_con = date_con;
-		this.amount = amount;
-		this.ytd = ytd;
-		this.transdesc = transdesc;
-		this.indemp = indemp;
-		this.indocc = indocc;
-		this.memo_code = memo_code;
-		this.amend = amend;
 	}
 	
 	public static ScheduleADTO mapFromScheduleAEntity(ScheduleA scheduleA) {
-        return new ScheduleADTO(scheduleA.getRepid(), scheduleA.getComid(), scheduleA.getLine_num(), scheduleA.getTran_id(), 
-        		scheduleA.getName(), scheduleA.getFname(), scheduleA.getMname(), scheduleA.getPrefix(), scheduleA.getSuffix(), 
-        		scheduleA.getStr1(), scheduleA.getStr2(), scheduleA.getCity(), scheduleA.getState(), scheduleA.getZip(), 
-        		scheduleA.getDate_con(), scheduleA.getAmount(), scheduleA.getYtd(), scheduleA.getTransdesc(), 
-        		scheduleA.getIndemp(), scheduleA.getIndocc(), scheduleA.getMemo_code(), scheduleA.getAmend());
+		ScheduleADTO schedule  = new ScheduleADTO();
+		schedule.setRepid(scheduleA.getReportId());
+		schedule.setLine_num(scheduleA.getLineNumber());
+		schedule.setComid(scheduleA.getCommitteeId());
+		schedule.setTran_id(scheduleA.getTranId());
+		schedule.setName(scheduleA.getLastName());
+		schedule.setFname(scheduleA.getFirstName());
+		schedule.setMname(scheduleA.getMiddleName());
+		schedule.setPrefix(scheduleA.getPrefixName());
+		schedule.setSuffix(scheduleA.getSuffixName());
+		schedule.setStr1(scheduleA.getStreetOne());
+		schedule.setStr2(scheduleA.getStreetTwo());
+		schedule.setCity(scheduleA.getAddressCity());
+		schedule.setState(scheduleA.getAddressState());
+		schedule.setZip(scheduleA.getAddressZip());
+		schedule.setDate_con(scheduleA.getDateTransaction());
+		schedule.setAmount(scheduleA.getTransactionAmount());
+		schedule.setYtd(scheduleA.getYearToDate());
+		schedule.setTransdesc(scheduleA.getTransDesciption());
+		schedule.setIndemp(scheduleA.getIndEmployer());
+		schedule.setIndocc(scheduleA.getIndOccupation());
+		schedule.setMemo_code(scheduleA.getMemoCode());
+		schedule.setAmend(scheduleA.getAmendment());
+		return schedule;
 	}
 	
 	public static List<ScheduleADTO> mapFromScheduleAsEntities(List<ScheduleA> scheduleAs) {
