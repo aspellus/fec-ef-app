@@ -66,7 +66,7 @@ export class FilingComponent implements OnInit {
 	  this.route.params.subscribe(params => {
 		 this.report_id = params['file_id']; 
 		 this.committee_id = params['committee_id'];
-		 this.initTranForm();
+		 this.resetTranForm();
 	  });
 	  this.route.queryParams.subscribe(params => {
 		  this.filing_year = params['filing_year'];
@@ -91,7 +91,7 @@ export class FilingComponent implements OnInit {
 	  });
   }
   
-  initTranForm() {
+  resetTranForm() {
 	  this.newTranForm = new TranForm(this.report_id, this.committee_id);
   }
   
@@ -130,7 +130,7 @@ export class FilingComponent implements OnInit {
 			} else {
 				data.date_con = data.date_con.split('T')[0];
 				this.receipts.push(data);
-				this.initTranForm();
+				this.resetTranForm();
 			}
 	  	});
   }
