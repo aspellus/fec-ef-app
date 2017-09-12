@@ -1,34 +1,23 @@
-package com.salientcrgt.ezamendment.model;
+package com.salientcrgt.ezamendment.dto;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.dom4j.tree.AbstractEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.salientcrgt.ezamendment.model.ScheduleA;
 
 /**
 *
-* The ScheduleA JPA entity.
+* JSON-serializable DTO containing ScheduleA data
 *
 */
-@Entity
-@Table(name = "sched_a")
+public class ScheduleADTO {
 
-public class ScheduleA  extends AbstractEntity {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1915138817685864614L;
-	@Id
 	private long repid;
 	private String line_num;
-	private long rel_lineno;
 	private String comid;
-	@Id
 	private String tran_id;
-	private String entity;
 	private String name;
 	private String fname;
 	private String mname;
@@ -39,34 +28,27 @@ public class ScheduleA  extends AbstractEntity {
 	private String city;
 	private String state;
 	private String zip;
-	private String pgo;
-	private String pg_des;
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+	//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-mm-ddThh:mi:ss")
 	private Date date_con;
 	private double amount;
 	private double ytd;
-	private String reccode;
 	private String transdesc;
-	private String limit_ind;
 	private String indemp;
 	private String indocc;
 	private String memo_code;
-	//Add-A, Change-C, Delete-D
 	private String amend;
 	
-	public ScheduleA() {
-		
-	}
+	public ScheduleADTO() {}
 	
-	public ScheduleA(long repid, String line_num, long rel_lineno, String comid, String tran_id, String entity, String name, 
-			String fname, String mname, String prefix, String suffix, String str1, String str2, String city, String state,
-			String zip, String pgo, String pg_des, Date date_con, double amount, double ytd, String transdesc, String indemp, 
-			String indocc, String memo_code, String amend) {
+	public ScheduleADTO(long repid, String comid, String line_num, String tran_id, String name, String fname, String mname, 
+			String prefix, String suffix, String str1, String str2, String city, String state, String zip, Date date_con, 
+			double amount, double ytd, String transdesc, String indemp, String indocc, String memo_code, String amend) {
+		
 		this.repid = repid;
 		this.line_num = line_num;
-		this.rel_lineno = rel_lineno;
 		this.comid = comid;
 		this.tran_id = tran_id;
-		this.entity = entity;
 		this.name = name;
 		this.fname = fname;
 		this.mname = mname;
@@ -77,8 +59,6 @@ public class ScheduleA  extends AbstractEntity {
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
-		this.pgo = pgo;
-		this.pg_des = pg_des;
 		this.date_con = date_con;
 		this.amount = amount;
 		this.ytd = ytd;
@@ -87,6 +67,18 @@ public class ScheduleA  extends AbstractEntity {
 		this.indocc = indocc;
 		this.memo_code = memo_code;
 		this.amend = amend;
+	}
+	
+	public static ScheduleADTO mapFromScheduleAEntity(ScheduleA scheduleA) {
+        return new ScheduleADTO(scheduleA.getRepid(), scheduleA.getComid(), scheduleA.getLine_num(), scheduleA.getTran_id(), 
+        		scheduleA.getName(), scheduleA.getFname(), scheduleA.getMname(), scheduleA.getPrefix(), scheduleA.getSuffix(), 
+        		scheduleA.getStr1(), scheduleA.getStr2(), scheduleA.getCity(), scheduleA.getState(), scheduleA.getZip(), 
+        		scheduleA.getDate_con(), scheduleA.getAmount(), scheduleA.getYtd(), scheduleA.getTransdesc(), 
+        		scheduleA.getIndemp(), scheduleA.getIndocc(), scheduleA.getMemo_code(), scheduleA.getAmend());
+	}
+	
+	public static List<ScheduleADTO> mapFromScheduleAsEntities(List<ScheduleA> scheduleAs) {
+        return scheduleAs.stream().map((scheduleA) -> mapFromScheduleAEntity(scheduleA)).collect(Collectors.toList());
 	}
 
 	public long getRepid() {
@@ -105,14 +97,6 @@ public class ScheduleA  extends AbstractEntity {
 		this.line_num = line_num;
 	}
 
-	public long getRel_lineno() {
-		return rel_lineno;
-	}
-
-	public void setRel_lineno(long rel_lineno) {
-		this.rel_lineno = rel_lineno;
-	}
-
 	public String getComid() {
 		return comid;
 	}
@@ -127,14 +111,6 @@ public class ScheduleA  extends AbstractEntity {
 
 	public void setTran_id(String tran_id) {
 		this.tran_id = tran_id;
-	}
-
-	public String getEntity() {
-		return entity;
-	}
-
-	public void setEntity(String entity) {
-		this.entity = entity;
 	}
 
 	public String getName() {
@@ -217,22 +193,6 @@ public class ScheduleA  extends AbstractEntity {
 		this.zip = zip;
 	}
 
-	public String getPgo() {
-		return pgo;
-	}
-
-	public void setPgo(String pgo) {
-		this.pgo = pgo;
-	}
-
-	public String getPg_des() {
-		return pg_des;
-	}
-
-	public void setPg_des(String pg_des) {
-		this.pg_des = pg_des;
-	}
-
 	public Date getDate_con() {
 		return date_con;
 	}
@@ -257,28 +217,12 @@ public class ScheduleA  extends AbstractEntity {
 		this.ytd = ytd;
 	}
 
-	public String getReccode() {
-		return reccode;
-	}
-
-	public void setReccode(String reccode) {
-		this.reccode = reccode;
-	}
-
 	public String getTransdesc() {
 		return transdesc;
 	}
 
 	public void setTransdesc(String transdesc) {
 		this.transdesc = transdesc;
-	}
-
-	public String getLimit_ind() {
-		return limit_ind;
-	}
-
-	public void setLimit_ind(String limit_ind) {
-		this.limit_ind = limit_ind;
 	}
 
 	public String getIndemp() {

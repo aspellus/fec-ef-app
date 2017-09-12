@@ -30,13 +30,9 @@ public class ApplicationConfiguration {
         dataSource.setUrl("jdbc:" + System.getenv("EF_DB_URL"));
         dataSource.setUsername(System.getenv("EF_DB_USERNAME"));
         dataSource.setPassword(System.getenv("EF_DB_PASSWORD"));
-        if(System.getenv("EF_DB_URL") == null) 
+        if(System.getenv("EF_DB_URL") == null) {
         	dataSource.setUrl("jdbc:postgresql://localhost:5432/fecefapp");
-        if(System.getenv("EF_DB_USERNAME") == null) 
-        	dataSource.setUsername("fecefapp");
-        if(System.getenv("EF_DB_PASSWORD") == null) 
-        	dataSource.setPassword("FECEF01");
-        
+        }
         return dataSource;
     }
 
@@ -50,10 +46,10 @@ public class ApplicationConfiguration {
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         Map<String, Object> jpaProperties = new HashMap<String, Object>();
-        jpaProperties.put("hibernate.hbm2ddl.auto", "update");
+        /*jpaProperties.put("hibernate.hbm2ddl.auto", "update");
         jpaProperties.put("hibernate.show_sql", "true");
         jpaProperties.put("hibernate.format_sql", "true");
-        jpaProperties.put("hibernate.use_sql_comments", "true");
+        jpaProperties.put("hibernate.use_sql_comments", "true");*/
         jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         entityManagerFactoryBean.setJpaPropertyMap(jpaProperties);
 

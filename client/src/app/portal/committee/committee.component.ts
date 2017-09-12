@@ -83,11 +83,8 @@ export class CommitteeComponent implements OnInit {
 	}
 	
 	updateUrl() {
-		console.log('updating url');
-		console.log(this.filters.getQueryParams());
 		this.router.navigate([], {
 	        queryParams: this.filters.getQueryParams(),
-	        
 	        relativeTo: this.route
 	    });
 	}

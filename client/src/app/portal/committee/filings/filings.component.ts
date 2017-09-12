@@ -17,7 +17,8 @@ export class FilingsComponent implements OnInit {
   }
   
   viewFiling(fec_file_id){
-  	this.router.navigate(['/filing/' + fec_file_id], {queryParams: {'filing_year': this.filters.filingYear}});
+  	var committee_id = this.router.url.split('/')[2].split('?')[0];
+  	this.router.navigate(['/committee/' + committee_id + '/filing/' + fec_file_id], {queryParams: {'filing_year': this.filters.filingYear}});
   }
 
   

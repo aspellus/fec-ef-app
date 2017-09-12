@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CommitteeService } from './committee.service';
 import { CommitteeComponent } from './committee.component';
@@ -13,6 +14,7 @@ import { FilingService } from './filing/filing.service';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     NgbModule.forRoot()
   ],
   exports: [

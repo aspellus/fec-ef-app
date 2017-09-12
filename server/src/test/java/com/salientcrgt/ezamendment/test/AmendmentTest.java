@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.get;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -44,7 +45,7 @@ public class AmendmentTest
         RestAssured.baseURI = baseHost;
     }
 	
-    @Test
+    @Test @Ignore
     public void testCommitteeDetails() {
 	get("/committee/C00431445")
         .then()

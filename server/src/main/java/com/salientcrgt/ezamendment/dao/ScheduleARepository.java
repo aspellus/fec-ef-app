@@ -24,7 +24,7 @@ public class ScheduleARepository {
 	private static final Logger logger = LoggerFactory.getLogger(ScheduleARepository.class);
 
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
     
     /**
      * finds a list of ScheduleA's for reportId
@@ -34,7 +34,7 @@ public class ScheduleARepository {
      */
     @SuppressWarnings("unchecked")
 	public List<ScheduleA> findByReportId(long reportId) {
-        return em.createQuery("select sa from ScheduleA sa where repid = :reportId")
+        return em.createQuery("select sa from ScheduleA sa where repid = :reportId and amend!= 'D'")
     			.setParameter("reportId", reportId)
     			.getResultList();
     }
@@ -58,8 +58,11 @@ public class ScheduleARepository {
      *
      */
     public void delete(long reportId, String tranId) {
-    	ScheduleA delete = findByReportTranId(reportId, tranId);
-        em.remove(delete);
+    	ScheduleA scheduleA = findByReportTranId(reportId, tranId);
+    	// Technically we are not deleting from database, we would be updating Amend indicator to D
+        //em.remove(scheduleA);
+        scheduleA.setAmend("D");
+    	em.merge(scheduleA);
     }
 
     /**
@@ -68,7 +71,8 @@ public class ScheduleARepository {
      *
      */
     public ScheduleA merge(ScheduleA scheduleA) {
-        return em.merge(scheduleA);
+    	em.merge(scheduleA);
+        return scheduleA;
     }
     
     /**
@@ -78,7 +82,7 @@ public class ScheduleARepository {
     */
 	public ScheduleA create(ScheduleA scheduleA) {
 		em.persist(scheduleA);
-		return findByReportTranId(scheduleA.getRepid(), scheduleA.getTran_id());
+		return scheduleA;
 	}
 
 }
