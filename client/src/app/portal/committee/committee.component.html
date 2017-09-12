@@ -1,3 +1,12 @@
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+		<a href (click)="router.navigate(['']); $event.preventDefault();">Home</a>
+	</li>
+	<li class="breadcrumb-item active">
+		{{committee.name}}
+	</li>
+</ol>
+
 <h2 *ngIf="!committee">
 	Welcome to the EZ Amendment Portal
 	<br>

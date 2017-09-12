@@ -2,17 +2,14 @@ package com.salientcrgt.ezamendment.runner;
 
 import org.junit.runner.RunWith;
 
-import com.karsun.kic.tan.duke.annotations.TestDataFiles;
-import com.karsun.kic.tan.duke.cukes.MergedDataInjectedCucumber;
-
 import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
 
-@RunWith(MergedDataInjectedCucumber.class)
-@CucumberOptions(plugin = { "json:build/efapp.json", "html:build/efapp" },
-		tags = {"~@wip"},
-		features = {
-		"src/test/resources/features/"},
-		glue={"com.karsun.kic.tan", "org.openqa", "com.salientcrgt.ezamendment"})
-@TestDataFiles(files = { "src/test/resources/data/data.json" })
+@RunWith(Cucumber.class)
+@CucumberOptions(plugin = { "html:target/cucumber-html-report",
+        "json:target/cucumber.json", "pretty:target/cucumber-pretty.txt",
+        "usage:target/cucumber-usage.json", "junit:target/cucumber-results.xml" },
+		features = { "src/test/resources/features/" }, 
+		glue = { "org.openqa", "com.salientcrgt.ezamendment" })
 public class EFAppRunner {
 }

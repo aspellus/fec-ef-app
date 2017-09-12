@@ -15,30 +15,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.karsun.kic.tan.duke.Page;
-import com.karsun.kic.tan.duke.util.ActionByLocator;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 import com.salientcrgt.ezamendment.util.LoadProperties;
 
-public class Portalpage extends Page {
-	private static final int TIME_OUT_SECONDS = 5;
+public class Portalpage {
 
 	private boolean committeesVisible = false;
 
 	protected WebDriverWait wait = null;
+	protected WebDriver driver = null;
 
 	public Portalpage(WebDriver driver) {
-		super(driver);
+
+		this.driver = driver;
 		wait = new WebDriverWait(driver, 30);
 	}
 
-	@Override
 	protected boolean isLoaded() {
 		return driver.getTitle().contains("Client");
 	}
 
-	@Override
-	protected void load() {
+	protected void get() {
 		waitForAngular();
 
 		committeesVisible = false;
@@ -58,13 +55,13 @@ public class Portalpage extends Page {
 
 		List<String> committees = new ArrayList<String>();
 
-		WebElement committeePanel = driver.findElement(By.id("committee-select-group"));
+		WebElement committeePanel = wait
+				.until(ExpectedConditions.elementToBeClickable(By.id("committee-select-group")));
 
 		WebElement committeeButton = wait
 				.until(ExpectedConditions.elementToBeClickable(committeePanel.findElement(By.tagName("button"))));
 
 		if (!committeesVisible) {
-			System.out.println("Clicking committee dropdown");
 			committeeButton.click();
 			committeesVisible = true;
 		}
@@ -83,20 +80,13 @@ public class Portalpage extends Page {
 
 	}
 
-	public boolean isImageDisplayed() {
-
-		waitForAngular();
-
-		String attr = ActionByLocator.getElement(driver, By.xpath("//body/app-root/div/img"), TIME_OUT_SECONDS)
-				.getAttribute("src");
-		return attr.contains("data:image/svg");
-	}
-
 	public void clickCommittee(int i) {
 
 		waitForAngular();
 
-		WebElement committeeButton = driver.findElement(By.id("committee-select-group"));
+		WebElement committeeButton = wait
+				.until(ExpectedConditions.elementToBeClickable(By.id("committee-select-group")));
+
 		if (!committeesVisible) {
 			committeeButton.click();
 			committeesVisible = true;
@@ -112,7 +102,16 @@ public class Portalpage extends Page {
 
 		waitForAngular();
 
-		String header = driver.findElement(By.tagName("app-committee")).findElement(By.xpath(".//h2/small")).getText();
+		// we need to wait for the filing table to run before this will be
+		// populated.. this will currently break on a committee that has no filings
+		// need to figure out a better way to wait for the final table rather than the interim
+		// no results found table that shows until the angular load completes..
+		wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'report-content')]/table/tbody/tr/td/button")));
+	
+		waitForAngular();
+		
+		String header = driver.findElement(By.xpath("//app-committee/h2/small")).getText();
 		System.out.println(header);
 
 		Pattern p = Pattern.compile("ID: [A-Z0-9]+$");
@@ -129,7 +128,6 @@ public class Portalpage extends Page {
 
 		Map<String, String> committeeInfo = new HashMap<String, String>();
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
 		WebElement infoElement = wait.until(
 				ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'jumbotron')]/div/div")));
 
@@ -155,7 +153,7 @@ public class Portalpage extends Page {
 		waitForAngular();
 
 		try {
-			driver.findElement(By.tagName("app-committee"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.tagName("app-committee")));
 		} catch (NoSuchElementException nsee) {
 			return false;
 		}
@@ -168,7 +166,7 @@ public class Portalpage extends Page {
 
 		try {
 
-			driver.findElement(By.xpath("//div[contains(@class, 'report-content')]"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'report-content')]")));
 		} catch (NoSuchElementException nsee) {
 			System.out.println("Not found");
 			return false;
@@ -191,7 +189,7 @@ public class Portalpage extends Page {
 		waitForAngular();
 
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+
 			wait.until(ExpectedConditions.elementToBeClickable(By.className("report-content")));
 		} catch (NoSuchElementException nsee) {
 			return false;
@@ -354,8 +352,10 @@ public class Portalpage extends Page {
 
 		List<String> fields = new ArrayList<String>();
 
-		WebElement receiptsFieldListElement = driver
-				.findElement(By.xpath("//ngb-tabset/div/div/div"));
+		WebElement receiptsFieldListElement = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//ngb-tabset/div/div/div")));
+		
+		// = driver.findElement(By.xpath("//ngb-tabset/div/div/div"));
 
 		for (WebElement fieldElement : receiptsFieldListElement.findElements(By.tagName("div"))) {
 

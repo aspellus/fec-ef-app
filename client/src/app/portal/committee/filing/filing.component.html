@@ -1,190 +1,388 @@
-<ol class="breadcrumb">
-	<li class="breadcrumb-item" *ngIf="committee">
-		<a href (click)="router.navigate(['/committee/'+committee.committee_id], {queryParamsHandling: 'merge'}); $event.preventDefault();">{{committee.name}}</a>
-	</li>
-	<li class="breadcrumb-item active">{{filing.fec_file_id}}</li>
-</ol>
+<div *ngIf="filing">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href (click)="router.navigate(['']); $event.preventDefault();">Home</a>
+		</li>
+		<li class="breadcrumb-item">
+			<a href (click)="router.navigate(['/committee/'+filing.committee_id], {queryParamsHandling: 'merge'}); $event.preventDefault();">{{filing.committee_name}}</a>
+		</li>
+		<li class="breadcrumb-item active">{{filing.fec_file_id}}</li>
+	</ol>
 
-<div class="container">
-	<h2>
-		{{filing.document_description}}
-	</h2>
-	<hr>
+	<div class="container">
+		<h2>
+			{{filing.document_description}}
+		</h2>
+		<hr>
 
-	<!--
-	the dates are coming in as iso-8601 except the missing timezone
-	coverage_start_date
-	coverage_end_date
-	-->
+		<!--
+		the dates are coming in as iso-8601 except the missing timezone
+		coverage_start_date
+		coverage_end_date
+		-->
 
-	<!-- <form>
-		<div class="row">
-			<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-				<label>Coverage Start</label>
-				<div class="input-group">
-					<input class="form-control" placeholder="mm/dd/yyyy" name="coverageStart" ngbDatepicker #coverageStart="ngbDatepicker">
-					<button class="input-group-addon" (click)="coverageStart.toggle()" type="button">
-						<i class="fa fa-calendar"></i>
-					</button>
-				</div>
-			</div>
-			<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-				<label>Coverage Start</label>
-				<div class="input-group">
-					<input class="form-control" placeholder="mm/dd/yyyy" name="coverageEnd" ngbDatepicker #coverageEnd="ngbDatepicker">
-					<button class="input-group-addon" (click)="coverageEnd.toggle()" type="button">
-						<i class="fa fa-calendar"></i>
-					</button>
-				</div>
-			</div>
-			<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-				<label>Last Update</label>
-				<p class="form-control-static">
-					{{filing.update_date | date}}
-				</p>
-			</div>
-			<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-				<label>Receipt Date</label>
-				<p class="form-control-static">
-					{{filing.receipt_date | date}}
-				</p>
-			</div>
-			<div class="col-sm-8 col-md-6 col-xl-4 form-group">
-				<button type="button" class="btn btn-primary mr-3">
-					<i class="fa fa-paper-plane"></i> Submit
-				</button>
-				<button type="button" class="btn btn-default mr-3">
-					<i class="fa fa-save"></i> Save
-				</button>
-				<button type="button" class="btn btn-danger">
-					<i class="fa fa-times"></i> Delete
-				</button>
-			</div>
-		</div>
-	</form> -->
-
-	<h3 class="mt-5">Transactions</h3>
-
-	<ngb-tabset [justify]="'fill'">
-		<ngb-tab title="Receipts">
-			<ng-template ngbTabContent>
-				<div class="container-fluid mt-5" *ngIf="receipts && receipts.length > 0">
-					<div class="row h5 px-1">
-						<div class="col">Line</div>
-						<div class="col">Date</div>
-						<div class="col">Name</div>
-						<div class="col">Amount</div>
+		<form>
+			<div class="row">
+		<!--
+				<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+					<label>Coverage Start</label>
+					<div class="input-group">
+						<input class="form-control" placeholder="mm/dd/yyyy" name="coverageStart" ngbDatepicker #coverageStart="ngbDatepicker">
+						<button class="input-group-addon" (click)="coverageStart.toggle()" type="button">
+							<i class="fa fa-calendar"></i>
+						</button>
 					</div>
 				</div>
-				<div *ngIf="!receipts || receipts.length === 0">
-					<div class="row">
-						<div class="col-lg-5 p-4">
-							<ngb-alert type="info" dismissible="false">
-							 	No Receipts have been filed for this report
-							 	<br>
-							 	Add a new receipt or go back to <a href (click)="router.navigate(['/committee/'+filing.committee_id]); $event.preventDefault();">your committee page</a>
-							</ngb-alert>
+				<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+					<label>Coverage Start</label>
+					<div class="input-group">
+						<input class="form-control" placeholder="mm/dd/yyyy" name="coverageEnd" ngbDatepicker #coverageEnd="ngbDatepicker">
+						<button class="input-group-addon" (click)="coverageEnd.toggle()" type="button">
+							<i class="fa fa-calendar"></i>
+						</button>
+					</div>
+				</div>
+				<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+					<label>Last Update</label>
+					<p class="form-control-static">
+						{{filing.update_date | date}}
+					</p>
+				</div>
+				<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+					<label>Receipt Date</label>
+					<p class="form-control-static">
+						{{filing.receipt_date | date}}
+					</p>
+				</div>
+				<div class="col-sm-8 col-md-6 col-xl-4 form-group">
+					<button type="button" class="btn btn-primary mr-3">
+						<i class="fa fa-paper-plane"></i> Submit
+					</button>
+					<button type="button" class="btn btn-default mr-3">
+						<i class="fa fa-save"></i> Save
+					</button>
+					<button type="button" class="btn btn-danger">
+						<i class="fa fa-times"></i> Delete
+					</button>
+				</div>
+		-->
+				<div class="col-sm-8 col-md-6 col-xl-4 form-group">
+					<button type="button" class="btn btn-lg btn-secondary" disabled="disabled" title="Not Implemented">
+						<i class="fa fa-paper-plane"></i> Submit to FEC
+					</button>
+				</div>
+			</div>
+		</form>
+
+		<h3 class="mt-5">Transactions</h3>
+
+		<ngb-tabset [justify]="'fill'">
+			<ngb-tab title="Receipts">
+				<ng-template ngbTabContent>
+					<div class="container-fluid mt-5" *ngIf="receipts && receipts.length > 0">
+						<div class="row h5 px-1">
+							<div class="col">Line</div>
+							<div class="col">Date</div>
+							<div class="col">Name</div>
+							<div class="col">Amount</div>
 						</div>
 					</div>
-				</div>
-				<ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
-					<ngb-panel *ngFor="let rec of [{}].concat(receipts); let first = first">
-						<ng-template ngbPanelTitle>
-							<div id="new-receipt-link" *ngIf="first">
-								Add New Receipt
+					<div *ngIf="!receipts || receipts.length === 0">
+						<div class="row">
+							<div class="col-lg-5 p-4">
+								<ngb-alert type="info" dismissible="false">
+									No Receipts have been filed for this report
+									<br>
+									Add a new receipt or go back to <a href (click)="router.navigate(['/committee/'+filing.committee_id]); $event.preventDefault();">your committee page</a>
+								</ngb-alert>
 							</div>
-							<div class="row" *ngIf="!first">
-								<div class="col">{{rec.line_num}}</div>
-								<div class="col">{{rec.date_con}}</div>
-								<div class="col">{{rec.name}}, {{rec.fname}}</div>
-								<div class="col">{{rec.amount | currency:'USD':true}}</div>
+						</div>
+					</div>
+					<ng-template #lineGlossary let-c="close" let-d="dismiss">
+						<div class="modal-header">
+							<h4 class="modal-title">
+								<i class="fa fa-info-circle"></i> Transaction Lines
+							</h4>
+							<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="container-fluid">
+								<dl class="row">
+									<dt class="col-sm-2">LINE 11(a)</dt>
+									<dd class="col-sm-10">
+										Contributions (other than loans)from individuals, partnerships and other persons who are not political committees that are required to be itemized on Schedule A. For each such person who has made one or more contributions during the election cycle aggregating in excess of $200, the committee must itemize on Schedule A and provide the identification (full name, mailing address, occupation and name of employer) of the person, the date and amount of each contri-bution aggregating in excess of $200, the aggregate election cycle-to-date total and whether the contribution is for a primary general or other election.
+									</dd>
+
+									<dt class="col-sm-2">LINE 11(b)</dt>
+									<dd class="col-sm-10">
+										Contributions (other than loans)from political party committees on Line 11(b). These contributions must be itemized on Schedule A, regardless of the amount. For each contribution, provide the identification (full name and address) of  the committee, the date and amount of the contribution, the aggregate election cycle-to-date total and whether the contribution is for a primary, general or other election.
+									</dd>
+
+									<dt class="col-sm-2">LINE 11(c)</dt>
+									<dd class="col-sm-10">
+										Contributions (other than loans)from other political committees on Line 11(c). These contributions must be itemized on Schedule A, regardless of the amount. For each contribution, provide the identification (full name and address) of  the committee, the date and amount of the contribution, the aggregate election cycle-to-date total, and whether the contribution is for a primary, general or other election. Do not abbreviate committee names.
+									</dd>
+
+									<dt class="col-sm-2">LINE 12</dt>
+									<dd class="col-sm-10">
+										Total amount of  transfers from other authorized committees of the same candidate on Line 12. Loans and loan repayments received from other authorized committees of the same candidate must be included on this line and not on Line 13(b). These transfers must be itemized on Schedule A, regardless of the amount. For each transfer, provide the identification (full name and mailing address) of  the committee, the date and amount of  the transfer and the aggregate election cycle-to-date total.
+									</dd>
+
+									<dt class="col-sm-2">LINE 15</dt>
+									<dd class="col-sm-10">
+										Total amount of other receipts (including dividends and interest) on Line 15. For each person who provides any dividends, interest or other receipts aggregating in excess of $200 during the election cycle, the committee must provide on Schedule A the identification of  the person,the date and amount of  each receipt aggregating in excess of $200 and the aggregate election cycle-to-date total.
+									</dd>
+
+									<dt class="col-sm-2">LINE 16</dt>
+									<dd class="col-sm-10">
+										For both Column A and Column B add Lines 11(e), 12, 13(c), 14 and 15 to derive the figures for Line 16.
+									</dd>
+
+									<dt class="col-sm-2">LINE 18</dt>
+									<dd class="col-sm-10">
+										Total amount of transfers to other authorized committees of  the same candidate on Line18. These transfers must be itemized on Schedule B, regardless of  the amount. For each transfer, provide the full name and mailing address of the recipient committee, the date and amount and state that the purpose of the disbursement is a "transfer."
+									</dd>
+								</dl>
 							</div>
-						</ng-template>
-						<ng-template ngbPanelContent>
-							<form>
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-sm-3 col-md-2 col-lg-1 form-group">
-											<label>Line</label>
-											<div ngbDropdown>
-										    	<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{rec.line_num ? rec.line_num : 'Select Line Num'}}<i></i></button>
-										      	<div ngbDropdownMenu aria-labelledby="filing-year-dd">
-										        	<button type="button" id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="rec.line_num = lineNum.id">{{lineNum.id + ' - ' + lineNum.desc}}</button>
-										      	</div>
-										    </div>
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label for="date_con">Date</label>
-											<input id="date_con_input" name="date_con" class="form-control" value="{{rec.date_con}}" placeholder="mm/dd/yyyy">
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label>First Name</label>
-											<input id="fname_input" name="fname" value="{{rec.fname}}" class="form-control" placeholder="First Name">
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label>Last Name</label>
-											<input id="name_input" name="name" value="{{rec.name}}" class="form-control" placeholder="Last Name">
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label>Amount</label>
-											<input id="amount_input" name="amount" value="{{rec.amount}}" class="form-control" placeholder="$0.00">
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label>Memo Ind</label>
-											<input type="checkbox" class="form-control">
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label>Employer Name</label>
-											<input id="indemp-input" name="indemp" value="{{rec.indemp}}" class="form-control" placeholder="Employer Name">
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label>Occupation</label>
-											<input id="indocc-input" name="indocc" value="{{rec.indocc}}" class="form-control" placeholder="Occupation">
-										</div>
-										<div class="col-sm-8 col-md-6 col-xl-4 form-group">
-											<label>Description</label>
-											<textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label class="invisible"></label>
-											<button type="button" class="btn btn-primary form-control">
-												<i class="fa fa-save"></i> Save
-											</button>
-										</div>
-										<div class="col-sm-4 col-md-3 col-xl-2 form-group">
-											<label class="invisible"></label>
-											<button type="button" class="btn btn-danger form-control">
-												<i class="fa fa-times"></i> Delete
-											</button>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+						</div>
+					</ng-template>
+					<ng-template #dynamicGlossary let-c="close" let-d="dismiss">
+						<div class="modal-header">
+							<h4 class="modal-title">
+								<i class="fa fa-info-circle"></i> {{glossaryTitle}}
+							</h4>
+							<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p *ngFor="let body of glossaryBody">{{body}}</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+						</div>
+					</ng-template>
+					<ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+						<ngb-panel>
+							<ng-template ngbPanelTitle>
+								<div id="new-receipt-link">
+									Add New Receipt
+								</div>
+							</ng-template>
+							<ng-template ngbPanelContent>
+								<form #new="ngForm">
+									<div class="container-fluid">
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-xl-1 form-group">
+												<label class="form-control-label">
+													Line <i class="fa fa-info-circle clickable" (click)="modalService.open(lineGlossary, {size: 'lg'})"></i>
+													<span class="text-danger">*</span>
+												</label>
+												<div ngbDropdown>
+													<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{newTranForm.line_num ? newTranForm.line_num : '##'}}<i></i></button>
+													<div ngbDropdownMenu aria-labelledby="filing-year-dd">
+														<button type="button" id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="newTranForm.line_num = lineNum.id">{{lineNum.id + ' - ' + lineNum.desc}}</button>
+													</div>
+												</div>
+												<input type="text" name="line" [(ngModel)]="newTranForm.line_num" required class="form-control invisible" style="position: absolute;" />
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label for="date_con">
+													Date <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Transaction Date',['The date of receipt for reporting purposes is the date the committee (or its agent) actually obtains possession of the contribution. See 11 CFR 102.8(a).'])"></i>
+													<span class="text-danger">*</span>
+												</label>
+												<input id="date_con_input" name="date_con" type="date" class="form-control" [(ngModel)]="newTranForm.date_con" placeholder="mm/dd/yyyy" required>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>
+													First Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Name',['Name of the contributor(individuals/Organizations/Political Committees)'])"></i>
+													<span class="text-danger">*</span>
+												</label>
+												<input type="text" id="fname_input" name="fname" [(ngModel)]="newTranForm.fname" class="form-control" placeholder="First Name" required>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>
+													Last Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Name',['Name of the contributor(individuals/Organizations/Political Committees)'])"></i>
+													<span class="text-danger">*</span>
+												</label>
+												<input type="text" id="name_input" name="name" [(ngModel)]="newTranForm.name" class="form-control" placeholder="Last Name" required>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>
+													Amount <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Amount',['Amount Received from the  contributor'])"></i>
+													<span class="text-danger">*</span>
+												</label>
+												<input type="number" id="amount_input" name="amount" [(ngModel)]="newTranForm.amount" class="form-control" placeholder="0.00" required>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group text-center">
+												<label>
+													Memo Y/N <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Memo',['Check  the  \'Memo\' box  for  informational entries that do not affect the committee\'s cash on hand (e.g., contributor attribution, conduit information, ultimate payee information, etc.)'])"></i>
+												</label>
+												<input type="checkbox" class="form-control">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>
+													Employer Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Employer Name',['The organization or person by whom an individual is employed, and not the name of his or her supervisor. Use \'self-employed\', if applicable.','The name of employer is only required to be provided for receipts from individuals.'])"></i>
+												</label>
+												<input type="text" id="indemp-input" name="indemp" [(ngModel)]="newTranForm.indemp" class="form-control" placeholder="Employer Name">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>
+													Occupation <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Occupation',['The principal job title or position of an individual.','The occupation is only required to be provided for receipts from individuals.'])"></i>
+												</label>
+												<input type="text" id="indocc-input" name="indocc" [(ngModel)]="newTranForm.indocc" class="form-control" placeholder="Occupation">
+											</div>
+											<div class="col-sm-8 col-md-6 col-xl-4 form-group">
+												<label>
+													Description <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Description',['Description of the transaction'])"></i>
+												</label>
+												<textarea class="form-control" name="transdesc" [(ngModel)]="newTranForm.transdesc" rows="3"></textarea>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label class="invisible"></label>
+												<button type="button" class="btn btn-primary form-control" (click)="saveReceipt(newTranForm)" [disabled]="new.invalid">
+													<span *ngIf="!newTranForm.$isSaving"><i class="fa fa-save"></i> Save</span>
+													<span *ngIf="newTranForm.$isSaving"><i class="fa fa-spinner fa-pulse"></i> Saving...</span>
+												</button>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label class="invisible"></label>
+												<button type="button" class="btn btn-secondary form-control" (click)="resetTranForm()">
+													<span *ngIf="!newTranForm.$isSaving"><i class="fa fa-times"></i> Clear</span>
+												</button>
+											</div>
 										</div>
 									</div>
+								</form>
+							</ng-template>
+						</ngb-panel>
+						<ngb-panel *ngFor="let rec of receipts">
+							<ng-template ngbPanelTitle>
+
+								<div class="row">
+									<div class="col">{{rec.line_num}}</div>
+									<div class="col">{{rec.date_con | date: 'MM/dd/yyyy'}}</div>
+									<div class="col">{{rec.name}}, {{rec.fname}}</div>
+									<div class="col">{{rec.amount | currency:'USD':true}}</div>
 								</div>
-							</form>
-						</ng-template>
-					</ngb-panel>
-				</ngb-accordion>
-			</ng-template>
-		</ngb-tab>
+							</ng-template>
+							<ng-template ngbPanelContent>
+								<form #existing="ngForm">
+									<div class="container-fluid">
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-lg-1 form-group">
+												<label>
+													Line <i class="fa fa-info-circle clickable" (click)="modalService.open(lineGlossary, {size: 'lg'})"></i>
+													<span class="text-danger">*</span>
+												</label>
+												<div ngbDropdown>
+													<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{rec.line_num ? rec.line_num : '##'}}<i></i></button>
+													<div ngbDropdownMenu aria-labelledby="filing-year-dd">
+														<button type="button" id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="rec.line_num = lineNum.id">{{lineNum.id + ' - ' + lineNum.desc}}</button>
+													</div>
+												</div>
+												<input type="text" name="line" [(ngModel)]="rec.line_num" required class="invisible" style="position: absolute;" />
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label for="date_con">
+													Date <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Transaction Date',['The date of receipt for reporting purposes is the date the committee (or its agent) actually obtains possession of the contribution. See 11 CFR 102.8(a).'])"></i>
+													<span class="text-danger">*</span>
+												</label>
+												<input id="date_con_input" name="date_con" type="date" class="form-control" [(ngModel)]="rec.date_con" placeholder="mm/dd/yyyy" required>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>
+													First Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Name',['Name of the contributor(individuals/Organizations/Political Committees)'])"></i>
+													<span class="text-danger">*</span>
+												</label>
+												<input type="text" id="fname_input" name="fname" [(ngModel)]="rec.fname" class="form-control" placeholder="First Name" required>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>
+													Last Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Name',['Name of the contributor(individuals/Organizations/Political Committees)'])"></i>
+													<span class="text-danger">*</span>
+												</label>
+												<input type="text" id="name_input" name="name" [(ngModel)]="rec.name" class="form-control" placeholder="Last Name" required>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>
+													Amount <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Amount',['Amount Received from the  contributor'])"></i>
+													<span class="text-danger">*</span>
+												</label>
+												<input type="number" id="amount_input" name="amount" [(ngModel)]="rec.amount" class="form-control" placeholder="$0.00">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group text-center">
+												<label>
+													Memo Y/N <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Memo',['Check  the  \'Memo\' box  for  informational entries that do not affect the committee\'s cash on hand (e.g., contributor attribution, conduit information, ultimate payee information, etc.)'])"></i>
+												</label>
+												<input type="checkbox" class="form-control">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>
+													Employer Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Employer Name',['The organization or person by whom an individual is employed, and not the name of his or her supervisor. Use \'self-employed\', if applicable.','The name of employer is only required to be provided for receipts from individuals.'])"></i>
+												</label>
+												<input id="indemp-input" name="indemp" [(ngModel)]="rec.indemp" class="form-control" placeholder="Employer Name">
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label>
+													Occupation <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Occupation',['The principal job title or position of an individual.','The occupation is only required to be provided for receipts from individuals.'])"></i>
+												</label>
+												<input id="indocc-input" name="indocc" [(ngModel)]="rec.indocc" class="form-control" placeholder="Occupation">
+											</div>
+											<div class="col-sm-8 col-md-6 col-xl-4 form-group">
+												<label>
+													Description <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Description',['Description of the transaction'])"></i>
+												</label>
+												<textarea class="form-control" name="transdesc" [(ngModel)]="rec.transdesc" rows="3"></textarea>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label class="invisible"></label>
+												<button type="button" class="btn btn-primary form-control" (click)="saveReceipt(rec)" [disabled]="existing.invalid">
+													<span *ngIf="!rec.$isSaving"><i class="fa fa-save"></i> Save</span>
+													<span *ngIf="rec.$isSaving"><i class="fa fa-spinner fa-pulse"></i> Saving...</span>
+												</button>
+											</div>
+											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
+												<label class="invisible"></label>
+												<button type="button" class="btn btn-danger form-control" (click)="deleteReceipt(rec)">
+													<span *ngIf="!rec.$isDeleting"><i class="fa fa-times"></i> Delete</span>
+													<span *ngIf="rec.$isDeleting"><i class="fa fa-spinner fa-pulse"></i> Deleting...</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</ng-template>
+						</ngb-panel>
+					</ngb-accordion>
+				</ng-template>
+			</ngb-tab>
 
-		<ngb-tab [disabled]="true">
-			<ng-template ngbTabTitle>
-			      <div title="Not Implemented">Disbursements</div>
-			</ng-template>
-			<ng-template ngbTabContent></ng-template>
-		</ngb-tab>
+			<ngb-tab [disabled]="true">
+				<ng-template ngbTabTitle>
+					  <div title="Not Implemented">Disbursements</div>
+				</ng-template>
+				<ng-template ngbTabContent></ng-template>
+			</ngb-tab>
 
-		<ngb-tab [disabled]="true">
-			<ng-template ngbTabTitle>
-			      <div title="Not Implemented">Loans</div>
-			</ng-template>
-			<ng-template ngbTabContent></ng-template>
-		</ngb-tab>
+			<ngb-tab [disabled]="true">
+				<ng-template ngbTabTitle>
+					  <div title="Not Implemented">Loans</div>
+				</ng-template>
+				<ng-template ngbTabContent></ng-template>
+			</ngb-tab>
 
-		<ngb-tab [disabled]="true">
-			<ng-template ngbTabTitle>
-			      <div title="Not Implemented">Debts</div>
-			</ng-template>
-			<ng-template ngbTabContent></ng-template>
-		</ngb-tab>
-	</ngb-tabset>
+			<ngb-tab [disabled]="true">
+				<ng-template ngbTabTitle>
+					  <div title="Not Implemented">Debts</div>
+				</ng-template>
+				<ng-template ngbTabContent></ng-template>
+			</ngb-tab>
+		</ngb-tabset>
+	</div>
 </div>

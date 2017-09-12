@@ -20,7 +20,7 @@ npm install
 
 ###Demo Project
 
-This demo tests eBay's Accessibility Pattern examples running locally at http://localhost:4000. You can follow along with the project by cloning the repository and setting it up on your local machine: https://github.com/ianmcburnie/mindpatterns/ 
+This demo tests ezamendment's Accessibility Pattern examples running locally at http://localhost:4000. You can follow along with the project by cloning the repository and setting it up on your local machine: https://github.com/ianmcburnie/mindpatterns/ 
 
 ##Usage: Run tests
 

@@ -18,8 +18,7 @@ import javax.persistence.EntityManagerFactory;
  */
 
 @Configuration
-@ComponentScan({"com.salientcrgt.ezamendment.service", "com.salientcrgt.ezamendment.dao", 
-		 "com.salientcrgt.ezamendment.init"})
+@ComponentScan({"com.salientcrgt.ezamendment.service", "com.salientcrgt.ezamendment.dao"})
 public class RootContextConfig {
 
     @Bean(name = "transactionManager")
