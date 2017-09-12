@@ -15,7 +15,7 @@ describe('ezamendment demo', function() {
             .forBrowser('chrome')
             .build();
 
-        driver.get('http://stage-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com')
+        driver.get('http://stage-fecportal-fec-ef-app.b9ad.pro-us-east-1.openshiftapps.com/schedules/1178702/schedule_a')
             .then(function () {
                 done();
             });
@@ -29,7 +29,7 @@ describe('ezamendment demo', function() {
     });
 
 
-    it('should analyze the Home Page', function (done) {
+    it('should analyze the Schedules Page', function (done) {
 
 
         AxeBuilder(driver)
@@ -37,7 +37,7 @@ describe('ezamendment demo', function() {
                 console.log('Accessibility Violations: ', results.violations.length);
                 if (results.violations.length > 0) {
                     //console.log(util.inspect(results.violations, true, null));
-                    var stream = fs.createWriteStream("reports/testHome.html");
+                    var stream = fs.createWriteStream("reports/testSchedules.html");
                     stream.once('open', function(fd) {
                         for (i=0; i<results.violations.length; i++) {
                             var violation_num = i+1;
