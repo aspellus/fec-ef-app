@@ -1,6 +1,9 @@
 package com.salientcrgt.ezamendment.test;
 
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -8,12 +11,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.salientcrgt.ezamendment.dto.ScheduleADTO;
+import com.salientcrgt.ezamendment.model.ScheduleA;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -67,26 +73,13 @@ public class AmendmentMockTest {
 
     }
     
-    @Test @Ignore
+    @Test
     public void shouldCreateReceipt() throws Exception {
+        when(service.createScheduleA(anyLong(), any(ScheduleADTO.class))).thenReturn(new ScheduleA());
         this.mockMvc
-                .perform(post("/schedules/1178702/schedule_a/?")
-                		.param("comid", "C00577759")
-                    	.param("line_num", "11AI")
-                    	.param("tran_id", "")
-                    	.param("name", "Gardner")
-                    	.param("fname", "Drew")
-                    	.param("str1", "8255 Greensboro Dr")
-                    	.param("str2", "Suite 500")
-                    	.param("city", "Tysons")
-                    	.param("state", "VA")
-                    	.param("zip", "22102")
-                    	.param("date_con", "10/13/2016")
-                    	.param("amount", "2000")
-                    	.param("transdesc", "Testing Creating a Receipt")
-                    	.param("indemp", "SalientCRGT")
-                    	.param("indocc", "")
-                    	.param("memo_code", "X"))
+                .perform(post("/schedules/1178702/schedule_a/")
+                .content("{\"comid\": \"C00577759\"}")
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
                 .andExpect(status().isOk());
 
