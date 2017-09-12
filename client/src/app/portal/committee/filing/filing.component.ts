@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { FilingService } from "./filing.service";
 
 class TranForm {
@@ -45,7 +47,7 @@ export class FilingComponent implements OnInit {
   committee: any;
   newTranForm: TranForm;
   
-  constructor(private router: Router, private route: ActivatedRoute, private filingService: FilingService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private filingService: FilingService, private modalService: NgbModal) {}
 
   ngOnInit() {
 	  
@@ -138,5 +140,9 @@ export class FilingComponent implements OnInit {
 		});
 		this.receipts.splice(index, 1);
   	});
+  }
+
+  open(content) {
+	this.modalService.open(content);
   }
 }

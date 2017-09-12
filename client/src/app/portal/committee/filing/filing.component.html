@@ -98,6 +98,59 @@
 							</div>
 						</div>
 					</div>
+					<ng-template #lineGlossary let-c="close" let-d="dismiss">
+						<div class="modal-header">
+							<h4 class="modal-title">
+								<i class="fa fa-info-circle"></i> Transaction Lines
+							</h4>
+							<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="container-fluid">
+								<dl class="row">
+									<dt class="col-sm-2">LINE 11(a)</dt>
+									<dd class="col-sm-10">
+										Contributions (other than loans)from individuals, partnerships and other persons who are not political committees that are required to be itemized on Schedule A. For each such person who has made one or more contributions during the election cycle aggregating in excess of $200, the committee must itemize on Schedule A and provide the identification (full name, mailing address, occupation and name of employer) of the person, the date and amount of each contri-bution aggregating in excess of $200, the aggregate election cycle-to-date total and whether the contribution is for a primary general or other election.
+									</dd>
+
+									<dt class="col-sm-2">LINE 11(b)</dt>
+									<dd class="col-sm-10">
+										Contributions (other than loans)from political party committees on Line 11(b). These contributions must be itemized on Schedule A, regardless of the amount. For each contribution, provide the identification (full name and address) of  the committee, the date and amount of the contribution, the aggregate election cycle-to-date total and whether the contribution is for a primary, general or other election.
+									</dd>
+
+									<dt class="col-sm-2">LINE 11(c)</dt>
+									<dd class="col-sm-10">
+										Contributions (other than loans)from other political committees on Line 11(c). These contributions must be itemized on Schedule A, regardless of the amount. For each contribution, provide the identification (full name and address) of  the committee, the date and amount of the contribution, the aggregate election cycle-to-date total, and whether the contribution is for a primary, general or other election. Do not abbreviate committee names.
+									</dd>
+
+									<dt class="col-sm-2">LINE 12</dt>
+									<dd class="col-sm-10">
+										Total amount of  transfers from other authorized committees of the same candidate on Line 12. Loans and loan repayments received from other authorized committees of the same candidate must be included on this line and not on Line 13(b). These transfers must be itemized on Schedule A, regardless of the amount. For each transfer, provide the identification (full name and mailing address) of  the committee, the date and amount of  the transfer and the aggregate election cycle-to-date total.
+									</dd>
+
+									<dt class="col-sm-2">LINE 15</dt>
+									<dd class="col-sm-10">
+										Total amount of other receipts (including dividends and interest) on Line 15. For each person who provides any dividends, interest or other receipts aggregating in excess of $200 during the election cycle, the committee must provide on Schedule A the identification of  the person,the date and amount of  each receipt aggregating in excess of $200 and the aggregate election cycle-to-date total.
+									</dd>
+
+									<dt class="col-sm-2">LINE 16</dt>
+									<dd class="col-sm-10">
+										For both Column A and Column B add Lines 11(e), 12, 13(c), 14 and 15 to derive the figures for Line 16.
+									</dd>
+
+									<dt class="col-sm-2">LINE 18</dt>
+									<dd class="col-sm-10">
+										Total amount of transfers to other authorized committees of  the same candidate on Line18. These transfers must be itemized on Schedule B, regardless of  the amount. For each transfer, provide the full name and mailing address of the recipient committee, the date and amount and state that the purpose of the disbursement is a "transfer."
+									</dd>
+								</dl>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+						</div>
+					</ng-template>
 					<ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
 						<ngb-panel>
 							<ng-template ngbPanelTitle>
@@ -109,10 +162,12 @@
 								<form>
 									<div class="container-fluid">
 										<div class="row">
-											<div class="col-sm-3 col-md-2 col-lg-1 form-group">
-												<label>Line</label>
+											<div class="col-sm-3 col-md-2 col-xl-1 form-group">
+												<label>
+													Line <i class="fa fa-info-circle clickable" (click)="modalService.open(lineGlossary, {size: 'lg'})"></i>
+												</label>
 												<div ngbDropdown>
-													<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>##<i></i></button>
+													<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{newTranForm.line_num ? newTranForm.line_num : '##'}}<i></i></button>
 													<div ngbDropdownMenu aria-labelledby="filing-year-dd">
 														<button type="button" id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="newTranForm.line_num = lineNum.id">{{lineNum.id + ' - ' + lineNum.desc}}</button>
 													</div>
@@ -164,7 +219,7 @@
 						</ngb-panel>
 						<ngb-panel *ngFor="let rec of receipts">
 							<ng-template ngbPanelTitle>
-								
+
 								<div class="row">
 									<div class="col">{{rec.line_num}}</div>
 									<div class="col">{{rec.date_con | date: 'MM/dd/yyyy'}}</div>
