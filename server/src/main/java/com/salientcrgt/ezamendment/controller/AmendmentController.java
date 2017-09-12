@@ -1,17 +1,9 @@
 package com.salientcrgt.ezamendment.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,35 +61,7 @@ public class AmendmentController {
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/committee/{committee_id}", produces = "application/json")
 	public JSONObject getCommitteeDetails(@PathVariable String committee_id) {
-		JSONObject jsonObject = null;
-		HttpURLConnection conn = null;
-		try {
-			// Establishing Connection to FEC API to get Committee Details.
-			StringBuilder apiURL = new StringBuilder();
-			apiURL.append("https://api.open.fec.gov/v1/committee/")
-				.append(committee_id).
-				append("/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y");
-			URL url = new URL(apiURL.toString());
-			conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Accept", "application/json");
-
-			// Building JSONObject from API call
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-				(conn.getInputStream())));
-			jsonObject = (JSONObject) new JSONParser().parse(reader);
-		} catch (MalformedURLException e) {
-			logger.error(e.getMessage());
-		} catch (IOException e) {
-			logger.error(e.getMessage());
-		} catch (ParseException e) {
-			logger.error(e.getMessage());
-		} finally {
-			// close connection
-			if(conn != null)
-				conn.disconnect();
-		}
-		return jsonObject;
+		return scheduleAService.getCommitteeDetails(committee_id);
 	}
 	
 	/**
@@ -110,41 +74,7 @@ public class AmendmentController {
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/committee/{committee_id}/filings", produces = "application/json")
 	public JSONObject getCommitteeReportsByYearAndFormType(@PathVariable String committee_id, @RequestParam String report_year, @RequestParam(value="", required=false) String form_type) {
-		JSONObject jsonObject = null;
-		HttpURLConnection conn = null;
-		try {
-			
-			// Establishing Connection to FEC API to get Committee Details.
-			StringBuilder apiURL = new StringBuilder();
-			apiURL.append("https://api.open.fec.gov/v1/committee/")
-				.append(committee_id).
-				append("/filings/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y&report_year=")
-				.append(report_year);
-			if(form_type != null && !form_type.equals("")) {
-				apiURL.append("&form_type=")
-				.append(form_type);
-			}
-			URL url = new URL(apiURL.toString());
-			conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Accept", "application/json");
-
-			// Building JSONObject from API call
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-				(conn.getInputStream())));
-			jsonObject = (JSONObject) new JSONParser().parse(reader);
-		} catch (MalformedURLException e) {
-			logger.error(e.getMessage());
-		} catch (IOException e) {
-			logger.error(e.getMessage());
-		} catch (ParseException e) {
-			logger.error(e.getMessage());
-		} finally {
-			// close connection
-			if(conn != null)
-				conn.disconnect();
-		}
-		return jsonObject;
+		return scheduleAService.getCommitteeReportsByYearAndFormType(committee_id, report_year, form_type);
 	}
 	
 	/**
