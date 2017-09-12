@@ -1,9 +1,19 @@
 package com.salientcrgt.ezamendment.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +49,82 @@ public class ScheduleAService {
     
     /**
     *
+    * FEC API call to pull committee details
+    *
+    */
+    public JSONObject getCommitteeDetails(String committee_id) {
+		JSONObject jsonObject = null;
+		HttpURLConnection conn = null;
+		try {
+			// Establishing Connection to FEC API to get Committee Details.
+			StringBuilder apiURL = new StringBuilder();
+			apiURL.append("https://api.open.fec.gov/v1/committee/")
+				.append(committee_id).
+				append("/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y");
+			URL url = new URL(apiURL.toString());
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", "application/json");
+
+			// Building JSONObject from API call
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+				(conn.getInputStream())));
+			jsonObject = (JSONObject) new JSONParser().parse(reader);
+		} catch (MalformedURLException e) {
+			logger.error(e.getMessage());
+		} catch (IOException | ParseException e) {
+			logger.error(e.getMessage());
+		} finally {
+			// close connection
+			if(conn != null)
+				conn.disconnect();
+		}
+		return jsonObject;
+	}
+    
+    /**
+    *
+    * FEC API call to pull Reports by Filing Year and Form Type 
+    *
+    */
+    public JSONObject getCommitteeReportsByYearAndFormType(String committee_id, String report_year, String form_type) {
+		JSONObject jsonObject = null;
+		HttpURLConnection conn = null;
+		try {
+			
+			// Establishing Connection to FEC API to get Committee Details.
+			StringBuilder apiURL = new StringBuilder();
+			apiURL.append("https://api.open.fec.gov/v1/committee/")
+				.append(committee_id).
+				append("/filings/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y&report_year=")
+				.append(report_year);
+			if(form_type != null && !form_type.equals("")) {
+				apiURL.append("&form_type=")
+				.append(form_type);
+			}
+			URL url = new URL(apiURL.toString());
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", "application/json");
+
+			// Building JSONObject from API call
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+				(conn.getInputStream())));
+			jsonObject = (JSONObject) new JSONParser().parse(reader);
+		} catch (MalformedURLException e) {
+			logger.error(e.getMessage());
+		} catch (IOException | ParseException e) {
+			logger.error(e.getMessage());
+		} finally {
+			// close connection
+			if(conn != null)
+				conn.disconnect();
+		}
+		return jsonObject;
+	}
+    
+    /**
+    *
     * merges ScheduleA in the database
     *
     */
@@ -61,7 +147,7 @@ public class ScheduleAService {
    */
    @Transactional
    public ScheduleA createScheduleA(long report_id, ScheduleADTO scheduleADTO) {
-	   if(scheduleADTO.getTran_id() == null || scheduleADTO.getTran_id().trim().equals("")){
+	   if(StringUtils.isEmpty(scheduleADTO.getTran_id())){
 		   long randomNumber=0L;
 		   try {
 			   randomNumber = SecureRandom.getInstanceStrong().nextLong();
@@ -71,7 +157,7 @@ public class ScheduleAService {
 		   	scheduleADTO.setTran_id("SA"+randomNumber);
 	   }
 	   	
-	   	ScheduleA scheduleA = new ScheduleA(scheduleADTO.getRepid(), scheduleADTO.getLine_num(), 0L, scheduleADTO.getComid(), scheduleADTO.getTran_id(), "", 
+	   	ScheduleA scheduleA = new ScheduleA(report_id, scheduleADTO.getLine_num(), 0L, scheduleADTO.getComid(), scheduleADTO.getTran_id(), "", 
  												scheduleADTO.getName(), scheduleADTO.getFname(), scheduleADTO.getMname(),scheduleADTO.getPrefix(), 
  												scheduleADTO.getSuffix(), scheduleADTO.getStr1(), scheduleADTO.getStr2(), scheduleADTO.getCity(), scheduleADTO.getState(), 
  												scheduleADTO.getZip(), "", "", scheduleADTO.getDate_con(), scheduleADTO.getAmount(), scheduleADTO.getYtd(), 
