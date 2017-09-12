@@ -175,43 +175,49 @@
 								</div>
 							</ng-template>
 							<ng-template ngbPanelContent>
-								<form>
+								<form #new="ngForm">
 									<div class="container-fluid">
 										<div class="row">
 											<div class="col-sm-3 col-md-2 col-xl-1 form-group">
 												<label>
 													Line <i class="fa fa-info-circle clickable" (click)="modalService.open(lineGlossary, {size: 'lg'})"></i>
+													<span class="text-danger">*</span>
 												</label>
 												<div ngbDropdown>
 													<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{newTranForm.line_num ? newTranForm.line_num : '##'}}<i></i></button>
 													<div ngbDropdownMenu aria-labelledby="filing-year-dd">
 														<button type="button" id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="newTranForm.line_num = lineNum.id">{{lineNum.id + ' - ' + lineNum.desc}}</button>
 													</div>
+													<input type="text" name="line" [(ngModel)]="newTranForm.line_num" required class="invisible" style="position: absolute;" />
 												</div>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label for="date_con">
 													Date <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Transaction Date',['The date of receipt for reporting purposes is the date the committee (or its agent) actually obtains possession of the contribution. See 11 CFR 102.8(a).'])"></i>
+													<span class="text-danger">*</span>
 												</label>
-												<input id="date_con_input" name="date_con" type="date" class="form-control" [(ngModel)]="newTranForm.date_con" placeholder="mm/dd/yyyy">
+												<input id="date_con_input" name="date_con" type="date" class="form-control" [(ngModel)]="newTranForm.date_con" placeholder="mm/dd/yyyy" required>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label>
 													First Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Name',['Name of the contributor(individuals/Organizations/Political Committees)'])"></i>
+													<span class="text-danger">*</span>
 												</label>
-												<input id="fname_input" name="fname" [(ngModel)]="newTranForm.fname" class="form-control" placeholder="First Name">
+												<input type="text" id="fname_input" name="fname" [(ngModel)]="newTranForm.fname" class="form-control" placeholder="First Name" required>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label>
 													Last Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Name',['Name of the contributor(individuals/Organizations/Political Committees)'])"></i>
+													<span class="text-danger">*</span>
 												</label>
-												<input id="name_input" name="name" [(ngModel)]="newTranForm.name" class="form-control" placeholder="Last Name">
+												<input type="text" id="name_input" name="name" [(ngModel)]="newTranForm.name" class="form-control" placeholder="Last Name" required>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label>
 													Amount <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Amount',['Amount Received from the  contributor'])"></i>
+													<span class="text-danger">*</span>
 												</label>
-												<input id="amount_input" name="amount" [(ngModel)]="newTranForm.amount" class="form-control" placeholder="$0.00">
+												<input type="number" id="amount_input" name="amount" [(ngModel)]="newTranForm.amount" class="form-control" placeholder="0.00" required>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label>
@@ -223,13 +229,13 @@
 												<label>
 													Employer Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Employer Name',['The organization or person by whom an individual is employed, and not the name of his or her supervisor. Use \'self-employed\', if applicable.','The name of employer is only required to be provided for receipts from individuals.'])"></i>
 												</label>
-												<input id="indemp-input" name="indemp" [(ngModel)]="newTranForm.indemp" class="form-control" placeholder="Employer Name">
+												<input type="text" id="indemp-input" name="indemp" [(ngModel)]="newTranForm.indemp" class="form-control" placeholder="Employer Name">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label>
 													Occupation <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Occupation',['The principal job title or position of an individual.','The occupation is only required to be provided for receipts from individuals.'])"></i>
 												</label>
-												<input id="indocc-input" name="indocc" [(ngModel)]="newTranForm.indocc" class="form-control" placeholder="Occupation">
+												<input type="text" id="indocc-input" name="indocc" [(ngModel)]="newTranForm.indocc" class="form-control" placeholder="Occupation">
 											</div>
 											<div class="col-sm-8 col-md-6 col-xl-4 form-group">
 												<label>
@@ -239,7 +245,7 @@
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label class="invisible"></label>
-												<button type="button" class="btn btn-primary form-control" (click)="saveReceipt(newTranForm)">
+												<button type="button" class="btn btn-primary form-control" (click)="saveReceipt(newTranForm)" [disabled]="new.invalid">
 													<span *ngIf="!newTranForm.$isSaving"><i class="fa fa-save"></i> Save</span>
 													<span *ngIf="newTranForm.$isSaving"><i class="fa fa-spinner fa-pulse"></i> Saving...</span>
 												</button>
@@ -260,12 +266,13 @@
 								</div>
 							</ng-template>
 							<ng-template ngbPanelContent>
-								<form>
+								<form #existing="ngForm">
 									<div class="container-fluid">
 										<div class="row">
 											<div class="col-sm-3 col-md-2 col-lg-1 form-group">
 												<label>
 													Line <i class="fa fa-info-circle clickable" (click)="modalService.open(lineGlossary, {size: 'lg'})"></i>
+													<span class="text-danger">*</span>
 												</label>
 												<div ngbDropdown>
 													<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{rec.line_num ? rec.line_num : '##'}}<i></i></button>
@@ -273,30 +280,35 @@
 														<button type="button" id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="rec.line_num = lineNum.id">{{lineNum.id + ' - ' + lineNum.desc}}</button>
 													</div>
 												</div>
+												<input type="text" name="line" [(ngModel)]="rec.line_num" required class="invisible" style="position: absolute;" />
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label for="date_con">
 													Date <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Transaction Date',['The date of receipt for reporting purposes is the date the committee (or its agent) actually obtains possession of the contribution. See 11 CFR 102.8(a).'])"></i>
+													<span class="text-danger">*</span>
 												</label>
-												<input id="date_con_input" name="date_con" type="date" class="form-control" [(ngModel)]="rec.date_con" placeholder="mm/dd/yyyy">
+												<input id="date_con_input" name="date_con" type="date" class="form-control" [(ngModel)]="rec.date_con" placeholder="mm/dd/yyyy" required>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label>
 													First Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Name',['Name of the contributor(individuals/Organizations/Political Committees)'])"></i>
+													<span class="text-danger">*</span>
 												</label>
-												<input id="fname_input" name="fname" [(ngModel)]="rec.fname" class="form-control" placeholder="First Name">
+												<input type="text" id="fname_input" name="fname" [(ngModel)]="rec.fname" class="form-control" placeholder="First Name" required>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label>
 													Last Name <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Name',['Name of the contributor(individuals/Organizations/Political Committees)'])"></i>
+													<span class="text-danger">*</span>
 												</label>
-												<input id="name_input" name="name" [(ngModel)]="rec.name" class="form-control" placeholder="Last Name">
+												<input type="text" id="name_input" name="name" [(ngModel)]="rec.name" class="form-control" placeholder="Last Name" required>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label>
 													Amount <i class="fa fa-info-circle clickable" (click)="openGlossary(dynamicGlossary,'Amount',['Amount Received from the  contributor'])"></i>
+													<span class="text-danger">*</span>
 												</label>
-												<input id="amount_input" name="amount" [(ngModel)]="rec.amount" class="form-control" placeholder="$0.00">
+												<input type="number" id="amount_input" name="amount" [(ngModel)]="rec.amount" class="form-control" placeholder="$0.00">
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label>
@@ -331,7 +343,7 @@
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label class="invisible"></label>
-												<button type="button" class="btn btn-danger form-control" (click)="deleteReceipt(rec)">
+												<button type="button" class="btn btn-danger form-control" (click)="deleteReceipt(rec)" [disabled]="new.invalid">
 													<span *ngIf="!rec.$isDeleting"><i class="fa fa-times"></i> Delete</span>
 													<span *ngIf="rec.$isDeleting"><i class="fa fa-spinner fa-pulse"></i> Deleting...</span>
 												</button>
