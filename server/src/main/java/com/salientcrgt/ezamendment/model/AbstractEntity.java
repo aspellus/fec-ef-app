@@ -77,9 +77,7 @@ public class AbstractEntity {
 
         AbstractEntity that = (AbstractEntity) o;
 
-        if (getUuid() != null ? !getUuid().equals(that.getUuid()) : that.getUuid() != null) return false;
-
-        return true;
+        return getUuid().equals(that.getUuid());
     }
 
     @Override
