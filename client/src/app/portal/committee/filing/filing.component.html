@@ -179,7 +179,7 @@
 									<div class="container-fluid">
 										<div class="row">
 											<div class="col-sm-3 col-md-2 col-xl-1 form-group">
-												<label>
+												<label class="form-control-label">
 													Line <i class="fa fa-info-circle clickable" (click)="modalService.open(lineGlossary, {size: 'lg'})"></i>
 													<span class="text-danger">*</span>
 												</label>
@@ -188,8 +188,9 @@
 													<div ngbDropdownMenu aria-labelledby="filing-year-dd">
 														<button type="button" id="line-num-ddi-{{i}}" *ngFor="let lineNum of lineNums; let i = index" class="dropdown-item" (click)="newTranForm.line_num = lineNum.id">{{lineNum.id + ' - ' + lineNum.desc}}</button>
 													</div>
-													<input type="text" name="line" [(ngModel)]="newTranForm.line_num" required class="invisible" style="position: absolute;" />
 												</div>
+												<input type="text" name="line" [(ngModel)]="newTranForm.line_num" required class="form-control invisible" style="position: absolute;" />
+												<div class="form-control-feedback">here</div>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label for="date_con">
@@ -336,14 +337,14 @@
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label class="invisible"></label>
-												<button type="button" class="btn btn-primary form-control" (click)="saveReceipt(rec)">
+												<button type="button" class="btn btn-primary form-control" (click)="saveReceipt(rec)" [disabled]="existing.invalid">
 													<span *ngIf="!rec.$isSaving"><i class="fa fa-save"></i> Save</span>
 													<span *ngIf="rec.$isSaving"><i class="fa fa-spinner fa-pulse"></i> Saving...</span>
 												</button>
 											</div>
 											<div class="col-sm-4 col-md-3 col-xl-2 form-group">
 												<label class="invisible"></label>
-												<button type="button" class="btn btn-danger form-control" (click)="deleteReceipt(rec)" [disabled]="new.invalid">
+												<button type="button" class="btn btn-danger form-control" (click)="deleteReceipt(rec)">
 													<span *ngIf="!rec.$isDeleting"><i class="fa fa-times"></i> Delete</span>
 													<span *ngIf="rec.$isDeleting"><i class="fa fa-spinner fa-pulse"></i> Deleting...</span>
 												</button>
