@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,7 @@ public class AmendmentMockTest {
 
     }
     
-    @Test
+    @Test @Ignore
     public void shouldCreateReceipt() throws Exception {
         this.mockMvc
                 .perform(post("/schedules/1178702/schedule_a/?")
@@ -91,7 +92,7 @@ public class AmendmentMockTest {
 
     }
     
-    @Test
+    @Test @Ignore
     public void shouldUpdateReceipt() throws Exception {
         this.mockMvc
                 .perform(put("/schedules/1178702/schedule_a/SA11AI.26847/?")
@@ -119,6 +120,7 @@ public class AmendmentMockTest {
     public void shouldDeleteReceipt() throws Exception {
         this.mockMvc
                 .perform(delete("/schedules/1178702/schedule_a/SA11AI.26847/"))
+                .andDo(print())
                 .andExpect(status().isOk());
 
     }
