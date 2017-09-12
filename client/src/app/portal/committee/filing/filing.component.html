@@ -232,7 +232,9 @@
 									<div class="container-fluid">
 										<div class="row">
 											<div class="col-sm-3 col-md-2 col-lg-1 form-group">
-												<label>Line</label>
+												<label>
+													Line <i class="fa fa-info-circle clickable" (click)="modalService.open(lineGlossary, {size: 'lg'})"></i>
+												</label>
 												<div ngbDropdown>
 													<button type="button" id="line-num-dd" class="btn btn-light btn-sm" ngbDropdownToggle>{{rec.line_num ? rec.line_num : '##'}}<i></i></button>
 													<div ngbDropdownMenu aria-labelledby="filing-year-dd">
