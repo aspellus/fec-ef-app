@@ -52,7 +52,7 @@ public class Portalpage extends Page {
 		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
 	}
 
-	public List<String> getCommittees() {
+	public List<String> getCommittees() throws Exception {
 
 		waitForAngular();
 
@@ -60,7 +60,8 @@ public class Portalpage extends Page {
 
 		WebElement committeePanel = driver.findElement(By.id("committee-select-group"));
 
-		WebElement committeeButton = committeePanel.findElement(By.tagName("button"));
+		WebElement committeeButton = wait
+				.until(ExpectedConditions.elementToBeClickable(committeePanel.findElement(By.tagName("button"))));
 
 		if (!committeesVisible) {
 			System.out.println("Clicking committee dropdown");
@@ -69,6 +70,8 @@ public class Portalpage extends Page {
 		}
 
 		waitForAngular();
+		
+		Thread.sleep(2 * 1000L);
 
 		List<WebElement> elements = committeePanel.findElements(By.className("dropdown-item"));
 
