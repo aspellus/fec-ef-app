@@ -100,7 +100,7 @@ public class AmendmentController {
     *
     */
 	@ResponseBody
-	@ResponseStatus(HttpStatus.OK)
+	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin(origins = "*")
 	@PostMapping(value = "/schedules/{report_id}/schedule_a", produces = "application/json")
 	public ScheduleADTO createScheduleA(@PathVariable long report_id, @RequestBody ScheduleADTO scheduleADTO) {
