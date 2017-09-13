@@ -22,12 +22,6 @@ We use Behavior Driven Development (BDD), which is an extension of Test Driven D
 
 These same requirements become test scenarios for TDD development using Cucumber and Selenium to drive test automation in each Sprint. BDD achieves common understanding and consensus on requirements much faster, results in ready-to-use test cases for the development team to implement during test automation, and ensures that the requirement documentation is readily available and is kept current as changes get implemented with each Sprint. Above all, BDD scenario documentation facilitates an analytical validation of requirements from all stakeholders before they are transformed into executable test cases by the development team.
 
-### CLOUD Strategy 
-Cris to write
-
-### Docker Containerization, Deployment, Management and Orchestration (Using OpenShift Kubernetes)
-Cris to write
-
 Quality Assurance Practices
 ===========================
 
