@@ -35,6 +35,9 @@ public class ApplicationConfiguration {
         if (System.getenv("EF_DB_URL") == null) {
             dataSource.setUrl("jdbc:postgresql://localhost:5432/fecefapp");
         }
+        if(System.getenv("EF_DB_USERNAME") == null) {
+    	    dataSource.setUsername("fecefapp");
+		}
         return dataSource;
     }
 
