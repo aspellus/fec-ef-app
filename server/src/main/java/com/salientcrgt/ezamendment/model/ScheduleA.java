@@ -1,315 +1,482 @@
 package com.salientcrgt.ezamendment.model;
 
-import java.util.Date;
+import org.dom4j.tree.AbstractEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.dom4j.tree.AbstractEntity;
+import java.util.Date;
 
 /**
-*
-* The ScheduleA JPA entity.
-*
-*/
+ * The ScheduleA JPA entity.
+ *
+ * @author spanyala
+ */
 @Entity
 @Table(name = "sched_a")
+public final class ScheduleA extends AbstractEntity {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -1915138817685864614L;
+    @Id
+    @Column(name = "repid")
+    private long reportId;
+    @Column(name = "line_num")
+    private String lineNumber;
+    @Column(name = "rel_lineno")
+    private long relLineNumber;
+    @Column(name = "comid")
+    private String committeeId;
+    @Id
+    @Column(name = "tran_id")
+    private String tranId;
+    @Column(name = "entity")
+    private String entityType;
+    @Column(name = "name")
+    private String lastName;
+    @Column(name = "fname")
+    private String firstName;
+    @Column(name = "mname")
+    private String middleName;
+    @Column(name = "prefix")
+    private String prefixName;
+    @Column(name = "suffix")
+    private String suffixName;
+    @Column(name = "str1")
+    private String streetOne;
+    @Column(name = "str2")
+    private String streetTwo;
+    @Column(name = "city")
+    private String addressCity;
+    @Column(name = "state")
+    private String addressState;
+    @Column(name = "zip")
+    private String addressZip;
+    @Column(name = "pgo")
+    private String electionType;
+    @Column(name = "pg_des")
+    private String pgDes;
+    @Column(name = "date_con")
+    private Date dateTransaction;
+    @Column(name = "amount")
+    private double transactionAmount;
+    @Column(name = "ytd")
+    private double yearToDate;
+    @Column(name = "reccode")
+    private String recordCode;
+    @Column(name = "transdesc")
+    private String transDesciption;
+    @Column(name = "limit_ind")
+    private String limitInd;
+    @Column(name = "indemp")
+    private String indEmployer;
+    @Column(name = "indocc")
+    private String indOccupation;
+    @Column(name = "memo_code")
+    private String memoCode;
+    // Add-A, Change-C, Delete-D
+    @Column(name = "amend")
+    private String amendment;
 
-public class ScheduleA  extends AbstractEntity {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1915138817685864614L;
-	@Id
-	private long repid;
-	private String line_num;
-	private long rel_lineno;
-	private String comid;
-	@Id
-	private String tran_id;
-	private String entity;
-	private String name;
-	private String fname;
-	private String mname;
-	private String prefix;
-	private String suffix;
-	private String str1;
-	private String str2;
-	private String city;
-	private String state;
-	private String zip;
-	private String pgo;
-	private String pg_des;
-	private Date date_con;
-	private double amount;
-	private double ytd;
-	private String reccode;
-	private String transdesc;
-	private String limit_ind;
-	private String indemp;
-	private String indocc;
-	private String memo_code;
-	//Add-A, Change-C, Delete-D
-	private String amend;
-	
-	public ScheduleA() {
-		
-	}
-	
-	public ScheduleA(long repid, String line_num, long rel_lineno, String comid, String tran_id, String entity, String name, 
-			String fname, String mname, String prefix, String suffix, String str1, String str2, String city, String state,
-			String zip, String pgo, String pg_des, Date date_con, double amount, double ytd, String transdesc, String indemp, 
-			String indocc, String memo_code, String amend) {
-		this.repid = repid;
-		this.line_num = line_num;
-		this.rel_lineno = rel_lineno;
-		this.comid = comid;
-		this.tran_id = tran_id;
-		this.entity = entity;
-		this.name = name;
-		this.fname = fname;
-		this.mname = mname;
-		this.prefix = prefix;
-		this.suffix = suffix;
-		this.str1 = str1;
-		this.str2 = str2;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-		this.pgo = pgo;
-		this.pg_des = pg_des;
-		this.date_con = date_con;
-		this.amount = amount;
-		this.ytd = ytd;
-		this.transdesc = transdesc;
-		this.indemp = indemp;
-		this.indocc = indocc;
-		this.memo_code = memo_code;
-		this.amend = amend;
-	}
+    /**
+     * default constructor
+     */
+    public ScheduleA() {
 
-	public long getRepid() {
-		return repid;
-	}
+    }
 
-	public void setRepid(long repid) {
-		this.repid = repid;
-	}
+    /**
+     * @return the reportId
+     */
+    public final long getReportId() {
+        return reportId;
+    }
 
-	public String getLine_num() {
-		return line_num;
-	}
+    /**
+     * @param reportId the reportId to set
+     */
+    public final void setReportId(long reportId) {
+        this.reportId = reportId;
+    }
 
-	public void setLine_num(String line_num) {
-		this.line_num = line_num;
-	}
+    /**
+     * @return the lineNumber
+     */
+    public final String getLineNumber() {
+        return lineNumber;
+    }
 
-	public long getRel_lineno() {
-		return rel_lineno;
-	}
+    /**
+     * @param lineNumber the lineNumber to set
+     */
+    public final void setLineNumber(String lineNumber) {
+        this.lineNumber = lineNumber;
+    }
 
-	public void setRel_lineno(long rel_lineno) {
-		this.rel_lineno = rel_lineno;
-	}
+    /**
+     * @return the relLineNumber
+     */
+    public final long getRelLineNumber() {
+        return relLineNumber;
+    }
 
-	public String getComid() {
-		return comid;
-	}
+    /**
+     * @param relLineNumber the relLineNumber to set
+     */
+    public final void setRelLineNumber(long relLineNumber) {
+        this.relLineNumber = relLineNumber;
+    }
 
-	public void setComid(String comid) {
-		this.comid = comid;
-	}
+    /**
+     * @return the committeeId
+     */
+    public final String getCommitteeId() {
+        return committeeId;
+    }
 
-	public String getTran_id() {
-		return tran_id;
-	}
+    /**
+     * @param committeeId the committeeId to set
+     */
+    public final void setCommitteeId(String committeeId) {
+        this.committeeId = committeeId;
+    }
 
-	public void setTran_id(String tran_id) {
-		this.tran_id = tran_id;
-	}
+    /**
+     * @return the tranId
+     */
+    public final String getTranId() {
+        return tranId;
+    }
 
-	public String getEntity() {
-		return entity;
-	}
+    /**
+     * @param tranId the tranId to set
+     */
+    public final void setTranId(String tranId) {
+        this.tranId = tranId;
+    }
 
-	public void setEntity(String entity) {
-		this.entity = entity;
-	}
+    /**
+     * @return the entityType
+     */
+    public final String getEntityType() {
+        return entityType;
+    }
 
-	public String getName() {
-		return name;
-	}
+    /**
+     * @param entityType the entityType to set
+     */
+    public final void setEntityType(String entityType) {
+        this.entityType = entityType;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * @return the lastName
+     */
+    public final String getLastName() {
+        return lastName;
+    }
 
-	public String getFname() {
-		return fname;
-	}
+    /**
+     * @param lastName the lastName to set
+     */
+    public final void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
+    /**
+     * @return the firstName
+     */
+    public final String getFirstName() {
+        return firstName;
+    }
 
-	public String getMname() {
-		return mname;
-	}
+    /**
+     * @param firstName the firstName to set
+     */
+    public final void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setMname(String mname) {
-		this.mname = mname;
-	}
+    /**
+     * @return the middleName
+     */
+    public final String getMiddleName() {
+        return middleName;
+    }
 
-	public String getPrefix() {
-		return prefix;
-	}
+    /**
+     * @param middleName the middleName to set
+     */
+    public final void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
 
-	public void setPrefix(String prefix) {
-		this.prefix = prefix;
-	}
+    /**
+     * @return the prefixName
+     */
+    public final String getPrefixName() {
+        return prefixName;
+    }
 
-	public String getSuffix() {
-		return suffix;
-	}
+    /**
+     * @param prefixName the prefixName to set
+     */
+    public final void setPrefixName(String prefixName) {
+        this.prefixName = prefixName;
+    }
 
-	public void setSuffix(String suffix) {
-		this.suffix = suffix;
-	}
+    /**
+     * @return the suffixName
+     */
+    public final String getSuffixName() {
+        return suffixName;
+    }
 
-	public String getStr1() {
-		return str1;
-	}
+    /**
+     * @param suffixName the suffixName to set
+     */
+    public final void setSuffixName(String suffixName) {
+        this.suffixName = suffixName;
+    }
 
-	public void setStr1(String str1) {
-		this.str1 = str1;
-	}
+    /**
+     * @return the streetOne
+     */
+    public final String getStreetOne() {
+        return streetOne;
+    }
 
-	public String getStr2() {
-		return str2;
-	}
+    /**
+     * @param streetOne the streetOne to set
+     */
+    public final void setStreetOne(String streetOne) {
+        this.streetOne = streetOne;
+    }
 
-	public void setStr2(String str2) {
-		this.str2 = str2;
-	}
+    /**
+     * @return the streetTwo
+     */
+    public final String getStreetTwo() {
+        return streetTwo;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    /**
+     * @param streetTwo the streetTwo to set
+     */
+    public final void setStreetTwo(String streetTwo) {
+        this.streetTwo = streetTwo;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    /**
+     * @return the addressCity
+     */
+    public final String getAddressCity() {
+        return addressCity;
+    }
 
-	public String getState() {
-		return state;
-	}
+    /**
+     * @param addressCity the addressCity to set
+     */
+    public final void setAddressCity(String addressCity) {
+        this.addressCity = addressCity;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    /**
+     * @return the addressState
+     */
+    public final String getAddressState() {
+        return addressState;
+    }
 
-	public String getZip() {
-		return zip;
-	}
+    /**
+     * @param addressState the addressState to set
+     */
+    public final void setAddressState(String addressState) {
+        this.addressState = addressState;
+    }
 
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
+    /**
+     * @return the addressZip
+     */
+    public final String getAddressZip() {
+        return addressZip;
+    }
 
-	public String getPgo() {
-		return pgo;
-	}
+    /**
+     * @param addressZip the addressZip to set
+     */
+    public final void setAddressZip(String addressZip) {
+        this.addressZip = addressZip;
+    }
 
-	public void setPgo(String pgo) {
-		this.pgo = pgo;
-	}
+    /**
+     * @return the electionType
+     */
+    public final String getElectionType() {
+        return electionType;
+    }
 
-	public String getPg_des() {
-		return pg_des;
-	}
+    /**
+     * @param electionType the electionType to set
+     */
+    public final void setElectionType(String electionType) {
+        this.electionType = electionType;
+    }
 
-	public void setPg_des(String pg_des) {
-		this.pg_des = pg_des;
-	}
+    /**
+     * @return the pgDes
+     */
+    public final String getPgDes() {
+        return pgDes;
+    }
 
-	public Date getDate_con() {
-		return date_con;
-	}
+    /**
+     * @param pgDes the pgDes to set
+     */
+    public final void setPgDes(String pgDes) {
+        this.pgDes = pgDes;
+    }
 
-	public void setDate_con(Date date_con) {
-		this.date_con = date_con;
-	}
+    /**
+     * @return the dateTransaction
+     */
+    public final Date getDateTransaction() {
+        return dateTransaction;
+    }
 
-	public double getAmount() {
-		return amount;
-	}
+    /**
+     * @param dateTransaction the dateTransaction to set
+     */
+    public final void setDateTransaction(Date dateTransaction) {
+        this.dateTransaction = dateTransaction;
+    }
 
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
+    /**
+     * @return the transactionAmount
+     */
+    public final double getTransactionAmount() {
+        return transactionAmount;
+    }
 
-	public double getYtd() {
-		return ytd;
-	}
+    /**
+     * @param transactionAmount the transactionAmount to set
+     */
+    public final void setTransactionAmount(double transactionAmount) {
+        this.transactionAmount = transactionAmount;
+    }
 
-	public void setYtd(double ytd) {
-		this.ytd = ytd;
-	}
+    /**
+     * @return the yearToDate
+     */
+    public final double getYearToDate() {
+        return yearToDate;
+    }
 
-	public String getReccode() {
-		return reccode;
-	}
+    /**
+     * @param yearToDate the yearToDate to set
+     */
+    public final void setYearToDate(double yearToDate) {
+        this.yearToDate = yearToDate;
+    }
 
-	public void setReccode(String reccode) {
-		this.reccode = reccode;
-	}
+    /**
+     * @return the recordCode
+     */
+    public final String getRecordCode() {
+        return recordCode;
+    }
 
-	public String getTransdesc() {
-		return transdesc;
-	}
+    /**
+     * @param recordCode the recordCode to set
+     */
+    public final void setRecordCode(String recordCode) {
+        this.recordCode = recordCode;
+    }
 
-	public void setTransdesc(String transdesc) {
-		this.transdesc = transdesc;
-	}
+    /**
+     * @return the transDesciption
+     */
+    public final String getTransDesciption() {
+        return transDesciption;
+    }
 
-	public String getLimit_ind() {
-		return limit_ind;
-	}
+    /**
+     * @param transDesciption the transDesciption to set
+     */
+    public final void setTransDesciption(String transDesciption) {
+        this.transDesciption = transDesciption;
+    }
 
-	public void setLimit_ind(String limit_ind) {
-		this.limit_ind = limit_ind;
-	}
+    /**
+     * @return the limitInd
+     */
+    public final String getLimitInd() {
+        return limitInd;
+    }
 
-	public String getIndemp() {
-		return indemp;
-	}
+    /**
+     * @param limitInd the limitInd to set
+     */
+    public final void setLimitInd(String limitInd) {
+        this.limitInd = limitInd;
+    }
 
-	public void setIndemp(String indemp) {
-		this.indemp = indemp;
-	}
+    /**
+     * @return the indEmployer
+     */
+    public final String getIndEmployer() {
+        return indEmployer;
+    }
 
-	public String getIndocc() {
-		return indocc;
-	}
+    /**
+     * @param indEmployer the indEmployer to set
+     */
+    public final void setIndEmployer(String indEmployer) {
+        this.indEmployer = indEmployer;
+    }
 
-	public void setIndocc(String indocc) {
-		this.indocc = indocc;
-	}
+    /**
+     * @return the indOccupation
+     */
+    public final String getIndOccupation() {
+        return indOccupation;
+    }
 
-	public String getMemo_code() {
-		return memo_code;
-	}
+    /**
+     * @param indOccupation the indOccupation to set
+     */
+    public final void setIndOccupation(String indOccupation) {
+        this.indOccupation = indOccupation;
+    }
 
-	public void setMemo_code(String memo_code) {
-		this.memo_code = memo_code;
-	}
+    /**
+     * @return the memoCode
+     */
+    public final String getMemoCode() {
+        return memoCode;
+    }
 
-	public String getAmend() {
-		return amend;
-	}
+    /**
+     * @param memoCode the memoCode to set
+     */
+    public final void setMemoCode(String memoCode) {
+        this.memoCode = memoCode;
+    }
 
-	public void setAmend(String amend) {
-		this.amend = amend;
-	}
+    /**
+     * @return the amendment
+     */
+    public final String getAmendment() {
+        return amendment;
+    }
+
+    /**
+     * @param amendment the amendment to set
+     */
+    public final void setAmendment(String amendment) {
+        this.amendment = amendment;
+    }
+
 }

@@ -28,7 +28,7 @@ export class FilingService {
     }
     
     saveReceipt(receipt: any){
-    	let url = environment.apiUrl + '/schedules/' + receipt.repid + '/schedule_a';
+    	let url = environment.apiUrl + '/schedules/' + receipt.repid + '/schedule_a' + (Boolean(receipt.tran_id) ? '/' + receipt.tran_id : '');
     	let headers = new Headers({ 'Content-Type': 'application/json' });
     	let options = new RequestOptions({ headers: headers });
     	
@@ -36,7 +36,7 @@ export class FilingService {
     }
     
     deleteReceipt(receipt: any){
-    	let url = environment.apiUrl + '/schedules/' + receipt.repid + '/schedule_a?tran_id=' + receipt.tran_id;
+    	let url = environment.apiUrl + '/schedules/' + receipt.repid + '/schedule_a/' + receipt.tran_id;
     	return this.http.delete(url).map((response: Response) => {
     		return response;
     	});

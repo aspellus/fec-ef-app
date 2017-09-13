@@ -1,25 +1,27 @@
 package com.salientcrgt.ezamendment.config.root;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-//import org.springframework.context.annotation.Profile;
 import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import java.util.HashMap;
+import java.util.Map;
+
+//import org.springframework.context.annotation.Profile;
+
 /**
- * Development specific configuration - creates a localhost postgresql datasource,
- * sets hibernate on create drop mode and inserts some test data on the database.
+ * Development specific configuration - creates a localhost postgresql
+ * datasource, sets hibernate on create drop mode and inserts some test data on
+ * the database.
  * <p>
  * Set -Dspring.profiles.active=development to activate this config.
  */
 @Configuration
-//@Profile("development")
+// @Profile("development")
 @EnableTransactionManagement
 public class ApplicationConfiguration {
 
@@ -30,9 +32,12 @@ public class ApplicationConfiguration {
         dataSource.setUrl("jdbc:" + System.getenv("EF_DB_URL"));
         dataSource.setUsername(System.getenv("EF_DB_USERNAME"));
         dataSource.setPassword(System.getenv("EF_DB_PASSWORD"));
-        if(System.getenv("EF_DB_URL") == null) {
-        	dataSource.setUrl("jdbc:postgresql://localhost:5432/fecefapp");
+        if (System.getenv("EF_DB_URL") == null) {
+            dataSource.setUrl("jdbc:postgresql://localhost:5432/fecefapp");
         }
+        if(System.getenv("EF_DB_USERNAME") == null) {
+    	    dataSource.setUsername("fecefapp");
+		}
         return dataSource;
     }
 
@@ -46,10 +51,6 @@ public class ApplicationConfiguration {
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         Map<String, Object> jpaProperties = new HashMap<String, Object>();
-        /*jpaProperties.put("hibernate.hbm2ddl.auto", "update");
-        jpaProperties.put("hibernate.show_sql", "true");
-        jpaProperties.put("hibernate.format_sql", "true");
-        jpaProperties.put("hibernate.use_sql_comments", "true");*/
         jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         entityManagerFactoryBean.setJpaPropertyMap(jpaProperties);
 

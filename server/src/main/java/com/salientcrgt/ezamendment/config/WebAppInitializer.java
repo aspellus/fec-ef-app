@@ -1,15 +1,13 @@
 package com.salientcrgt.ezamendment.config;
 
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
 import com.salientcrgt.ezamendment.config.root.ApplicationConfiguration;
 import com.salientcrgt.ezamendment.config.root.RootContextConfig;
 import com.salientcrgt.ezamendment.config.servlet.ServletContextConfig;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
- *
- * Replacement for most of the content of web.xml, sets up the root and the servlet context config.
- *
+ * Replacement for most of the content of web.xml, sets up the root and the
+ * servlet context config.
  */
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -20,7 +18,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] {ServletContextConfig.class};
+        return new Class<?>[]{ServletContextConfig.class};
     }
 
     @Override
@@ -28,9 +26,4 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new String[]{"/"};
     }
 
-
-
-
 }
-
-

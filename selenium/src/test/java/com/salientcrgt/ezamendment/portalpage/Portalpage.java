@@ -49,7 +49,7 @@ public class Portalpage {
 		new NgWebDriver((JavascriptExecutor) driver).waitForAngularRequestsToFinish();
 	}
 
-	public List<String> getCommittees() {
+	public List<String> getCommittees() throws Exception {
 
 		waitForAngular();
 
@@ -67,6 +67,8 @@ public class Portalpage {
 		}
 
 		waitForAngular();
+		
+		Thread.sleep(2 * 1000L);
 
 		List<WebElement> elements = committeePanel.findElements(By.className("dropdown-item"));
 

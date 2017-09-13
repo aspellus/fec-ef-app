@@ -15,7 +15,7 @@ We further use our [Secured DevOps CI/CD platform](https://github.com/SalientCRG
 Further detail about some of our development strategies and methods can be found below:
 
 ### Version/Source Control
-For version control of source code our [repository](https://github.com/SalientCRGT/fec-ef-app) choice was GitHub with its strong merging features and online collaboration capabilities. A new branch was created for each sprint, which is then merged with master before branching again for a new sprint. 
+For version control of source code our [repository](https://github.com/SalientCRGT/fec-ef-app) choice was GitHub with its strong merging features and online collaboration capabilities. A new branch was created for each sprint, which is then merged with master before branching again for a new sprint. Pull requests were used to ensure peer review of changes.
 
 ### Behavior-Driven Development / Test-driven Development (unit testing)
 We use Behavior Driven Development (BDD), which is an extension of Test Driven Development(TDD), to gather and develop requirements. With the BDD approach, application development focuses on the behavior of the system and brings the development team closer to the business team. Requirements are captured as scenarios written in easy-to-understand English (e.g., Gherkin) that describe the application behavior from the user perspective.
@@ -25,7 +25,7 @@ These same requirements become test scenarios for TDD development using Cucumber
 Quality Assurance Practices
 ===========================
 
-The quality assurance practices employed for this project (as well as all our project engagements) are designed to prevent bugs, not just find and fix them. Our developers practice "pair programming" to catch errors at the keyboard and ensure  a uniform, maintainable approach to architecture and software coding standards. We embed QA personnel, whom we call "quality advocates" (because their job is to advocate for quality throughout the life-cycle of the project, not just as "assurance" at the end), into each of our development teams so that they can help facilitate quality throughout the project. For this project, one of the Writers/Content Designers/Content Strategists help serve in the QA role.
+The quality assurance practices employed for this project (as well as all our project engagements) are designed to prevent bugs, not just find and fix them. We embed QA personnel, whom we call "quality advocates" (because their job is to advocate for quality throughout the life-cycle of the project, not just as "assurance" at the end), into each of our development teams so that they can help facilitate quality throughout the project. For this project, one of the Writers/Content Designers/Content Strategists help serve in the QA role.
 
 Further detail about some of our QA strategies and methods can be found below:
 
@@ -38,7 +38,7 @@ Automated tests help in  confirming immediately that no new code has adversely i
 Continuous integration, when combined with automated testing, ensures that a system works exactly as it’s designed to work after each and every change. Customer acceptance tests not only guarantee the code works properly, but also verify that the individual business functions of the system work correctly. By continuously performing integration testing and continuously building the applications, we were able to both ensure quality as well as provide our pseudo-users with live, working software (i.e., current-working-state versions) at virtually any time during the project.
 
 ### Static Code Analysis
-Developers gets [sonar reports](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/Sonar-Quality-Dashboard-1.png) on quality with every check-in via the continuous integration jenkins server, along with code quality the test coverage lets the developers know how much test-driven development they are doing. Providing these analysis upfront improves the quality at source, and peer code-review now reveal less and less code issues.
+Developers get [sonar reports](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/Sonar-Quality-Dashboard-1.png) on quality with every check-in via the continuous integration jenkins server, along with code quality the test coverage lets the developers know how much test-driven development they are doing. Providing these analysis upfront improves the quality at source, and peer code-review now reveal less and less code issues.
 
 ### Static Application Security Testing (SAST)
 Automation is key to security testing, by embedding automated tools like SonarQube for code vulnerabilities and OWASP for dependency security vuilneratibilies, CI process lets the developer/team know of any issues upfront. Along with automated security testing, peer security-review further ensure security is baked in from the start in every project.
