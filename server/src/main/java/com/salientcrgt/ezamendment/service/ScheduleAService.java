@@ -190,4 +190,8 @@ public class ScheduleAService {
 	   }
 	   return jsonObject;
    	}
+
+	public void setScheduleARepository(ScheduleARepository scheduleARepository) {
+		this.scheduleARepository = scheduleARepository;
+	}
 }
