@@ -143,15 +143,21 @@ public class ScheduleAService {
         HttpURLConnection conn = null;
         try {
             // Establishing Connection to FEC API to get Committee Details.
-            StringBuilder apiURL = new StringBuilder();
-            apiURL.append("https://api.open.fec.gov/v1/committee/").append(committeeId)
-                    .append("/filings/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y");
-            if (StringUtils.isNotEmpty(reportYear)) {
-                apiURL.append("&report_year=").append(reportYear);
-            }
-            if (StringUtils.isNotEmpty(formType)) {
-                apiURL.append("&form_type=").append(formType);
-            }
+	        	StringBuilder apiURL = new StringBuilder();
+	   		   	apiURL.append("https://api.open.fec.gov/v1/committee/")
+	   		   	.append(committeeId);
+	   		   	if(StringUtils.isNotEmpty(committeeId) && StringUtils.isEmpty(reportYear) && StringUtils.isEmpty(formType)) {
+	   		  	 apiURL.append("/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y");
+	   		   	}
+	   		   	if(StringUtils.isNotEmpty(reportYear)) {
+	   		  	 apiURL.append("/filings/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y")
+	   		  	 .append("&report_year=")
+	   			   .append(reportYear);
+	   		   	}
+	   		   	if(StringUtils.isNotEmpty(formType)) {
+	   			   apiURL.append("&form_type=")
+	   			   .append(formType);
+	   		   	}
             URL url = new URL(apiURL.toString());
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
