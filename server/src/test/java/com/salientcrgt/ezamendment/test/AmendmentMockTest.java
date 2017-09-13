@@ -77,7 +77,7 @@ public class AmendmentMockTest {
                         .content("{\"comid\": \"C00577759\"}")
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
     }
 
