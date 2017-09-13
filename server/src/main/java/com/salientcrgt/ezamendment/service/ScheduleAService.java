@@ -178,8 +178,6 @@ public class ScheduleAService {
 		   // Building JSONObject from API call
 		   BufferedReader reader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 		   jsonObject = (JSONObject) new JSONParser().parse(reader);
-	   } catch (MalformedURLException e) {
-		   logger.error(e.getMessage());
 	   } catch (IOException | ParseException e) {
 		   logger.error(e.getMessage());
 	   } finally {
