@@ -5,11 +5,17 @@ Agile Practices
 
 Our **Agile Software Development Methodology** (as shown in below graphics) is based on empowering  people to incrementally develop software using Behavior Driven Development (BDD) and User Centered Design (UCD) approach. User Stories and Scenarios are created making sure we understand the needs of the users, and incorporate business behavior upfront.  We use quality techniques of Test Driven Development (TDD), Pair Progrmaming and Test Automation for maintaining high code quality and demonstrating software behaviors being delivered to requirements.
 
-![https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/SalientAgileScrumProcess.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/SalientAgileScrumProcess.png)
+![https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/SalientAgileScrumProcess2.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/SalientAgileScrumProcess2.png)
 
 Our **Agile Scrum Process** uses Sprint 0 to get the team ready for delivering working software, and then use multiple Sprints to incrementatlly deliver working code with test automation. We start each Sprint with **Sprint Planning** meeting (working with product owner the team accesses the work in sprint backlog), Scrum boards are displayed on TV monitors to manage work and visually track the progress of each Sprint. Further our Scrum process includes daily **stand-ups** (short team meetings again to keep team on track and take corrective action), each Sprint ends with sprint-review (meeting to demonstrate working code), followed by sprint-retrospective where the team discusses what went right, what did not go well, and what actions to take in next sprint to improve.
 
-We further use our [Secured DevOps CI/CD platform](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/SalientCRGT%20SecDevOps.png) implemented on AWS to develop software. We use the efficiences of Continuous Integration/Continous Delivery and Quality Automation that is provided by our [Jenkins CI/CD Pipeline](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/SalientCRGT%20Jenkins%20Pipeline.png). By moving quality and security inspection of software as far as possible to the left, from day 1 we monitor for software quality and security vulnerabilities. Security is not an after thought, its baked into our Agile Software Development Methodology.
+We further use our **Secured DevOps CI/CD platform** implemented on AWS to develop software (as shown below):
+
+![https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/SalientCRGT%20SecDevOps2.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/SalientCRGT%20SecDevOps2.png)
+
+We use the efficiences of our **Jenkins CI/CD Pipeline** that provides us the capabilities of Continuous Integration/Continous Delivery and Test Automation, By moving quality and security inspection of software as far as possible to the left, from day 1 we monitor for software quality and security vulnerabilities. Security is not an after thought, its baked into our Agile Software Development Methodology. Shown Below:
+
+![ttps://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/SalientCRGT%20Jenkins%20Pipeline.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/SalientCRGT%20Jenkins%20Pipeline.png)
 
 
 Further detail about some of our development strategies and methods can be found below:
