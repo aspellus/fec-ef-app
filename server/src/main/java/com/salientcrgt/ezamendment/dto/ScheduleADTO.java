@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.salientcrgt.ezamendment.model.ScheduleA;
 
 /**
-*
-* JSON-serializable DTO containing ScheduleA data
-*
-*/
+ *
+ * JSON-serializable DTO containing ScheduleA data.
+ *
+ */
 public class ScheduleADTO {
 
 	private long repid;
@@ -37,14 +37,16 @@ public class ScheduleADTO {
 	private String indocc;
 	private String memo_code;
 	private String amend;
-	
-	//Default Constructor
+
+	/**
+	 * This is Default Constructor.
+	 */
 	public ScheduleADTO() {
-		
+
 	}
-	
+
 	public static ScheduleADTO mapFromScheduleAEntity(ScheduleA scheduleA) {
-		ScheduleADTO schedule  = new ScheduleADTO();
+		ScheduleADTO schedule = new ScheduleADTO();
 		schedule.setRepid(scheduleA.getReportId());
 		schedule.setLine_num(scheduleA.getLineNumber());
 		schedule.setComid(scheduleA.getCommitteeId());
@@ -69,9 +71,9 @@ public class ScheduleADTO {
 		schedule.setAmend(scheduleA.getAmendment());
 		return schedule;
 	}
-	
+
 	public static List<ScheduleADTO> mapFromScheduleAsEntities(List<ScheduleA> scheduleAs) {
-        return scheduleAs.stream().map((scheduleA) -> mapFromScheduleAEntity(scheduleA)).collect(Collectors.toList());
+		return scheduleAs.stream().map((scheduleA) -> mapFromScheduleAEntity(scheduleA)).collect(Collectors.toList());
 	}
 
 	public long getRepid() {
