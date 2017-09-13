@@ -16,8 +16,7 @@ import org.dom4j.tree.AbstractEntity;
  */
 @Entity
 @Table(name = "sched_a")
-
-public class ScheduleA extends AbstractEntity {
+public final class ScheduleA extends AbstractEntity {
 	/**
 	 * 
 	 */
