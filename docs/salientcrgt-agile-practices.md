@@ -22,12 +22,6 @@ We use Behavior Driven Development (BDD), which is an extension of Test Driven D
 
 These same requirements become test scenarios for TDD development using Cucumber and Selenium to drive test automation in each Sprint. BDD achieves common understanding and consensus on requirements much faster, results in ready-to-use test cases for the development team to implement during test automation, and ensures that the requirement documentation is readily available and is kept current as changes get implemented with each Sprint. Above all, BDD scenario documentation facilitates an analytical validation of requirements from all stakeholders before they are transformed into executable test cases by the development team.
 
-### CLOUD Strategy 
-Cris to write
-
-### Docker Containerization, Deployment, Management and Orchestration (Using OpenShift Kubernetes)
-Cris to write
-
 Quality Assurance Practices
 ===========================
 
@@ -51,10 +45,6 @@ pramod to write
 
 ### Dynamic Application Security Testing (DAST)
 [Zed Attack Proxy](pramod to write)
-
-### Performance Testing
-pramod to write
-Cris/Dan can we get results
 
 ## User Experience and User-Centered Design (UCD) Practices
 We believe that an application cannot be successful without an engaging user interface (UI) that is built on a foundation of high usability and customer satisfaction. Using a UCD approach to research, design, and validate, our UI/user experience (UX) Engineers and BA work iteratively with the product owner and users to address the business process flow, messaging, and functions. They design the overall usability of the application to meet business goals, use various artifacts (e.g., wireframes, mockups, templates, and navigational flow) to iteratively work with business and end-users to design the best user experience. Each member of our design/user experience team includes a Visual Designer to ensure good design and user expereince is the foundation of the application from start to finish.
