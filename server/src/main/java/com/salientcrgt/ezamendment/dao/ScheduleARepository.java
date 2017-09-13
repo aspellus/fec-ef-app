@@ -1,20 +1,16 @@
 package com.salientcrgt.ezamendment.dao;
 
-import java.util.List;
+import com.salientcrgt.ezamendment.model.ScheduleA;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import org.springframework.stereotype.Repository;
-
-import com.salientcrgt.ezamendment.model.ScheduleA;
+import java.util.List;
 
 /**
- *
  * Repository class for the ScheduleA entity
  *
  * @author spanyala
- *
  */
 @Repository
 public class ScheduleARepository {
@@ -25,8 +21,7 @@ public class ScheduleARepository {
     /**
      * finds a list of ScheduleA's for reportId
      *
-     * @param reportId
-     *            - the report Id to view ScheduleA's
+     * @param reportId - the report Id to view ScheduleA's
      * @return a List of matching ScheduleA's.
      */
     @SuppressWarnings("unchecked")
@@ -38,8 +33,7 @@ public class ScheduleARepository {
     /**
      * finds a list of ScheduleA's for reportId
      *
-     * @param reportId
-     *            - the report Id to view ScheduleA's
+     * @param reportId - the report Id to view ScheduleA's
      * @return a List of matching ScheduleA's.
      */
     public ScheduleA findByReportTranId(long reportId, String tranId) {
@@ -50,10 +44,8 @@ public class ScheduleARepository {
     /**
      * Delete a ScheduleA, given its identifier
      *
-     * @param reportId
-     *            report id
-     * @param tranId
-     *            transaction id
+     * @param reportId report id
+     * @param tranId   transaction id
      */
     public void delete(long reportId, String tranId) {
         ScheduleA scheduleA = findByReportTranId(reportId, tranId);
@@ -64,11 +56,9 @@ public class ScheduleARepository {
     }
 
     /**
-     *
      * save changes made to a scheduleA, or create the scheduleA if its a new.
      *
-     * @param scheduleA
-     *            scheduleA object to merge
+     * @param scheduleA scheduleA object to merge
      * @return merged ScheduleA object
      */
     public ScheduleA merge(ScheduleA scheduleA) {
@@ -77,11 +67,9 @@ public class ScheduleARepository {
     }
 
     /**
-     *
      * save changes made to a scheduleA, or create the scheduleA if its a new.
-     * 
-     * @param scheduleA
-     *            scheduleA object to create
+     *
+     * @param scheduleA scheduleA object to create
      * @return new ScheduleA object
      */
     public ScheduleA create(ScheduleA scheduleA) {

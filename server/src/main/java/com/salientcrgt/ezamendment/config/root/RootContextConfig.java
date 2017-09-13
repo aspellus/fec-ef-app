@@ -10,19 +10,17 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.persistence.EntityManagerFactory;
 
 /**
- *
  * The root context configuration of the application - the beans in this context
  * will be globally visible in all servlet contexts.
- *
  */
 
 @Configuration
-@ComponentScan({ "com.salientcrgt.ezamendment.service", "com.salientcrgt.ezamendment.dao" })
+@ComponentScan({"com.salientcrgt.ezamendment.service", "com.salientcrgt.ezamendment.dao"})
 public class RootContextConfig {
 
     @Bean(name = "transactionManager")
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory,
-            DriverManagerDataSource dataSource) {
+                                                         DriverManagerDataSource dataSource) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         transactionManager.setDataSource(dataSource);

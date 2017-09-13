@@ -1,16 +1,14 @@
 package com.salientcrgt.ezamendment.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.salientcrgt.ezamendment.model.ScheduleA;
+
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.salientcrgt.ezamendment.model.ScheduleA;
-
 /**
- *
  * JSON-serializable DTO containing ScheduleA data.
- *
  */
 public class ScheduleADTO {
 

@@ -1,25 +1,23 @@
 package com.salientcrgt.ezamendment.model;
 
-import java.util.Date;
+import org.dom4j.tree.AbstractEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.dom4j.tree.AbstractEntity;
+import java.util.Date;
 
 /**
  * The ScheduleA JPA entity.
- * 
- * @author spanyala
  *
+ * @author spanyala
  */
 @Entity
 @Table(name = "sched_a")
 public final class ScheduleA extends AbstractEntity {
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -1915138817685864614L;
     @Id
@@ -97,8 +95,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param reportId
-     *            the reportId to set
+     * @param reportId the reportId to set
      */
     public final void setReportId(long reportId) {
         this.reportId = reportId;
@@ -112,8 +109,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param lineNumber
-     *            the lineNumber to set
+     * @param lineNumber the lineNumber to set
      */
     public final void setLineNumber(String lineNumber) {
         this.lineNumber = lineNumber;
@@ -127,8 +123,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param relLineNumber
-     *            the relLineNumber to set
+     * @param relLineNumber the relLineNumber to set
      */
     public final void setRelLineNumber(long relLineNumber) {
         this.relLineNumber = relLineNumber;
@@ -142,8 +137,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param committeeId
-     *            the committeeId to set
+     * @param committeeId the committeeId to set
      */
     public final void setCommitteeId(String committeeId) {
         this.committeeId = committeeId;
@@ -157,8 +151,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param tranId
-     *            the tranId to set
+     * @param tranId the tranId to set
      */
     public final void setTranId(String tranId) {
         this.tranId = tranId;
@@ -172,8 +165,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param entityType
-     *            the entityType to set
+     * @param entityType the entityType to set
      */
     public final void setEntityType(String entityType) {
         this.entityType = entityType;
@@ -187,8 +179,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param lastName
-     *            the lastName to set
+     * @param lastName the lastName to set
      */
     public final void setLastName(String lastName) {
         this.lastName = lastName;
@@ -202,8 +193,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param firstName
-     *            the firstName to set
+     * @param firstName the firstName to set
      */
     public final void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -217,8 +207,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param middleName
-     *            the middleName to set
+     * @param middleName the middleName to set
      */
     public final void setMiddleName(String middleName) {
         this.middleName = middleName;
@@ -232,8 +221,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param prefixName
-     *            the prefixName to set
+     * @param prefixName the prefixName to set
      */
     public final void setPrefixName(String prefixName) {
         this.prefixName = prefixName;
@@ -247,8 +235,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param suffixName
-     *            the suffixName to set
+     * @param suffixName the suffixName to set
      */
     public final void setSuffixName(String suffixName) {
         this.suffixName = suffixName;
@@ -262,8 +249,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param streetOne
-     *            the streetOne to set
+     * @param streetOne the streetOne to set
      */
     public final void setStreetOne(String streetOne) {
         this.streetOne = streetOne;
@@ -277,8 +263,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param streetTwo
-     *            the streetTwo to set
+     * @param streetTwo the streetTwo to set
      */
     public final void setStreetTwo(String streetTwo) {
         this.streetTwo = streetTwo;
@@ -292,8 +277,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param addressCity
-     *            the addressCity to set
+     * @param addressCity the addressCity to set
      */
     public final void setAddressCity(String addressCity) {
         this.addressCity = addressCity;
@@ -307,8 +291,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param addressState
-     *            the addressState to set
+     * @param addressState the addressState to set
      */
     public final void setAddressState(String addressState) {
         this.addressState = addressState;
@@ -322,8 +305,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param addressZip
-     *            the addressZip to set
+     * @param addressZip the addressZip to set
      */
     public final void setAddressZip(String addressZip) {
         this.addressZip = addressZip;
@@ -337,8 +319,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param electionType
-     *            the electionType to set
+     * @param electionType the electionType to set
      */
     public final void setElectionType(String electionType) {
         this.electionType = electionType;
@@ -352,8 +333,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param pgDes
-     *            the pgDes to set
+     * @param pgDes the pgDes to set
      */
     public final void setPgDes(String pgDes) {
         this.pgDes = pgDes;
@@ -367,8 +347,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param dateTransaction
-     *            the dateTransaction to set
+     * @param dateTransaction the dateTransaction to set
      */
     public final void setDateTransaction(Date dateTransaction) {
         this.dateTransaction = dateTransaction;
@@ -382,8 +361,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param transactionAmount
-     *            the transactionAmount to set
+     * @param transactionAmount the transactionAmount to set
      */
     public final void setTransactionAmount(double transactionAmount) {
         this.transactionAmount = transactionAmount;
@@ -397,8 +375,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param yearToDate
-     *            the yearToDate to set
+     * @param yearToDate the yearToDate to set
      */
     public final void setYearToDate(double yearToDate) {
         this.yearToDate = yearToDate;
@@ -412,8 +389,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param recordCode
-     *            the recordCode to set
+     * @param recordCode the recordCode to set
      */
     public final void setRecordCode(String recordCode) {
         this.recordCode = recordCode;
@@ -427,8 +403,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param transDesciption
-     *            the transDesciption to set
+     * @param transDesciption the transDesciption to set
      */
     public final void setTransDesciption(String transDesciption) {
         this.transDesciption = transDesciption;
@@ -442,8 +417,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param limitInd
-     *            the limitInd to set
+     * @param limitInd the limitInd to set
      */
     public final void setLimitInd(String limitInd) {
         this.limitInd = limitInd;
@@ -457,8 +431,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param indEmployer
-     *            the indEmployer to set
+     * @param indEmployer the indEmployer to set
      */
     public final void setIndEmployer(String indEmployer) {
         this.indEmployer = indEmployer;
@@ -472,8 +445,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param indOccupation
-     *            the indOccupation to set
+     * @param indOccupation the indOccupation to set
      */
     public final void setIndOccupation(String indOccupation) {
         this.indOccupation = indOccupation;
@@ -487,8 +459,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param memoCode
-     *            the memoCode to set
+     * @param memoCode the memoCode to set
      */
     public final void setMemoCode(String memoCode) {
         this.memoCode = memoCode;
@@ -502,8 +473,7 @@ public final class ScheduleA extends AbstractEntity {
     }
 
     /**
-     * @param amendment
-     *            the amendment to set
+     * @param amendment the amendment to set
      */
     public final void setAmendment(String amendment) {
         this.amendment = amendment;

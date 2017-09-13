@@ -1,20 +1,12 @@
 package com.salientcrgt.ezamendment.model;
 
+import javax.persistence.*;
 import java.util.UUID;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.Transient;
-import javax.persistence.Version;
 
 /**
  * This is a base class for all entities. It provides an equals and hashcode
  * that will always work correctly in all circumstances. This avoids frequent
  * errors related to the implementation of those same methods.
- *
  */
 @MappedSuperclass
 public class AbstractEntity {
@@ -99,10 +91,10 @@ public class AbstractEntity {
 
     @Override
     public int hashCode() {
-        if (getUuid() != null) {
-            return getUuid().hashCode();
-        }
-        return 0;
+//        if (getUuid() != null) {
+        return getUuid().hashCode();
+//        }
+//        return 0;
     }
 
     /**

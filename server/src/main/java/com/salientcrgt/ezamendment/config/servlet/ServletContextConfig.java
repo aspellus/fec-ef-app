@@ -7,11 +7,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- *
  * Spring MVC config for the servlet context in the application.
- *
+ * <p>
  * The beans of this context are only visible inside the servlet context.
- *
  */
 @Configuration
 @EnableWebMvc

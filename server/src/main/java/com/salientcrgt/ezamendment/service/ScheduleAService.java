@@ -1,14 +1,8 @@
 package com.salientcrgt.ezamendment.service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.List;
-
+import com.salientcrgt.ezamendment.dao.ScheduleARepository;
+import com.salientcrgt.ezamendment.dto.ScheduleADTO;
+import com.salientcrgt.ezamendment.model.ScheduleA;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -19,14 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.salientcrgt.ezamendment.dao.ScheduleARepository;
-import com.salientcrgt.ezamendment.dto.ScheduleADTO;
-import com.salientcrgt.ezamendment.model.ScheduleA;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.List;
 
 /**
- *
  * Business service for ScheduleA entity related operations
- *
  */
 @Service
 public class ScheduleAService {
@@ -47,27 +44,21 @@ public class ScheduleAService {
     }
 
     /**
-     *
      * FEC API call to pull committee details
-     *
      */
     public JSONObject getCommitteeDetails(String committeeId) {
         return buildJsonFromPublicAPI(committeeId, null, null);
     }
 
     /**
-     *
      * FEC API call to pull Reports by Filing Year and Form Type
-     *
      */
     public JSONObject getCommitteeReportsByYearAndFormType(String committeeId, String reportYear, String formType) {
         return buildJsonFromPublicAPI(committeeId, reportYear, formType);
     }
 
     /**
-     *
      * merges ScheduleA in the database
-     *
      */
     @Transactional
     public ScheduleA mergeScheduleA(long reportId, String tranId, ScheduleADTO scheduleADTO) {
@@ -78,9 +69,7 @@ public class ScheduleAService {
     }
 
     /**
-     *
      * creates a new ScheduleA in the database
-     *
      */
     @Transactional
     public ScheduleA createScheduleA(long reportId, ScheduleADTO scheduleADTO) {
@@ -99,9 +88,7 @@ public class ScheduleAService {
     }
 
     /**
-     *
      * deletes ScheduleA from the database
-     *
      */
     @Transactional
     public void deleteScheduleA(long reportId, String tranId) {
@@ -109,7 +96,6 @@ public class ScheduleAService {
     }
 
     /**
-     * 
      * @param reportId
      * @param amend
      * @param scheduleADTO
@@ -147,7 +133,6 @@ public class ScheduleAService {
     }
 
     /**
-     * 
      * @param committeeId
      * @param reportYear
      * @param formType
