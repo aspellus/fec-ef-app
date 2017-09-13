@@ -44,7 +44,7 @@ Developers gets [sonar reports](https://github.com/SalientCRGT/fec-ef-app/blob/m
 Automation is key to security testing, by embedding automated tools like SonarQube for code vulnerabilities and OWASP for dependency security vuilneratibilies, CI process lets the developer/team know of any issues upfront. Along with automated security testing, peer security-review further ensure security is baked in from the start in every project.
 
 ### Dynamic Application Security Testing (DAST)
-Dynamic application security penetration testing is achieved via open source tool like [OWASP ZAP]. The CI Pipeline makes this happen in the environment of choice, and lets the team know of security vulnerabilities early. 
+Dynamic application security penetration testing is achieved via open source tool like [OWASP ZAP](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/ZAP%20Scanning%20Report.pdf). The CI Pipeline makes this happen in the environment of choice, and lets the team know of security vulnerabilities early. 
 
 ### Performance Testing
 We have incorporated Jmeter plug-in into our DevOps Pipeline, with every release we can perform multiple load/performance test and make sure new sprint has not degraded the overall performance and the system is still performing to the agreed SLA.
