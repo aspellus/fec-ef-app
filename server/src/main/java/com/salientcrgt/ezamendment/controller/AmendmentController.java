@@ -69,7 +69,7 @@ public class AmendmentController {
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/committee/{committee_id}", produces = "application/json")
-	public JSONObject getCommitteeDetails(@PathVariable String committeeId) {
+	public JSONObject getCommitteeDetails(@PathVariable("committee_id") String committeeId) {
 		return scheduleAService.getCommitteeDetails(committeeId);
 	}
 
@@ -86,8 +86,8 @@ public class AmendmentController {
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/committee/{committee_id}/filings", produces = "application/json")
-	public JSONObject getCommitteeReportsByYearAndFormType(@PathVariable String committeeId,
-			@RequestParam String reportYear, @RequestParam(value = "", required = false) String formType) {
+	public JSONObject getCommitteeReportsByYearAndFormType(@PathVariable("committee_id") String committeeId,
+			@RequestParam("report_year") String reportYear, @RequestParam(value = "", required = false) String formType) {
 		return scheduleAService.getCommitteeReportsByYearAndFormType(committeeId, reportYear, formType);
 	}
 
@@ -102,7 +102,7 @@ public class AmendmentController {
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/schedules/{report_id}/schedule_a", produces = "application/json")
-	public ResponseList getScheduleAsByReportId(@PathVariable long reportId) {
+	public ResponseList getScheduleAsByReportId(@PathVariable("report_id") long reportId) {
 		List<ScheduleA> scheduleAList = scheduleAService.findByReportId(reportId);
 		List<Object> scheduleADTOList = scheduleAList.stream().map(ScheduleADTO::mapFromScheduleAEntity)
 				.collect(Collectors.toList());
@@ -124,7 +124,7 @@ public class AmendmentController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin(origins = "*")
 	@PostMapping(value = "/schedules/{report_id}/schedule_a", produces = "application/json")
-	public ScheduleADTO createScheduleA(@PathVariable long reportId, @RequestBody ScheduleADTO scheduleADTO) {
+	public ScheduleADTO createScheduleA(@PathVariable("report_id") long reportId, @RequestBody ScheduleADTO scheduleADTO) {
 		ScheduleA scheduleA = scheduleAService.createScheduleA(reportId, scheduleADTO);
 		return ScheduleADTO.mapFromScheduleAEntity(scheduleA);
 	}
@@ -143,7 +143,7 @@ public class AmendmentController {
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
 	@PutMapping(value = "/schedules/{report_id}/schedule_a/{tran_id}", produces = "application/json")
-	public ScheduleADTO mergeScheduleA(@PathVariable long reportId, @PathVariable String tranId,
+	public ScheduleADTO mergeScheduleA(@PathVariable("report_id") long reportId, @PathVariable("tran_id") String tranId,
 			@RequestBody ScheduleADTO scheduleADTO) {
 		ScheduleA scheduleA = scheduleAService.mergeScheduleA(reportId, tranId, scheduleADTO);
 		return ScheduleADTO.mapFromScheduleAEntity(scheduleA);
@@ -159,7 +159,7 @@ public class AmendmentController {
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
 	@DeleteMapping(value = "/schedules/{report_id}/schedule_a/{tran_id}")
-	public void deleteScheduleA(@PathVariable long reportId, @PathVariable("tran_id") String tranId) {
+	public void deleteScheduleA(@PathVariable("report_id") long reportId, @PathVariable("tran_id") String tranId) {
 		scheduleAService.deleteScheduleA(reportId, tranId);
 	}
 
