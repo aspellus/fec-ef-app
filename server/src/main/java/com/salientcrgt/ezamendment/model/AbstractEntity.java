@@ -19,103 +19,103 @@ import javax.persistence.Version;
 @MappedSuperclass
 public class AbstractEntity {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-	@Version
-	private Long version;
+    @Version
+    private Long version;
 
-	@Transient
-	private UUID uuid;
+    @Transient
+    private UUID uuid;
 
-	@Column(name = "UUID")
-	private String uuidStr;
+    @Column(name = "UUID")
+    private String uuidStr;
 
-	@PrePersist
-	protected void prePersist() {
-		syncUuidString();
-	}
+    @PrePersist
+    protected void prePersist() {
+        syncUuidString();
+    }
 
-	protected void syncUuidString() {
-		if (null == uuidStr) {
-			// initial method call fills the uuid
-			getUuid();
-		}
-	}
+    protected void syncUuidString() {
+        if (null == uuidStr) {
+            // initial method call fills the uuid
+            getUuid();
+        }
+    }
 
-	/**
-	 * @return uuid
-	 */
-	public UUID getUuid() {
-		if (uuidStr == null) {
-			if (uuid == null) {
-				uuid = UUID.randomUUID();
-			}
-			uuidStr = uuid.toString();
-		}
-		if (uuid == null && uuidStr != null) {
-			uuid = UUID.fromString(uuidStr);
-		}
-		return uuid;
-	}
+    /**
+     * @return uuid
+     */
+    public UUID getUuid() {
+        if (uuidStr == null) {
+            if (uuid == null) {
+                uuid = UUID.randomUUID();
+            }
+            uuidStr = uuid.toString();
+        }
+        if (uuid == null && uuidStr != null) {
+            uuid = UUID.fromString(uuidStr);
+        }
+        return uuid;
+    }
 
-	/**
-	 * @return id
-	 */
-	public Long getId() {
-		return id;
-	}
+    /**
+     * @return id
+     */
+    public Long getId() {
+        return id;
+    }
 
-	/*
-	 *
-	 * This method is mean for testing purposes only (create mock data), as we
-	 * should not set Ids manually, Hibernate will do it automatically
-	 *
-	 * @param id
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
+    /*
+     *
+     * This method is mean for testing purposes only (create mock data), as we
+     * should not set Ids manually, Hibernate will do it automatically
+     *
+     * @param id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
-		AbstractEntity that = (AbstractEntity) o;
+        AbstractEntity that = (AbstractEntity) o;
 
-		return getUuid().equals(that.getUuid());
-	}
+        return getUuid().equals(that.getUuid());
+    }
 
-	@Override
-	public int hashCode() {
-		if (getUuid() != null) {
-			return getUuid().hashCode();
-		}
-		return 0;
-	}
+    @Override
+    public int hashCode() {
+        if (getUuid() != null) {
+            return getUuid().hashCode();
+        }
+        return 0;
+    }
 
-	/**
-	 * @return
-	 */
-	public Long getVersion() {
-		return version;
-	}
+    /**
+     * @return
+     */
+    public Long getVersion() {
+        return version;
+    }
 
-	/**
-	 * @return
-	 */
-	public String getUuidStr() {
-		return uuidStr;
-	}
+    /**
+     * @return
+     */
+    public String getUuidStr() {
+        return uuidStr;
+    }
 }

@@ -24,33 +24,33 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class ApplicationConfiguration {
 
-	@Bean(name = "datasource")
-	public DriverManagerDataSource dataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl("jdbc:" + System.getenv("EF_DB_URL"));
-		dataSource.setUsername(System.getenv("EF_DB_USERNAME"));
-		dataSource.setPassword(System.getenv("EF_DB_PASSWORD"));
-		if (System.getenv("EF_DB_URL") == null) {
-			dataSource.setUrl("jdbc:postgresql://localhost:5432/fecefapp");
-		}
-		return dataSource;
-	}
+    @Bean(name = "datasource")
+    public DriverManagerDataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:" + System.getenv("EF_DB_URL"));
+        dataSource.setUsername(System.getenv("EF_DB_USERNAME"));
+        dataSource.setPassword(System.getenv("EF_DB_PASSWORD"));
+        if (System.getenv("EF_DB_URL") == null) {
+            dataSource.setUrl("jdbc:postgresql://localhost:5432/fecefapp");
+        }
+        return dataSource;
+    }
 
-	@Bean(name = "entityManagerFactory")
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DriverManagerDataSource dataSource) {
+    @Bean(name = "entityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DriverManagerDataSource dataSource) {
 
-		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-		entityManagerFactoryBean.setDataSource(dataSource);
-		entityManagerFactoryBean.setPackagesToScan(new String[] { "com.salientcrgt.ezamendment.model" });
-		entityManagerFactoryBean.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
-		entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactoryBean.setDataSource(dataSource);
+        entityManagerFactoryBean.setPackagesToScan(new String[] { "com.salientcrgt.ezamendment.model" });
+        entityManagerFactoryBean.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
+        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
-		Map<String, Object> jpaProperties = new HashMap<String, Object>();
-		jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-		entityManagerFactoryBean.setJpaPropertyMap(jpaProperties);
+        Map<String, Object> jpaProperties = new HashMap<String, Object>();
+        jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        entityManagerFactoryBean.setJpaPropertyMap(jpaProperties);
 
-		return entityManagerFactoryBean;
-	}
+        return entityManagerFactoryBean;
+    }
 
 }

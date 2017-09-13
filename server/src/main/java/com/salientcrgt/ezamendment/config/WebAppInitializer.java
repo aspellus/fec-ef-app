@@ -14,19 +14,19 @@ import com.salientcrgt.ezamendment.config.servlet.ServletContextConfig;
  */
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	@Override
-	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { RootContextConfig.class, ApplicationConfiguration.class };
-	}
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class<?>[] { RootContextConfig.class, ApplicationConfiguration.class };
+    }
 
-	@Override
-	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] { ServletContextConfig.class };
-	}
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class<?>[] { ServletContextConfig.class };
+    }
 
-	@Override
-	protected String[] getServletMappings() {
-		return new String[] { "/" };
-	}
+    @Override
+    protected String[] getServletMappings() {
+        return new String[] { "/" };
+    }
 
 }

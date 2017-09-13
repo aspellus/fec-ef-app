@@ -6,15 +6,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "results")
 public class ResponseList {
-	private List<Object> list;
+    private List<Object> list;
 
-	/**
-	 * constructor
-	 */
-	public ResponseList() {
-		
-	}
-	
+    /**
+     * constructor
+     */
+    public ResponseList() {
+
+    }
+
     /**
      * @return list
      */
@@ -23,7 +23,8 @@ public class ResponseList {
     }
 
     /**
-     * @param list list
+     * @param list
+     *            list
      */
     public void setList(List<Object> list) {
         this.list = list;

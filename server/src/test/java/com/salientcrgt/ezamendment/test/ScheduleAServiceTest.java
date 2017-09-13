@@ -76,7 +76,8 @@ public class ScheduleAServiceTest {
 
     }
 
-    @Test @Ignore
+    @Test
+    @Ignore
     public void shouldCreateScheduleAWithRandomTranId() {
 
         ScheduleA scheduleA = new ScheduleA();
