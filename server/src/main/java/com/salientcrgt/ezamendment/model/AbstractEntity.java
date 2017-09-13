@@ -45,7 +45,7 @@ public class AbstractEntity {
 	}
 
 	/**
-	 * @return
+	 * @return uuid
 	 */
 	public UUID getUuid() {
 		if (uuidStr == null) {
@@ -61,7 +61,7 @@ public class AbstractEntity {
 	}
 
 	/**
-	 * @return
+	 * @return id
 	 */
 	public Long getId() {
 		return id;

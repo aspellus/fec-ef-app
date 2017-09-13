@@ -66,7 +66,7 @@ public class ScheduleARepository {
 	 * save changes made to a scheduleA, or create the scheduleA if its a new.
 	 *
 	 * @param scheduleA
-	 * @return
+	 * @return merged ScheduleA object
 	 */
 	public ScheduleA merge(ScheduleA scheduleA) {
 		em.merge(scheduleA);
@@ -77,7 +77,7 @@ public class ScheduleARepository {
 	 *
 	 * save changes made to a scheduleA, or create the scheduleA if its a new.
 	 * @param scheduleA
-	 * @return
+	 * @return new ScheduleA object
 	 */
 	public ScheduleA create(ScheduleA scheduleA) {
 		em.persist(scheduleA);
