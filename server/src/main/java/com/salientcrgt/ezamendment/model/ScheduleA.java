@@ -82,6 +82,13 @@ public final class ScheduleA extends AbstractEntity {
 	private String amendment;
 
 	/**
+	 * default constructor 
+	 */
+	public ScheduleA() {
+		
+	}
+	
+	/**
 	 * @return the reportId
 	 */
 	public final long getReportId() {

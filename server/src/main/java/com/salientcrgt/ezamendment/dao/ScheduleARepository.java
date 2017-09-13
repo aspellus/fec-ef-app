@@ -50,8 +50,8 @@ public class ScheduleARepository {
 	/**
 	 * Delete a ScheduleA, given its identifier
 	 *
-	 * @param reportId
-	 * @param tranId
+	 * @param reportId report id
+	 * @param tranId transaction id
 	 */
 	public void delete(long reportId, String tranId) {
 		ScheduleA scheduleA = findByReportTranId(reportId, tranId);
@@ -65,7 +65,7 @@ public class ScheduleARepository {
 	 *
 	 * save changes made to a scheduleA, or create the scheduleA if its a new.
 	 *
-	 * @param scheduleA
+	 * @param scheduleA scheduleA object to merge
 	 * @return merged ScheduleA object
 	 */
 	public ScheduleA merge(ScheduleA scheduleA) {
@@ -76,7 +76,7 @@ public class ScheduleARepository {
 	/**
 	 *
 	 * save changes made to a scheduleA, or create the scheduleA if its a new.
-	 * @param scheduleA
+	 * @param scheduleA scheduleA object to create
 	 * @return new ScheduleA object
 	 */
 	public ScheduleA create(ScheduleA scheduleA) {

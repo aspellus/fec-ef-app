@@ -47,8 +47,8 @@ public class AmendmentController {
 
 	/**
 	 * CORS handler to ensure that CORS-aware browsers will serve this
-	 * 
-	 * TODO this should be replaced with full CORS support once we are out of prototype mode
+	 * TODO this should be replaced with full CORS support once we are out of
+	 * prototype mode
 	 * 
 	 * @return OK - 200
 	 */
@@ -62,7 +62,7 @@ public class AmendmentController {
 	 *
 	 * This service will return Committee basic details
 	 *
-	 * @param committeeId
+	 * @param committeeId committee id
 	 * @return Committee in JSON
 	 */
 	@ResponseBody
@@ -78,8 +78,11 @@ public class AmendmentController {
 	 * This service will return Filings by year and Form Type
 	 *
 	 * @param committeeId
+	 *            committee id
 	 * @param reportYear
+	 *            report year
 	 * @param formType
+	 *            form type
 	 * @return Filings matching filters in JSON
 	 */
 	@ResponseBody
@@ -87,7 +90,8 @@ public class AmendmentController {
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/committee/{committee_id}/filings", produces = "application/json")
 	public JSONObject getCommitteeReportsByYearAndFormType(@PathVariable("committee_id") String committeeId,
-			@RequestParam("report_year") String reportYear, @RequestParam(value = "", required = false) String formType) {
+			@RequestParam("report_year") String reportYear,
+			@RequestParam(name = "form_type", value = "", required = false) String formType) {
 		return scheduleAService.getCommitteeReportsByYearAndFormType(committeeId, reportYear, formType);
 	}
 
@@ -96,6 +100,7 @@ public class AmendmentController {
 	 * This service will return Receipts for a Report
 	 *
 	 * @param reportId
+	 *            report id
 	 * @return Receipts for specified report
 	 */
 	@ResponseBody
@@ -117,14 +122,17 @@ public class AmendmentController {
 	 * exist
 	 *
 	 * @param reportId
+	 *            report id
 	 * @param scheduleADTO
+	 *            schedule A
 	 * @return resulting transaction
 	 */
 	@ResponseBody
 	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin(origins = "*")
 	@PostMapping(value = "/schedules/{report_id}/schedule_a", produces = "application/json")
-	public ScheduleADTO createScheduleA(@PathVariable("report_id") long reportId, @RequestBody ScheduleADTO scheduleADTO) {
+	public ScheduleADTO createScheduleA(@PathVariable("report_id") long reportId,
+			@RequestBody ScheduleADTO scheduleADTO) {
 		ScheduleA scheduleA = scheduleAService.createScheduleA(reportId, scheduleADTO);
 		return ScheduleADTO.mapFromScheduleAEntity(scheduleA);
 	}
@@ -135,8 +143,11 @@ public class AmendmentController {
 	 * exist
 	 *
 	 * @param reportId
+	 *            report id
 	 * @param tranId
+	 *            transaction id
 	 * @param scheduleADTO
+	 *            scheduleA
 	 * @return resulting schedule
 	 */
 	@ResponseBody
@@ -154,7 +165,9 @@ public class AmendmentController {
 	 * This service will delete a Receipt
 	 *
 	 * @param reportId
+	 *            report id
 	 * @param tranId
+	 *            transactin id
 	 */
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
@@ -168,6 +181,7 @@ public class AmendmentController {
 	 * ExceptionHandler for EZ Amendment Application
 	 * 
 	 * @param exc
+	 *            exception
 	 * @return generic response to unexpected requests
 	 */
 	@ExceptionHandler(Exception.class)

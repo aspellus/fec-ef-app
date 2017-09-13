@@ -85,10 +85,12 @@ public class AbstractEntity {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 
 		AbstractEntity that = (AbstractEntity) o;
 
@@ -97,7 +99,10 @@ public class AbstractEntity {
 
 	@Override
 	public int hashCode() {
-		return getUuid() != null ? getUuid().hashCode() : 0;
+		if (getUuid() != null) {
+			return getUuid().hashCode();
+		}
+		return 0;
 	}
 
 	/**
