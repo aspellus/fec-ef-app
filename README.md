@@ -20,8 +20,14 @@ Throughout our development process, we used electronic [Scrum Board](https://git
 
 We were also able to demonstrate a number of valuable capabilities through our DevOps pipeline, performing static code analaysis/code coverage using [Sonar](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/Sonar-Quality-Dashboard-1.png), security vulnerability checks (OWASP), Security Penetration Testing ([OWASP ZAP](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/ZAP%20Scanning%20Report.pdf)), and even Section 508 Compliance [(aXe)](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/aXe_reports_testSchedules.pdf). These pipeline stages, along with [unit](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/Unit-Test-15-Results.png)/[functional](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/Selenium-Functional-Testing.png), regression and smoke tests all produce a clear pipeline that can be drilled into to see detailed results.
 
+**Unit Testing Results**
+![https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/Unit-Test-15-Results_sized.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/Unit-Test-15-Results_sized.png)
+
 **Code Quality Dashboard**
-![https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/Sonar-Quality-Dashboard-1.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/Sonar-Quality-Dashboard-1.png)
+![https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/Sonar-Quality-Dashboard-sized.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/pictures/Sonar-Quality-Dashboard-sized.png)
+
+**Selenium Automation Test Results**
+![https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/Selenium-Functional-Testing_sized.png](https://github.com/SalientCRGT/fec-ef-app/blob/master/docs/devops/Selenium-Functional-Testing_sized.png)
 
 
 In addition to these automated tools, our team relied on a daily branching strategy and daily Pull Requests to ensure peer-based review. Our process empowers everyone on the team to review independently and directly annotate code. In a Scrum project with longer sprints, we rely on a Git-flow style branching model that includes feature branching, with minor features using a "+1" PR model and major features using a "+2" or better model. We believe this model is essential in a truly agile project as traditional code reviews scope in more code than can be adequately reviewed in one session.
