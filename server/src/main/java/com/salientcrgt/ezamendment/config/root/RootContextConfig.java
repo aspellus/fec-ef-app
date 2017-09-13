@@ -1,6 +1,5 @@
 package com.salientcrgt.ezamendment.config.root;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,22 +11,22 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * The root context configuration of the application - the beans in this context will be globally visible
- * in all servlet contexts.
+ * The root context configuration of the application - the beans in this context
+ * will be globally visible in all servlet contexts.
  *
  */
 
 @Configuration
-@ComponentScan({"com.salientcrgt.ezamendment.service", "com.salientcrgt.ezamendment.dao"})
+@ComponentScan({ "com.salientcrgt.ezamendment.service", "com.salientcrgt.ezamendment.dao" })
 public class RootContextConfig {
 
-    @Bean(name = "transactionManager")
-    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory,
-                                                         DriverManagerDataSource dataSource) {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory);
-        transactionManager.setDataSource(dataSource);
-        return transactionManager;
-    }
+	@Bean(name = "transactionManager")
+	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory,
+			DriverManagerDataSource dataSource) {
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setEntityManagerFactory(entityManagerFactory);
+		transactionManager.setDataSource(dataSource);
+		return transactionManager;
+	}
 
 }

@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -33,90 +32,90 @@ import com.salientcrgt.ezamendment.model.ScheduleA;
 public class ScheduleAService {
 
 	private static final Logger logger = LoggerFactory.getLogger(ScheduleAService.class);
-    
-    @Autowired
-    private ScheduleARepository scheduleARepository;
 
-    @Transactional(readOnly = true)
-    public ScheduleA findByReportTranId(long reportId, String tranId) {
-        return scheduleARepository.findByReportTranId(reportId, tranId);
-    }
-    
-    @Transactional(readOnly = true)
-    public List<ScheduleA> findByReportId(long reportId) {
-        return scheduleARepository.findByReportId(reportId);
-    }
-    
-    /**
-    *
-    * FEC API call to pull committee details
-    *
-    */
-    public JSONObject getCommitteeDetails(String committeeId) {
-    	return buildJsonFromPublicAPI(committeeId, null, null);
+	@Autowired
+	private ScheduleARepository scheduleARepository;
+
+	@Transactional(readOnly = true)
+	public ScheduleA findByReportTranId(long reportId, String tranId) {
+		return scheduleARepository.findByReportTranId(reportId, tranId);
 	}
-    
-    /**
-    *
-    * FEC API call to pull Reports by Filing Year and Form Type 
-    *
-    */
-    public JSONObject getCommitteeReportsByYearAndFormType(String committeeId, String reportYear, String formType) {
+
+	@Transactional(readOnly = true)
+	public List<ScheduleA> findByReportId(long reportId) {
+		return scheduleARepository.findByReportId(reportId);
+	}
+
+	/**
+	 *
+	 * FEC API call to pull committee details
+	 *
+	 */
+	public JSONObject getCommitteeDetails(String committeeId) {
+		return buildJsonFromPublicAPI(committeeId, null, null);
+	}
+
+	/**
+	 *
+	 * FEC API call to pull Reports by Filing Year and Form Type
+	 *
+	 */
+	public JSONObject getCommitteeReportsByYearAndFormType(String committeeId, String reportYear, String formType) {
 		return buildJsonFromPublicAPI(committeeId, reportYear, formType);
 	}
 
 	/**
-    *
-    * merges ScheduleA in the database
-    *
-    */
-    @Transactional
-    public ScheduleA mergeScheduleA(long reportId, String tranId, ScheduleADTO scheduleADTO) {
-    	scheduleADTO.setTran_id(tranId);
-    	ScheduleA scheduleA = buildScheduleAFromDTO(reportId, "C", scheduleADTO);
-    	scheduleA = scheduleARepository.merge(scheduleA);
- 		return scheduleA;
-    }
+	 *
+	 * merges ScheduleA in the database
+	 *
+	 */
+	@Transactional
+	public ScheduleA mergeScheduleA(long reportId, String tranId, ScheduleADTO scheduleADTO) {
+		scheduleADTO.setTran_id(tranId);
+		ScheduleA scheduleA = buildScheduleAFromDTO(reportId, "C", scheduleADTO);
+		scheduleA = scheduleARepository.merge(scheduleA);
+		return scheduleA;
+	}
 
-   /**
-   *
-   * creates a new ScheduleA in the database
-   *
-   */
-   @Transactional
-   public ScheduleA createScheduleA(long reportId, ScheduleADTO scheduleADTO) {
-	   if(StringUtils.isEmpty(scheduleADTO.getTran_id())){
-		   long randomNumber=0L;
-		   try {
-			   randomNumber = SecureRandom.getInstanceStrong().nextLong();
+	/**
+	 *
+	 * creates a new ScheduleA in the database
+	 *
+	 */
+	@Transactional
+	public ScheduleA createScheduleA(long reportId, ScheduleADTO scheduleADTO) {
+		if (StringUtils.isEmpty(scheduleADTO.getTran_id())) {
+			long randomNumber = 0L;
+			try {
+				randomNumber = SecureRandom.getInstanceStrong().nextLong();
 			} catch (NoSuchAlgorithmException e) {
-			   logger.error(e.getMessage());
+				logger.error(e.getMessage());
 			}
-		   	scheduleADTO.setTran_id("SA"+randomNumber);
-	   }
-	   ScheduleA scheduleA = buildScheduleAFromDTO(reportId, "A", scheduleADTO);
-	   scheduleA = scheduleARepository.create(scheduleA);
-	   return scheduleA;
-   } 
-   
-   /**
-    *
-    * deletes ScheduleA from the database
-    *
-    */
-   @Transactional
-   public void deleteScheduleA(long reportId, String tranId) {
-	   scheduleARepository.delete(reportId, tranId);
-   }
-  
-   /**
-    * 
-    * @param reportId
-    * @param amend
-    * @param scheduleADTO
-    * @return ScheduleA
-    */
-   private ScheduleA buildScheduleAFromDTO(long reportId, String amend, ScheduleADTO scheduleADTO) {
+			scheduleADTO.setTran_id("SA" + randomNumber);
+		}
+		ScheduleA scheduleA = buildScheduleAFromDTO(reportId, "A", scheduleADTO);
+		scheduleA = scheduleARepository.create(scheduleA);
+		return scheduleA;
+	}
+
+	/**
+	 *
+	 * deletes ScheduleA from the database
+	 *
+	 */
+	@Transactional
+	public void deleteScheduleA(long reportId, String tranId) {
+		scheduleARepository.delete(reportId, tranId);
+	}
+
+	/**
+	 * 
+	 * @param reportId
+	 * @param amend
+	 * @param scheduleADTO
+	 * @return ScheduleA
+	 */
+	private ScheduleA buildScheduleAFromDTO(long reportId, String amend, ScheduleADTO scheduleADTO) {
 		ScheduleA scheduleA = new ScheduleA();
 		scheduleA.setReportId(reportId);
 		scheduleA.setLineNumber(scheduleADTO.getLine_num());
@@ -145,49 +144,46 @@ public class ScheduleAService {
 		scheduleA.setMemoCode(scheduleADTO.getMemo_code());
 		scheduleA.setAmendment("C");
 		return scheduleA;
-   }
-  
-   /**
-    * 	
-    * @param committeeId
-    * @param reportYear
-    * @param formType
-    * @return
-    */
-   private JSONObject buildJsonFromPublicAPI(String committeeId, String reportYear, String formType) {
-	   JSONObject jsonObject = null;
-	   HttpURLConnection conn = null;
-	   try {
-		   // Establishing Connection to FEC API to get Committee Details.
-		   StringBuilder apiURL = new StringBuilder();
-		   apiURL.append("https://api.open.fec.gov/v1/committee/")
-		   .append(committeeId)
-		   .append("/filings/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y");
-		   if(StringUtils.isNotEmpty(reportYear)) {
-			   apiURL.append("&report_year=")
-			   .append(reportYear);
-		   }
-		   if(StringUtils.isNotEmpty(formType)) {
-			   apiURL.append("&form_type=")
-			   .append(formType);
-		   }
-		   URL url = new URL(apiURL.toString());
-		   conn = (HttpURLConnection) url.openConnection();
-		   conn.setRequestMethod("GET");
-		   conn.setRequestProperty("Accept", "application/json");
-		   // Building JSONObject from API call
-		   BufferedReader reader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-		   jsonObject = (JSONObject) new JSONParser().parse(reader);
-	   } catch (IOException | ParseException e) {
-		   logger.error(e.getMessage());
-	   } finally {
-		   // close connection
-		   if(conn != null) {
-			   conn.disconnect();
-		   }
-	   }
-	   return jsonObject;
-   	}
+	}
+
+	/**
+	 * 
+	 * @param committeeId
+	 * @param reportYear
+	 * @param formType
+	 * @return
+	 */
+	private JSONObject buildJsonFromPublicAPI(String committeeId, String reportYear, String formType) {
+		JSONObject jsonObject = null;
+		HttpURLConnection conn = null;
+		try {
+			// Establishing Connection to FEC API to get Committee Details.
+			StringBuilder apiURL = new StringBuilder();
+			apiURL.append("https://api.open.fec.gov/v1/committee/").append(committeeId)
+					.append("/filings/?api_key=tXL6l6lELFouuaG2ZiLrFedd2MVx8yxPn5Jyas3y");
+			if (StringUtils.isNotEmpty(reportYear)) {
+				apiURL.append("&report_year=").append(reportYear);
+			}
+			if (StringUtils.isNotEmpty(formType)) {
+				apiURL.append("&form_type=").append(formType);
+			}
+			URL url = new URL(apiURL.toString());
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", "application/json");
+			// Building JSONObject from API call
+			BufferedReader reader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+			jsonObject = (JSONObject) new JSONParser().parse(reader);
+		} catch (IOException | ParseException e) {
+			logger.error(e.getMessage());
+		} finally {
+			// close connection
+			if (conn != null) {
+				conn.disconnect();
+			}
+		}
+		return jsonObject;
+	}
 
 	public void setScheduleARepository(ScheduleARepository scheduleARepository) {
 		this.scheduleARepository = scheduleARepository;

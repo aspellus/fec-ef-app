@@ -39,23 +39,32 @@ import com.salientcrgt.ezamendment.service.ScheduleAService;
 
 @RestController
 public class AmendmentController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(AmendmentController.class);
-	
+
 	@Autowired
 	private ScheduleAService scheduleAService;
-	
+
+	/**
+	 * CORS handler to ensure that CORS-aware browsers will serve this
+	 * 
+	 * TODO this should be replaced with full CORS support once we are out of prototype mode
+	 * 
+	 * @return
+	 */
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/**", method = RequestMethod.OPTIONS)
-    public ResponseEntity handle() {
-        return new ResponseEntity(HttpStatus.OK);
-    }
-	
+	public ResponseEntity handle() {
+		return new ResponseEntity(HttpStatus.OK);
+	}
+
 	/**
-    *
-    * This service will return Committee basic details
-    *
-    */
+	 *
+	 * This service will return Committee basic details
+	 *
+	 * @param committee_id
+	 * @return
+	 */
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
@@ -63,42 +72,54 @@ public class AmendmentController {
 	public JSONObject getCommitteeDetails(@PathVariable String committee_id) {
 		return scheduleAService.getCommitteeDetails(committee_id);
 	}
-	
+
 	/**
-    *
-    * This service will return Filings by year and Form Type
-    *
-    */
+	 *
+	 * This service will return Filings by year and Form Type
+	 *
+	 * @param committee_id
+	 * @param report_year
+	 * @param form_type
+	 * @return
+	 */
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/committee/{committee_id}/filings", produces = "application/json")
-	public JSONObject getCommitteeReportsByYearAndFormType(@PathVariable String committee_id, @RequestParam String report_year, @RequestParam(value="", required=false) String form_type) {
+	public JSONObject getCommitteeReportsByYearAndFormType(@PathVariable String committee_id,
+			@RequestParam String report_year, @RequestParam(value = "", required = false) String form_type) {
 		return scheduleAService.getCommitteeReportsByYearAndFormType(committee_id, report_year, form_type);
 	}
-	
+
 	/**
-    *
-    * This service will return Receipts for a Report
-    *
-    */
+	 *
+	 * This service will return Receipts for a Report
+	 *
+	 * @param report_id
+	 * @return
+	 */
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/schedules/{report_id}/schedule_a", produces = "application/json")
 	public ResponseList getScheduleAsByReportId(@PathVariable long report_id) {
 		List<ScheduleA> scheduleAList = scheduleAService.findByReportId(report_id);
-		List<Object> scheduleADTOList = scheduleAList.stream().map(ScheduleADTO::mapFromScheduleAEntity).collect(Collectors.toList());
+		List<Object> scheduleADTOList = scheduleAList.stream().map(ScheduleADTO::mapFromScheduleAEntity)
+				.collect(Collectors.toList());
 		ResponseList scheduleAResponseList = new ResponseList();
 		scheduleAResponseList.setList(scheduleADTOList);
 		return scheduleAResponseList;
 	}
-	
+
 	/**
-    *
-    * This service will update a Receipt or Create a new one if it doesn't exist
-    *
-    */
+	 *
+	 * This service will update a Receipt or Create a new one if it doesn't
+	 * exist
+	 *
+	 * @param report_id
+	 * @param scheduleADTO
+	 * @return
+	 */
 	@ResponseBody
 	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin(origins = "*")
@@ -107,44 +128,52 @@ public class AmendmentController {
 		ScheduleA scheduleA = scheduleAService.createScheduleA(report_id, scheduleADTO);
 		return ScheduleADTO.mapFromScheduleAEntity(scheduleA);
 	}
-	
+
 	/**
-    *
-    * This service will update a Receipt or Create a new one if it doesn't exist
-    *
-    */
+	 *
+	 * This service will update a Receipt or Create a new one if it doesn't
+	 * exist
+	 *
+	 * @param report_id
+	 * @param tran_id
+	 * @param scheduleADTO
+	 * @return
+	 */
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
 	@PutMapping(value = "/schedules/{report_id}/schedule_a/{tran_id}", produces = "application/json")
-	public ScheduleADTO mergeScheduleA(@PathVariable long report_id, @PathVariable String tran_id, @RequestBody ScheduleADTO scheduleADTO) {
+	public ScheduleADTO mergeScheduleA(@PathVariable long report_id, @PathVariable String tran_id,
+			@RequestBody ScheduleADTO scheduleADTO) {
 		ScheduleA scheduleA = scheduleAService.mergeScheduleA(report_id, tran_id, scheduleADTO);
 		return ScheduleADTO.mapFromScheduleAEntity(scheduleA);
 	}
-	
+
 	/**
-    *
-    * This service will delete a Receipt
-    *
-    */
-	
+	 *
+	 * This service will delete a Receipt
+	 *
+	 * @param report_id
+	 * @param tran_id
+	 */
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
 	@DeleteMapping(value = "/schedules/{report_id}/schedule_a/{tran_id}")
 	public void deleteScheduleA(@PathVariable long report_id, @PathVariable("tran_id") String tran_id) {
 		scheduleAService.deleteScheduleA(report_id, tran_id);
 	}
-	
-	/**
-    *
-    * ExceptionHandler for EZ Amendment Application
-    *
-    */
-	@ExceptionHandler(Exception.class)
-    public ResponseEntity<String> errorHandler(Exception exc) {
-		logger.error(exc.getMessage(), exc);
-	    return new ResponseEntity<>(exc.getMessage(), HttpStatus.BAD_REQUEST);
-	}
-	
-}
 
+	/**
+	 *
+	 * ExceptionHandler for EZ Amendment Application
+	 * 
+	 * @param exc
+	 * @return
+	 */
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<String> errorHandler(Exception exc) {
+		logger.error(exc.getMessage(), exc);
+		return new ResponseEntity<>(exc.getMessage(), HttpStatus.BAD_REQUEST);
+	}
+
+}
