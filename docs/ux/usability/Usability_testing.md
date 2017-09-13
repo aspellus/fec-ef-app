@@ -27,4 +27,10 @@ Since this was a prototype project, we had open discussion on the finding
 -	Was the interface intuitive 
 -	Also noted facial expression
 
-After analysis the usability issues were added to backlog for further prioritization working with product owner
+After analysis the usability issues were discussed and priortized. Some of the feeback was:
+1. Add more messaging on Home Page, Portal Page and Amend Page to let users know where they are and what they can do.
+2. Add messaging to functionality buttons like "Submit to FEC", to make it clear what the click on the button will do.
+3. Adding, deleting is too fast for users to see it, messaging that will stay and clear on click action or popup to be used.
+4. Android responsive design looks good, on iphone we need to do more testing.
+
+The feedback along with other issues were added to product backlog for priortization by product owner for future sprints. We plan to conduct similar usability testing with target users as an when a new feature is released.
